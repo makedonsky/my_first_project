@@ -1,0 +1,39 @@
+22.04.2012 16:29:40insert into DogovorInfo values('Р-79-О','2012.04.22','1647','фавфыв','афывафывафыва','22.04.2012','22.04.2012','','Наличный','','','','','Основной','Саяпина Н.Н','Росинтур','Россия','','Нет','Нет')
+22.04.2012 16:34:10System.Data.SqlClient.SqlException: The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value.
+The statement has been terminated.
+   в System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   в System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   в System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   в System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   в System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async)
+   в System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   в System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   в WordExChec.Form1.ClientInsert(Client client) в C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2010\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\Form1.cs:строка 5110
+   в WordExChec.Form1.button2_Click(Object sender, EventArgs e) в C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2010\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\Form1.cs:строка 1152
+22.04.2012 16:52:39insert into DogovorInfo values('Ю-77-О','2012.04.22','1647','','','22.04.2012','22.04.2012','','Наличный','','','','','Основной','Саяпина Н.Н','Анекс','Россия','','Нет','Нет')
+22.04.2012 16:54:02update DogovorInfo Set Dogovornum='Ю-77-О', DogovorDate='2012.04.22', Client='1647', TyrName='', TravelPath='', StartDate='22.04.2012', EndDate='22.04.2012', Hotel='', PayType='Наличный',Currency='', Course='',RUPrice='', ENPrice='', DogovorType='Основной', Manager='Саяпина Н.Н',Tyroperator='Анекс', Country='Россия', Discount='' where id='2945'
+22.04.2012 16:54:28update DogovorInfo Set Dogovornum='Ю-77-О', DogovorDate='2012.04.22', Client='1647', TyrName='', TravelPath='', StartDate='22.04.2012', EndDate='22.04.2012', Hotel='', PayType='Наличный',Currency='', Course='',RUPrice='', ENPrice='', DogovorType='Основной', Manager='Саяпина Н.Н',Tyroperator='Анекс', Country='Россия', Discount='' where id='2945'
+22.04.2012 16:57:26insert into DogovorInfo values('МП-78-О','2012.04.22','1647','','','22.04.2012','22.04.2012','','Наличный','','','','','Основной','Саяпина Н.Н','Анекс','Россия','','Нет','Нет')
+22.04.2012 16:58:36insert into DogovorInfo values('МП-79-О','2012.04.22','1647','','','22.04.2012','22.04.2012','','Наличный','','','','','Основной','Саяпина Н.Н','Анекс','Россия','','Нет','Нет')
+05.05.2012 15:42:01insert into DogovorInfo values('Р-80-О','2012.05.05','1647','','','05.05.2012','05.05.2012','','Наличный','','','','','Основной','Саяпина Н.Н','Росинтур','Россия','','Нет','Нет')
+04.06.2012 10:05:08System.Data.SqlClient.SqlException: The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value.
+The statement has been terminated.
+   в System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   в System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   в System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   в System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   в System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async)
+   в System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   в System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   в WordExChec.Form1.ClientInsert(Client client) в C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2010\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\Form1.cs:строка 5141
+   в WordExChec.Form1.button2_Click(Object sender, EventArgs e) в C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2010\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\Form1.cs:строка 1173
+04.06.2012 10:05:08insert into DogovorInfo values('Р-81-О','2012.06.04','','','','04.06.2012','04.06.2012','','Наличный','','','','','Основной','Саяпина Н.Н','Росинтур','Россия','','Нет','Нет')
+18.06.2012 11:54:23insert into DogovorInfo values('Р-82-О','2012.06.18','1647','','','18.06.2012','18.06.2012','','Наличный','','','','','Основной','Саяпина Н.Н','Росинтур','Россия','','Нет','Нет')
+15.07.2012 13:42:04insert into DogovorInfo values('Р-237-О','2012.07.15','2102','ИСПАНИЯ','РОСТОВ-БАРСЕЛОНА-РОСТОВ','19.08.2012','28.08.2012','КАПРИЧИ ВЕРД 4*+','Наличный','EUR','','','2202,55','Основной','Чистякова А.В','Росинтур','Испания','106,45','Нет','Нет','15')
+15.07.2012 13:47:29insert into DogovorInfo values('Р-224-О','2012.07.15','2063','ЧЕХИЯ (ЭКСКУРСИОННЫЙ ТУР)','РОСТОВ-ПРАГА-РОСТОВ','20.08.2012','26.08.2012','РЕЗ.БОЛОНЬЯ 3*','Наличный','EUR','','','1671,3','Основной','Саяпина Н.Н','Росинтур','Чехия','72,7','Нет','Нет','16')
+15.07.2012 13:49:00insert into DogovorInfo values('Ю-77-О','2012.07.15','1442','Турция, Алания','Ростов-Анталия-Ростов','10.08.2012','18.08.2012','UTOPIA WORLD HOTEL 5*','Наличный','EUR','','','2096,2314','Основной','Саяпина Н.Н','Анекс','Турция','148,7486','Нет','Нет','16')
+10.10.2012 10:27:45insert into DogovorInfo values('Р-83-О','2012.10.10','1647','','','10.10.2012','10.10.2012','','Наличный','','','','','Основной','Озерова Екатерина','Росинтур','Россия','','Нет','Нет','')
+10.10.2012 10:40:44update DogovorInfo Set Dogovornum='Р-83-О', DogovorDate='2012.10.10', Client='1647', TyrName='', TravelPath='', StartDate='10.10.2012', EndDate='10.10.2012', Hotel='', PayType='Наличный',Currency='', Course='',RUPrice='', ENPrice='', DogovorType='Основной', Manager='Озерова Екатерина',Tyroperator='Росинтур', Country='Россия', Discount='', Sms_yes='Нет', Email_yes='Нет', cardnum='' where id='4358'
+10.10.2012 10:41:02update DogovorInfo Set Dogovornum='Р-83-О', DogovorDate='2012.10.10', Client='1647', TyrName='', TravelPath='', StartDate='10.10.2012', EndDate='10.10.2012', Hotel='', PayType='Наличный',Currency='', Course='',RUPrice='', ENPrice='', DogovorType='Основной', Manager='Озерова Екатерина',Tyroperator='Корал', Country='Россия', Discount='', Sms_yes='Нет', Email_yes='Нет', cardnum='' where id='4358'
+10.10.2012 10:41:26insert into DogovorInfo values('Р-84-П','2012.10.10','','','','10.10.2012','10.10.2012','','Наличный','','','','','Предварительный','Озерова Екатерина','Росинтур','Россия','','Нет','Нет','')
+10.10.2012 10:41:45insert into DogovorInfo values('Ю-84-П','2012.10.10','','','','10.10.2012','10.10.2012','','Наличный','','','','','Предварительный','Озерова Екатерина','Корал','Россия','','Нет','Нет','')
