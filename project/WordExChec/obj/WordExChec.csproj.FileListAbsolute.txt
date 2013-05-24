@@ -1,0 +1,10 @@
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\obj\Debug\WordExChec.exe
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\obj\Debug\WordExChec.pdb
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\obj\Debug\WordExChec.Form1.resources
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\obj\Debug\WordExChec.Properties.Resources.resources
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\obj\Debug\WordExChec.csproj.GenerateResource.Cache
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\bin\Debug\WordExChec.exe
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\bin\Debug\WordExChec.pdb
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\bin\Debug\iniLibrary.dll
+C:\Documents and Settings\Makedonsky\Мои документы\Visual Studio 2005\Projects\Dogovor1\WordExChec\WordExChec\bin\Debug\iniLibrary.pdb
