@@ -59,3 +59,697 @@ The statement has been terminated.
 23.05.2013 17:22:29update payment set dogovor_key='5739'  and date='23-05-2013' and sum_en='241,25' and sum_ru='9000' and course='41,45' where id='2'
 23.05.2013 19:49:20select d.dogovor_num,d.dogovor_date, d.FIO,c.RuName as country,m.name as manager from dogovorinfo_temp as d,country as c, manager as m where id='5659' and m.id=d.manager and c.id=d.country
 23.05.2013 19:51:05select d.dogovornum,d.dogovordate, d.FIO,c.RuName as country,m.name as manager from dogovorinfo_temp as d,country as c, managers as m where d.id='5659' and m.id=d.manager and c.id=d.country
+30.05.2013 15:17:50select id, name from managers where managertype='client'
+30.05.2013 15:17:50select id, name from managers where managertype='client'
+30.05.2013 15:17:50select id, name from managers where managertype='client'
+30.05.2013 15:17:50select id, name from managers where managertype='client'
+30.05.2013 15:17:50select id, name from managers where managertype='client'
+30.05.2013 15:20:10select id, name from managers where managertype='client'
+30.05.2013 15:20:10select id, name from managers where managertype='client'
+30.05.2013 15:20:10select id, name from managers where managertype='client'
+30.05.2013 15:20:10select id, name from managers where managertype='client'
+30.05.2013 15:20:10select id, name from managers where managertype='client'
+30.05.2013 16:06:51select id, name from managers where managertype='client'
+30.05.2013 16:06:51select id, name from managers where managertype='client'
+30.05.2013 16:06:51select id, name from managers where managertype='client'
+30.05.2013 16:06:51select id, name from managers where managertype='client'
+30.05.2013 16:06:51select id, name from managers where managertype='client'
+30.05.2013 16:07:48select id, name from managers where managertype='client'
+30.05.2013 16:21:28select id, name from managers where managertype='client'
+30.05.2013 16:21:28select id, name from managers where managertype='client'
+30.05.2013 16:21:28select id, name from managers where managertype='client'
+30.05.2013 16:21:28select id, name from managers where managertype='client'
+30.05.2013 16:21:28select id, name from managers where managertype='avia'
+30.05.2013 16:21:28select id, RuName from country
+30.05.2013 16:21:28select id, RuName from country
+30.05.2013 16:21:28select id, RuName from country
+30.05.2013 16:21:28select id, RuName from country
+30.05.2013 16:21:28select id, RuName from country
+30.05.2013 16:21:28select id, RuName from country
+30.05.2013 18:36:39SELECT [id],[Pred_DogovorKey],[Dogovornum],[DogovorDate],[DogovorType],[Client],[FIO],[Travelprogram],[Country],[Startdate],[Enddate],[Travelroute],[Cardnum],[GidTranslate],[InstructorTranslate],[VizaHelp],[EarlyBooking],[Transport],[Tyroperator],[Manager],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportOwn],[ENpassport_Use],[RUSPassportseriy],[RUSPassportNum],[RUSPassportStartDate],[RUSPassportOwn],[RUSPassport_Use],[Adress],[Mobilephone],[Phone],[Email],[DateMakeMainDog],[Email_send],[SMS_send],[TyrName],[Hotel],[PayType],[Currency],[Course],[RUPrice],[ENPrice],[Discount] FROM [Dogovorinfo_temp]
+30.05.2013 19:28:34SELECT [id],[Pred_DogovorKey],[Dogovornum],[DogovorDate],[DogovorType],[Client],[FIO],[Travelprogram],[Country],[Startdate],[Enddate],[Travelroute],[Cardnum],[GidTranslate],[InstructorTranslate],[VizaHelp],[EarlyBooking],[Transport],[Tyroperator],[Manager],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportOwn],[ENpassport_Use],[RUSPassportseriy],[RUSPassportNum],[RUSPassportStartDate],[RUSPassportOwn],[RUSPassport_Use],[Adress],[Mobilephone],[Phone],[Email],[DateMakeMainDog],[Email_send],[SMS_send],[TyrName],[Hotel],[PayType],[Currency],[Course],[RUPrice],[ENPrice],[Discount] FROM [Dogovorinfo_temp] where id='5727'
+30.05.2013 19:30:58SELECT [id],[Pred_DogovorKey],[Dogovornum],[DogovorDate],[DogovorType],[Client],[FIO],[Travelprogram],[Country],[Startdate],[Enddate],[Travelroute],[Cardnum],[GidTranslate],[InstructorTranslate],[VizaHelp],[EarlyBooking],[Transport],[Touroperator],[Manager],[Birthdate],[ENpassport_Use],[RUSPassport_Use],[DateMakeMainDog],[Email_send],[SMS_send],[TourName],[Hotel],[PayType],[Currency],[Course],[RUPrice],[ENPrice],[Discount] FROM [Dogovorinfo_temp] where id='5727'
+30.05.2013 20:15:25select id, name from managers where managertype='client'
+30.05.2013 20:15:26select id, name from managers where managertype='client'
+30.05.2013 20:15:26select id, name from managers where managertype='client'
+30.05.2013 20:15:26select id, name from managers where managertype='client'
+30.05.2013 20:15:26select id, name from managers where managertype='avia'
+30.05.2013 20:15:26select id, RuName from country
+30.05.2013 20:15:26select id, RuName from country
+30.05.2013 20:15:26select id, RuName from country
+30.05.2013 20:15:26select id, RuName from country
+30.05.2013 20:15:26select id, RuName from country
+30.05.2013 20:15:26select id, RuName from country
+30.05.2013 20:15:26select id, name from managers where managertype='Agent'
+31.05.2013 13:27:30select id, name from managers where managertype='client'
+31.05.2013 13:27:30select id, name from managers where managertype='client'
+31.05.2013 13:27:30select id, name from managers where managertype='client'
+31.05.2013 13:27:30select id, name from managers where managertype='client'
+31.05.2013 13:27:30select id, name from managers where managertype='avia'
+31.05.2013 13:27:30select id, RuName from country
+31.05.2013 13:27:30select id, RuName from country
+31.05.2013 13:27:30select id, RuName from country
+31.05.2013 13:27:30select id, RuName from country
+31.05.2013 13:27:30select id, RuName from country
+31.05.2013 13:27:30select id, RuName from country
+31.05.2013 13:27:30select id, name from managers where managertype='Agent'
+31.05.2013 13:30:52select id, name from managers where managertype='client'
+31.05.2013 13:30:52select id, name from managers where managertype='client'
+31.05.2013 13:30:52select id, name from managers where managertype='client'
+31.05.2013 13:30:52select id, name from managers where managertype='client'
+31.05.2013 13:30:52select id, name from managers where managertype='avia'
+31.05.2013 13:30:52select id, RuName from country
+31.05.2013 13:30:52select id, RuName from country
+31.05.2013 13:30:52select id, RuName from country
+31.05.2013 13:30:52select id, RuName from country
+31.05.2013 13:30:52select id, RuName from country
+31.05.2013 13:30:52select id, RuName from country
+31.05.2013 13:30:52select id, name from managers where managertype='Agent'
+31.05.2013 13:35:36select id, name from managers where managertype='client'
+31.05.2013 13:35:36select id, name from managers where managertype='client'
+31.05.2013 13:35:36select id, name from managers where managertype='client'
+31.05.2013 13:35:36select id, name from managers where managertype='client'
+31.05.2013 13:35:36select id, name from managers where managertype='avia'
+31.05.2013 13:35:36select id, RuName from country
+31.05.2013 13:35:36select id, RuName from country
+31.05.2013 13:35:36select id, RuName from country
+31.05.2013 13:35:36select id, RuName from country
+31.05.2013 13:35:36select id, RuName from country
+31.05.2013 13:35:36select id, RuName from country
+31.05.2013 13:35:36select id, name from managers where managertype='Agent'
+31.05.2013 13:37:26select id, name from managers where managertype='client'
+31.05.2013 13:37:26select id, name from managers where managertype='client'
+31.05.2013 13:37:26select id, name from managers where managertype='client'
+31.05.2013 13:37:26select id, name from managers where managertype='client'
+31.05.2013 13:37:26select id, name from managers where managertype='avia'
+31.05.2013 13:37:26select id, RuName from country
+31.05.2013 13:37:26select id, RuName from country
+31.05.2013 13:37:26select id, RuName from country
+31.05.2013 13:37:26select id, RuName from country
+31.05.2013 13:37:26select id, RuName from country
+31.05.2013 13:37:26select id, RuName from country
+31.05.2013 13:37:26select id, name from managers where managertype='Agent'
+01.06.2013 14:56:48select id, name from managers where managertype='client'
+01.06.2013 14:56:48select id, name from managers where managertype='client'
+01.06.2013 14:56:48select id, name from managers where managertype='client'
+01.06.2013 14:56:48select id, name from managers where managertype='client'
+01.06.2013 14:56:48select id, name from managers where managertype='avia'
+01.06.2013 14:56:48select id, RuName from country
+01.06.2013 14:56:48select id, RuName from country
+01.06.2013 14:56:48select id, RuName from country
+01.06.2013 14:56:48select id, RuName from country
+01.06.2013 14:56:48select id, RuName from country
+01.06.2013 14:56:48select id, RuName from country
+01.06.2013 14:56:49select id, name from managers where managertype='Agent'
+01.06.2013 14:57:43select id, name from managers where managertype='client'
+01.06.2013 14:57:43select id, name from managers where managertype='client'
+01.06.2013 14:57:43select id, name from managers where managertype='client'
+01.06.2013 14:57:43select id, name from managers where managertype='client'
+01.06.2013 14:57:43select id, name from managers where managertype='avia'
+01.06.2013 14:57:43select id, RuName from country
+01.06.2013 14:57:43select id, RuName from country
+01.06.2013 14:57:43select id, RuName from country
+01.06.2013 14:57:43select id, RuName from country
+01.06.2013 14:57:44select id, RuName from country
+01.06.2013 14:57:44select id, RuName from country
+01.06.2013 14:57:44select id, name from managers where managertype='Agent'
+01.06.2013 15:28:35SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5753' and pd.id=d.id
+01.06.2013 15:31:26SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5753' and pd.id=d.id
+01.06.2013 15:40:48SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5751' and pd.id=d.id
+01.06.2013 15:42:46SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5753' and pd.id=d.id
+01.06.2013 16:21:10SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5751' and pd.id=d.id
+01.06.2013 16:28:09SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5752' and pd.id=d.id
+01.06.2013 16:30:04SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5747' and pd.id=d.id
+01.06.2013 16:33:55SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5753' and pd.id=d.id
+03.06.2013 13:19:32SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5751' and pd.id=d.id
+03.06.2013 17:34:07SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd where d.id='5751' and pd.id=d.id
+03.06.2013 17:56:47SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd, country as c, manager as m where d.id='5753' and pd.id=d.id and c.id=d.country and m.id=d.manager
+03.06.2013 18:00:08SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd, country as c, managers as m where d.id='5751' and pd.id=d.id and c.id=d.country and m.id=d.manager
+03.06.2013 18:14:12SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd, country as c, managers as m where d.id='5751' and pd.id=d.id and c.id=d.country and m.id=d.manager
+03.06.2013 18:16:17SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],pd.[Dogovornum] as pred_dog_num,d.[DogovorDate],d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d,[Dogovorinfo_temp] as pd, country as c, managers as m where d.id='5753' and pd.id=d.id and c.id=d.country and m.id=d.manager
+03.06.2013 19:49:45SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],d.[DogovorDate],d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[Transport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d, country as c, managers as m where d.id='5753' and c.id=d.country and m.id=d.manager
+05.06.2013 13:29:43select id, name from managers where managertype='client'
+05.06.2013 13:29:43select id, name from managers where managertype='client'
+05.06.2013 13:29:43select id, name from managers where managertype='client'
+05.06.2013 13:29:43select id, name from managers where managertype='client'
+05.06.2013 13:29:43select id, name from managers where managertype='avia'
+05.06.2013 13:29:43select id, RuName from country
+05.06.2013 13:29:43select id, RuName from country
+05.06.2013 13:29:43select id, RuName from country
+05.06.2013 13:29:44select id, RuName from country
+05.06.2013 13:29:44select id, RuName from country
+05.06.2013 13:29:44select id, RuName from country
+05.06.2013 13:29:44select id, name from managers where managertype='Agent'
+05.06.2013 13:52:19select id, name from managers where managertype='client'
+05.06.2013 13:52:19select id, name from managers where managertype='client'
+05.06.2013 13:52:19select id, name from managers where managertype='client'
+05.06.2013 13:52:19select id, name from managers where managertype='client'
+05.06.2013 13:52:19select id, name from managers where managertype='avia'
+05.06.2013 13:52:19select id, RuName from country
+05.06.2013 13:52:19select id, RuName from country
+05.06.2013 13:52:19select id, RuName from country
+05.06.2013 13:52:19select id, RuName from country
+05.06.2013 13:52:19select id, RuName from country
+05.06.2013 13:52:19select id, RuName from country
+05.06.2013 13:52:19select id, name from managers where managertype='Agent'
+05.06.2013 15:09:23select id, name from managers where managertype='client'
+05.06.2013 15:09:23select id, name from managers where managertype='client'
+05.06.2013 15:09:23select id, name from managers where managertype='client'
+05.06.2013 15:09:23select id, name from managers where managertype='client'
+05.06.2013 15:09:23select id, name from managers where managertype='avia'
+05.06.2013 15:09:23select id, RuName from country
+05.06.2013 15:09:23select id, RuName from country
+05.06.2013 15:09:23select id, RuName from country
+05.06.2013 15:09:23select id, RuName from country
+05.06.2013 15:09:23select id, RuName from country
+05.06.2013 15:09:23select id, RuName from country
+05.06.2013 15:09:23select id, name from managers where managertype='Agent'
+05.06.2013 15:27:51select id, name from managers where managertype='client'
+05.06.2013 15:27:51select id, name from managers where managertype='client'
+05.06.2013 15:27:51select id, name from managers where managertype='client'
+05.06.2013 15:27:51select id, name from managers where managertype='client'
+05.06.2013 15:27:51select id, name from managers where managertype='avia'
+05.06.2013 15:27:51select id, RuName from country
+05.06.2013 15:27:51select id, RuName from country
+05.06.2013 15:27:51select id, RuName from country
+05.06.2013 15:27:51select id, RuName from country
+05.06.2013 15:27:51select id, RuName from country
+05.06.2013 15:27:51select id, RuName from country
+05.06.2013 15:27:51select id, name from managers where managertype='Agent'
+05.06.2013 15:53:51select max (id) from dogovorinfo_temp
+05.06.2013 16:06:50select max (id) from dogovorinfo_temp
+05.06.2013 16:11:10insert into DogovorInfo values('','P-5754-П','2013.06.05','Предварительный','1647','ИвановЦЦ','ТУРЦИЯ КЕМЕР ','20','2013.06.14','2013.06.22','РОСТОВ-АНТАЛИЯ-РОСТОВ','','0','0','0','0','1','','','Росинтур','Цоцория Сандра','','','2013.06.05','0','0','ТУРЦИЯ КЕМЕР ','BARUT HOTELS KEMER RESORT 5*','Наличный','USD','32,69','116376','3560','0')
+05.06.2013 16:17:37insert into DogovorInfo_temp values('','P-5754-П','2013.06.05','Предварительный','1647','ИвановЦЦ','ТУРЦИЯ КЕМЕР ','20','2013.06.14','2013.06.22','РОСТОВ-АНТАЛИЯ-РОСТОВ','','0','0','0','0','1','','','Росинтур','Цоцория Сандра','','','2013.06.05','0','0','ТУРЦИЯ КЕМЕР ','BARUT HOTELS KEMER RESORT 5*','Наличный','USD','32,69','116376','3560','0')
+05.06.2013 16:18:02insert into DogovorInfo_temp values('','P-5754-П','2013.06.05','Предварительный','1647','ИвановЦЦ','ТУРЦИЯ КЕМЕР ','20','2013.06.14','2013.06.22','РОСТОВ-АНТАЛИЯ-РОСТОВ','','0','0','0','0','1','','','Росинтур','Цоцория Сандра','','','2013.06.05','0','0','ТУРЦИЯ КЕМЕР ','BARUT HOTELS KEMER RESORT 5*','Наличный','USD','32,69','116376','3560','0')
+05.06.2013 16:29:18SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],d.[DogovorDate],d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[AviaTransport],d.[TrainTransport],d.[AvtoTransport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[Birthdate],d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d, country as c, managers as m where d.id='5755' and c.id=d.country and m.id=d.manager
+07.06.2013 18:27:33update DogovorInfo set Pred_DogovorKey='0',Dogovornum='Ю-5852-П',DogovorDate='2013.06.07',DogovorType='Предварительный',Client='1647',FIO='ИвановЦЦ',Travelprogram='ТУРЦИЯ ',Country='20',Startdate='2013.06.11',Enddate='2013.06.21',Travelroute='РОСТОВ-АНТАЛИЯ-РОСТОВ',Cardnum='',GidTranslate='0',InstructorTranslate='0',VizaHelp='0',EarlyBooking='0',AviaTransport='1',TrainTransport='False',AvtoTransport='False',Touroperator='Пегас',Manager='8',ENpassport_Use='1',RUSPassport_Use='0',DateMakeMainDog='2013.06.07',Email_send='0',SMS_send='0',TourName='ТУРЦИЯ ',Hotel='КЕМЕР КИРИШ',PayType='Наличный',Currency='USD',Course='',RUPrice='',ENPrice='2560',Discount='0' where id='5852'
+12.06.2013 17:42:09insert into DogovorInfo_temp values('5857','P-5858-О','2013.06.12','Основной','1647','ИвановЦЦ','Испания','10','07.07.2013','16.07.2013','Ростов-Барселона-Ростов','','Unchecked','Unchecked','Checked','Unchecked','1','','','Росинтур','Дулебова Екатерина','1','0','','Checked','Checked','Испания','Санта-Сусанна','Наличный','EUR','','','','')
+24.06.2013 13:44:42select id, name from managers where managertype='client'
+24.06.2013 13:44:42select id, name from managers where managertype='client'
+24.06.2013 13:44:42select id, name from managers where managertype='client'
+24.06.2013 13:44:42select id, name from managers where managertype='client'
+24.06.2013 13:44:42select id, name from managers where managertype='avia'
+24.06.2013 13:44:42select id, RuName from country
+24.06.2013 13:44:42select id, RuName from country
+24.06.2013 13:44:42select id, RuName from country
+24.06.2013 13:44:42select id, RuName from country
+24.06.2013 13:44:42select id, RuName from country
+24.06.2013 13:44:42select id, RuName from country
+24.06.2013 13:44:42select id, name from managers where managertype='Agent'
+01.07.2013 19:24:45select id, name from managers where managertype='client'
+01.07.2013 19:24:45select id, name from managers where managertype='client'
+01.07.2013 19:24:45select id, name from managers where managertype='client'
+01.07.2013 19:24:45select id, name from managers where managertype='client'
+01.07.2013 19:24:45select id, name from managers where managertype='avia'
+01.07.2013 19:24:45select id, RuName from country
+01.07.2013 19:24:45select id, RuName from country
+01.07.2013 19:24:45select id, RuName from country
+01.07.2013 19:24:45select id, RuName from country
+01.07.2013 19:24:45select id, RuName from country
+01.07.2013 19:24:45select id, RuName from country
+01.07.2013 19:24:45select id, name from managers where managertype='Agent'
+01.07.2013 19:49:50select id, name from managers where managertype='client'
+01.07.2013 19:49:50select id, name from managers where managertype='client'
+01.07.2013 19:49:50select id, name from managers where managertype='client'
+01.07.2013 19:49:50select id, name from managers where managertype='client'
+01.07.2013 19:49:50select id, name from managers where managertype='avia'
+01.07.2013 19:49:50select id, RuName from country
+01.07.2013 19:49:50select id, RuName from country
+01.07.2013 19:49:50select id, RuName from country
+01.07.2013 19:49:50select id, RuName from country
+01.07.2013 19:49:50select id, RuName from country
+01.07.2013 19:49:50select id, RuName from country
+01.07.2013 19:49:50select id, name from managers where managertype='Agent'
+01.07.2013 19:50:35select id, RuName from country
+01.07.2013 19:50:35select id, name from managers where managertype='client'
+01.07.2013 19:50:40select id, RuName from country
+01.07.2013 19:50:40select id, name from managers where managertype='client'
+01.07.2013 19:51:37select id, name from managers where managertype='client'
+01.07.2013 19:51:37select id, name from managers where managertype='client'
+01.07.2013 19:51:37select id, name from managers where managertype='client'
+01.07.2013 19:51:37select id, name from managers where managertype='client'
+01.07.2013 19:51:37select id, name from managers where managertype='avia'
+01.07.2013 19:51:37select id, RuName from country
+01.07.2013 19:51:37select id, RuName from country
+01.07.2013 19:51:37select id, RuName from country
+01.07.2013 19:51:37select id, RuName from country
+01.07.2013 19:51:37select id, RuName from country
+01.07.2013 19:51:37select id, RuName from country
+01.07.2013 19:51:37select id, name from managers where managertype='Agent'
+01.07.2013 19:51:58select id, RuName from country
+01.07.2013 19:51:58select id, name from managers where managertype='client'
+01.07.2013 19:52:05select id, RuName from country
+01.07.2013 19:52:05select id, name from managers where managertype='client'
+01.07.2013 19:56:26select id, name from managers where managertype='client'
+01.07.2013 19:56:26select id, name from managers where managertype='client'
+01.07.2013 19:56:26select id, name from managers where managertype='client'
+01.07.2013 19:56:26select id, name from managers where managertype='client'
+01.07.2013 19:56:26select id, name from managers where managertype='avia'
+01.07.2013 19:56:26select id, RuName from country
+01.07.2013 19:56:26select id, RuName from country
+01.07.2013 19:56:26select id, RuName from country
+01.07.2013 19:56:26select id, RuName from country
+01.07.2013 19:56:26select id, RuName from country
+01.07.2013 19:56:26select id, RuName from country
+01.07.2013 19:56:26select id, name from managers where managertype='Agent'
+01.07.2013 20:01:14select id, name from managers where managertype='client'
+01.07.2013 20:01:14select id, name from managers where managertype='client'
+01.07.2013 20:01:14select id, name from managers where managertype='client'
+01.07.2013 20:01:14select id, name from managers where managertype='client'
+01.07.2013 20:01:14select id, name from managers where managertype='avia'
+01.07.2013 20:01:14select id, RuName from country
+01.07.2013 20:01:14select id, RuName from country
+01.07.2013 20:01:14select id, RuName from country
+01.07.2013 20:01:14select id, RuName from country
+01.07.2013 20:01:14select id, RuName from country
+01.07.2013 20:01:14select id, RuName from country
+01.07.2013 20:01:14select id, name from managers where managertype='Agent'
+01.07.2013 20:03:00select id, RuName from country
+01.07.2013 20:03:00select id, name from managers where managertype='client'
+01.07.2013 20:03:57select id, RuName from country
+01.07.2013 20:03:57select id, name from managers where managertype='client'
+01.07.2013 20:04:23select id, name from managers where managertype='client'
+01.07.2013 20:04:23select id, name from managers where managertype='client'
+01.07.2013 20:04:23select id, name from managers where managertype='client'
+01.07.2013 20:04:23select id, name from managers where managertype='client'
+01.07.2013 20:04:23select id, name from managers where managertype='avia'
+01.07.2013 20:04:23select id, RuName from country
+01.07.2013 20:04:23select id, RuName from country
+01.07.2013 20:04:23select id, RuName from country
+01.07.2013 20:04:23select id, RuName from country
+01.07.2013 20:04:23select id, RuName from country
+01.07.2013 20:04:23select id, RuName from country
+01.07.2013 20:04:23select id, name from managers where managertype='Agent'
+01.07.2013 20:04:27select id, RuName from country
+01.07.2013 20:04:27select id, name from managers where managertype='client'
+01.07.2013 20:04:58select id, name from managers where managertype='client'
+01.07.2013 20:04:58select id, name from managers where managertype='client'
+01.07.2013 20:04:58select id, name from managers where managertype='client'
+01.07.2013 20:04:58select id, name from managers where managertype='client'
+01.07.2013 20:04:58select id, name from managers where managertype='avia'
+01.07.2013 20:04:58select id, RuName from country
+01.07.2013 20:04:58select id, RuName from country
+01.07.2013 20:04:58select id, RuName from country
+01.07.2013 20:04:58select id, RuName from country
+01.07.2013 20:04:58select id, RuName from country
+01.07.2013 20:04:58select id, RuName from country
+01.07.2013 20:04:58select id, name from managers where managertype='Agent'
+01.07.2013 20:05:21select id, RuName from country
+01.07.2013 20:05:21select id, name from managers where managertype='client'
+01.07.2013 20:06:36select id, name from managers where managertype='client'
+01.07.2013 20:06:36select id, name from managers where managertype='client'
+01.07.2013 20:06:36select id, name from managers where managertype='client'
+01.07.2013 20:06:36select id, name from managers where managertype='client'
+01.07.2013 20:06:36select id, name from managers where managertype='avia'
+01.07.2013 20:06:36select id, RuName from country
+01.07.2013 20:06:36select id, RuName from country
+01.07.2013 20:06:36select id, RuName from country
+01.07.2013 20:06:36select id, RuName from country
+01.07.2013 20:06:36select id, RuName from country
+01.07.2013 20:06:36select id, RuName from country
+01.07.2013 20:06:36select id, name from managers where managertype='Agent'
+01.07.2013 20:29:10select id, name from managers where managertype='client'
+01.07.2013 20:29:10select id, name from managers where managertype='client'
+01.07.2013 20:29:10select id, name from managers where managertype='client'
+01.07.2013 20:29:10select id, name from managers where managertype='client'
+01.07.2013 20:29:10select id, name from managers where managertype='avia'
+01.07.2013 20:29:10select id, RuName from country
+01.07.2013 20:29:10select id, RuName from country
+01.07.2013 20:29:10select id, RuName from country
+01.07.2013 20:29:10select id, RuName from country
+01.07.2013 20:29:10select id, RuName from country
+01.07.2013 20:29:11select id, RuName from country
+01.07.2013 20:29:11select id, name from managers where managertype='Agent'
+01.07.2013 20:29:50select id, name from managers where managertype='client'
+01.07.2013 20:29:50select id, name from managers where managertype='client'
+01.07.2013 20:29:50select id, name from managers where managertype='client'
+01.07.2013 20:29:50select id, name from managers where managertype='client'
+01.07.2013 20:29:50select id, name from managers where managertype='avia'
+01.07.2013 20:29:50select id, RuName from country
+01.07.2013 20:29:50select id, RuName from country
+01.07.2013 20:29:50select id, RuName from country
+01.07.2013 20:29:50select id, RuName from country
+01.07.2013 20:29:50select id, RuName from country
+01.07.2013 20:29:50select id, RuName from country
+01.07.2013 20:29:50select id, name from managers where managertype='Agent'
+01.07.2013 20:34:05select id, name from managers where managertype='client'
+01.07.2013 20:34:05select id, name from managers where managertype='client'
+01.07.2013 20:34:05select id, name from managers where managertype='client'
+01.07.2013 20:34:05select id, name from managers where managertype='client'
+01.07.2013 20:34:05select id, name from managers where managertype='avia'
+01.07.2013 20:34:05select id, RuName from country
+01.07.2013 20:34:05select id, RuName from country
+01.07.2013 20:34:05select id, RuName from country
+01.07.2013 20:34:05select id, RuName from country
+01.07.2013 20:34:05select id, RuName from country
+01.07.2013 20:34:05select id, RuName from country
+01.07.2013 20:34:05select id, name from managers where managertype='Agent'
+01.07.2013 20:35:50select id, name from managers where managertype='client'
+01.07.2013 20:35:50select id, name from managers where managertype='client'
+01.07.2013 20:35:50select id, name from managers where managertype='client'
+01.07.2013 20:35:50select id, name from managers where managertype='client'
+01.07.2013 20:35:50select id, name from managers where managertype='avia'
+01.07.2013 20:35:50select id, RuName from country
+01.07.2013 20:35:50select id, RuName from country
+01.07.2013 20:35:50select id, RuName from country
+01.07.2013 20:35:50select id, RuName from country
+01.07.2013 20:35:50select id, RuName from country
+01.07.2013 20:35:50select id, RuName from country
+01.07.2013 20:35:50select id, name from managers where managertype='Agent'
+01.07.2013 20:37:17select id, name from managers where managertype='client'
+01.07.2013 20:37:17select id, name from managers where managertype='client'
+01.07.2013 20:37:17select id, name from managers where managertype='client'
+01.07.2013 20:37:17select id, name from managers where managertype='client'
+01.07.2013 20:37:17select id, name from managers where managertype='avia'
+01.07.2013 20:37:17select id, RuName from country
+01.07.2013 20:37:17select id, RuName from country
+01.07.2013 20:37:18select id, RuName from country
+01.07.2013 20:37:18select id, RuName from country
+01.07.2013 20:37:18select id, RuName from country
+01.07.2013 20:37:18select id, RuName from country
+01.07.2013 20:37:18select id, name from managers where managertype='Agent'
+01.07.2013 20:38:59select id, name from managers where managertype='client'
+01.07.2013 20:38:59select id, name from managers where managertype='client'
+01.07.2013 20:38:59select id, name from managers where managertype='client'
+01.07.2013 20:38:59select id, name from managers where managertype='client'
+01.07.2013 20:38:59select id, name from managers where managertype='avia'
+01.07.2013 20:38:59select id, RuName from country
+01.07.2013 20:38:59select id, RuName from country
+01.07.2013 20:38:59select id, RuName from country
+01.07.2013 20:38:59select id, RuName from country
+01.07.2013 20:38:59select id, RuName from country
+01.07.2013 20:38:59select id, RuName from country
+01.07.2013 20:38:59select id, name from managers where managertype='Agent'
+01.07.2013 20:40:13select id, name from managers where managertype='client'
+01.07.2013 20:40:13select id, name from managers where managertype='client'
+01.07.2013 20:40:13select id, name from managers where managertype='client'
+01.07.2013 20:40:13select id, name from managers where managertype='client'
+01.07.2013 20:40:13select id, name from managers where managertype='avia'
+01.07.2013 20:40:13select id, RuName from country
+01.07.2013 20:40:13select id, RuName from country
+01.07.2013 20:40:13select id, RuName from country
+01.07.2013 20:40:13select id, RuName from country
+01.07.2013 20:40:13select id, RuName from country
+01.07.2013 20:40:13select id, RuName from country
+01.07.2013 20:40:13select id, name from managers where managertype='Agent'
+01.07.2013 20:41:00select id, name from managers where managertype='client'
+01.07.2013 20:41:00select id, name from managers where managertype='client'
+01.07.2013 20:41:00select id, name from managers where managertype='client'
+01.07.2013 20:41:00select id, name from managers where managertype='client'
+01.07.2013 20:41:00select id, name from managers where managertype='avia'
+01.07.2013 20:41:00select id, RuName from country
+01.07.2013 20:41:00select id, RuName from country
+01.07.2013 20:41:00select id, RuName from country
+01.07.2013 20:41:00select id, RuName from country
+01.07.2013 20:41:00select id, RuName from country
+01.07.2013 20:41:00select id, RuName from country
+01.07.2013 20:41:00select id, name from managers where managertype='Agent'
+01.07.2013 20:46:03select id, name from managers where managertype='client'
+01.07.2013 20:46:03select id, name from managers where managertype='client'
+01.07.2013 20:46:03select id, name from managers where managertype='client'
+01.07.2013 20:46:03select id, name from managers where managertype='client'
+01.07.2013 20:46:03select id, name from managers where managertype='avia'
+01.07.2013 20:46:03select id, RuName from country
+01.07.2013 20:46:03select id, RuName from country
+01.07.2013 20:46:03select id, RuName from country
+01.07.2013 20:46:03select id, RuName from country
+01.07.2013 20:46:03select id, RuName from country
+01.07.2013 20:46:03select id, RuName from country
+01.07.2013 20:46:03select id, name from managers where managertype='Agent'
+01.07.2013 20:47:16select id, name from managers where managertype='client'
+01.07.2013 20:47:16select id, name from managers where managertype='client'
+01.07.2013 20:47:16select id, name from managers where managertype='client'
+01.07.2013 20:47:16select id, name from managers where managertype='client'
+01.07.2013 20:47:16select id, name from managers where managertype='avia'
+01.07.2013 20:47:16select id, RuName from country
+01.07.2013 20:47:16select id, RuName from country
+01.07.2013 20:47:16select id, RuName from country
+01.07.2013 20:47:16select id, RuName from country
+01.07.2013 20:47:16select id, RuName from country
+01.07.2013 20:47:16select id, RuName from country
+01.07.2013 20:47:16select id, name from managers where managertype='Agent'
+02.07.2013 12:25:33select id, name from managers where managertype='client'
+02.07.2013 12:25:33select id, name from managers where managertype='client'
+02.07.2013 12:25:33select id, name from managers where managertype='client'
+02.07.2013 12:25:33select id, name from managers where managertype='client'
+02.07.2013 12:25:33select id, name from managers where managertype='avia'
+02.07.2013 12:25:33select id, RuName from country
+02.07.2013 12:25:33select id, RuName from country
+02.07.2013 12:25:33select id, RuName from country
+02.07.2013 12:25:33select id, RuName from country
+02.07.2013 12:25:33select id, RuName from country
+02.07.2013 12:25:33select id, RuName from country
+02.07.2013 12:25:33select id, name from managers where managertype='Agent'
+02.07.2013 16:22:57insert into Clients values('Петр Петрович ПАав', '.  .  ','60','7012355','10.10.2000','фывафываф','60','1112341','11.11.1111','','+7(   )','','','','','')
+02.07.2013 16:26:35insert into Clients values('Петр Петрович ПАав', '1900.00.10','60','7012355','10.10.2000','фывафываф','60','1112341','11.11.1111','','+7(   )','','','','','')
+02.07.2013 16:28:05SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='Петр Петрович ПАав' and Birthdate='1900.01.10' and ENpassportseriy='60' and ENpassportnum='7012355' and RUPassportseriy='60' and RUPassportNum='1112341'
+02.07.2013 16:44:27SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='qwerqwrwrq werqwrq qwerw erqwerqwer' and Birthdate='2000.05.12' and ENpassportseriy='60' and ENpassportnum='1111111' and RUPassportseriy='7000' and RUPassportNum='658697'
+03.07.2013 14:59:55select id, name from managers where managertype='client'
+03.07.2013 14:59:55select id, name from managers where managertype='client'
+03.07.2013 14:59:55select id, name from managers where managertype='client'
+03.07.2013 14:59:55select id, name from managers where managertype='client'
+03.07.2013 14:59:55select id, name from managers where managertype='avia'
+03.07.2013 14:59:55select id, RuName from country
+03.07.2013 14:59:55select id, RuName from country
+03.07.2013 14:59:55select id, RuName from country
+03.07.2013 14:59:55select id, RuName from country
+03.07.2013 14:59:55select id, RuName from country
+03.07.2013 14:59:55select id, RuName from country
+03.07.2013 14:59:55select id, name from managers where managertype='Agent'
+03.07.2013 19:39:15SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='ИвановЦЦ' and Birthdate='1980.10.10' and ENpassportseriy='70' and ENpassportnum='7146521' and RUPassportseriy='6000' and RUPassportNum='735486'
+03.07.2013 19:42:32SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='ИвановЦЦ' and Birthdate='1980.10.10' and ENpassportseriy='70' and ENpassportnum='7146521' and RUPassportseriy='6000' and RUPassportNum='735486'
+03.07.2013 19:49:12SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='ИвановЦЦ' and Birthdate='1980.10.10' and ENpassportseriy='70' and ENpassportnum='7146521' and RUPassportseriy='6000' and RUPassportNum='735486'
+03.07.2013 19:52:05SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='ИвановЦЦ' and Birthdate='1980.10.10' and ENpassportseriy='70' and ENpassportnum='7146521' and RUPassportseriy='6000' and RUPassportNum='735486'
+04.07.2013 13:04:33select id, name from managers where managertype='client'
+04.07.2013 13:04:33select id, name from managers where managertype='client'
+04.07.2013 13:04:33select id, name from managers where managertype='client'
+04.07.2013 13:04:33select id, name from managers where managertype='client'
+04.07.2013 13:04:33select id, name from managers where managertype='avia'
+04.07.2013 13:04:33select id, RuName from country
+04.07.2013 13:04:33select id, RuName from country
+04.07.2013 13:04:33select id, RuName from country
+04.07.2013 13:04:33select id, RuName from country
+04.07.2013 13:04:33select id, RuName from country
+04.07.2013 13:04:33select id, RuName from country
+04.07.2013 13:04:33select id, name from managers where managertype='Agent'
+05.07.2013 17:21:09select id, name from managers where managertype='client'
+05.07.2013 17:21:09select id, name from managers where managertype='client'
+05.07.2013 17:21:09select id, name from managers where managertype='client'
+05.07.2013 17:21:09select id, name from managers where managertype='client'
+05.07.2013 17:21:09select id, name from managers where managertype='avia'
+05.07.2013 17:21:10select id, RuName from country
+05.07.2013 17:21:10select id, RuName from country
+05.07.2013 17:21:10select id, RuName from country
+05.07.2013 17:21:10select id, RuName from country
+05.07.2013 17:21:10select id, RuName from country
+05.07.2013 17:21:10select id, RuName from country
+05.07.2013 17:21:10select id, name from managers where managertype='Agent'
+05.07.2013 17:21:26select id, name from managers where managertype='client'
+05.07.2013 17:21:26select id, name from managers where managertype='client'
+05.07.2013 17:21:26select id, name from managers where managertype='client'
+05.07.2013 17:21:26select id, name from managers where managertype='client'
+05.07.2013 17:21:26select id, name from managers where managertype='avia'
+05.07.2013 17:21:26select id, RuName from country
+05.07.2013 17:21:26select id, RuName from country
+05.07.2013 17:21:26select id, RuName from country
+05.07.2013 17:21:26select id, RuName from country
+05.07.2013 17:21:26select id, RuName from country
+05.07.2013 17:21:26select id, RuName from country
+05.07.2013 17:21:26select id, name from managers where managertype='Agent'
+05.07.2013 18:17:29select id, name from managers where managertype='client'
+05.07.2013 18:17:29select id, name from managers where managertype='client'
+05.07.2013 18:17:29select id, name from managers where managertype='client'
+05.07.2013 18:17:29select id, name from managers where managertype='client'
+05.07.2013 18:17:29select id, name from managers where managertype='avia'
+05.07.2013 18:17:29select id, RuName from country
+05.07.2013 18:17:29select id, RuName from country
+05.07.2013 18:17:29select id, RuName from country
+05.07.2013 18:17:29select id, RuName from country
+05.07.2013 18:17:29select id, RuName from country
+05.07.2013 18:17:29select id, RuName from country
+05.07.2013 18:17:29select id, name from managers where managertype='Agent'
+05.07.2013 18:18:11select id, name from managers where managertype='client'
+05.07.2013 18:18:11select id, name from managers where managertype='client'
+05.07.2013 18:18:11select id, name from managers where managertype='client'
+05.07.2013 18:18:11select id, name from managers where managertype='client'
+05.07.2013 18:18:11select id, name from managers where managertype='avia'
+05.07.2013 18:18:11select id, RuName from country
+05.07.2013 18:18:11select id, RuName from country
+05.07.2013 18:18:11select id, RuName from country
+05.07.2013 18:18:11select id, RuName from country
+05.07.2013 18:18:11select id, RuName from country
+05.07.2013 18:18:11select id, RuName from country
+05.07.2013 18:18:11select id, name from managers where managertype='Agent'
+05.07.2013 18:18:33select id, name from managers where managertype='client'
+05.07.2013 18:18:33select id, name from managers where managertype='client'
+05.07.2013 18:18:33select id, name from managers where managertype='client'
+05.07.2013 18:18:33select id, name from managers where managertype='client'
+05.07.2013 18:18:33select id, name from managers where managertype='avia'
+05.07.2013 18:18:33select id, RuName from country
+05.07.2013 18:18:33select id, RuName from country
+05.07.2013 18:18:33select id, RuName from country
+05.07.2013 18:18:33select id, RuName from country
+05.07.2013 18:18:33select id, RuName from country
+05.07.2013 18:18:33select id, RuName from country
+05.07.2013 18:18:33select id, name from managers where managertype='Agent'
+08.07.2013 15:49:10update DogovorInfo_temp set Pred_DogovorKey='0',Dogovornum='P-6351-П',DogovorType='Предварительный',Client='3200',FIO='САМСОНЕНКО РАИСА АНДРЕЕВНА',Travelprogram='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Country='1',Startdate='2013.07.28',Enddate='2013.08.04',Travelroute='РОСТОВ - НА - ДОНУ - ВЕНА - ФЛОРЕНЦИЯ - МИЛАН - ВЕНА - РОСТОВ-НА-ДОНУ',Cardnum='',GidTranslate='0',InstructorTranslate='0',VizaHelp='1',EarlyBooking='0',AviaTransport='False',TrainTransport='True1',AvtoTransport='False',Touroperator='Росинтур',Manager='9',ENpassport_Use='1',RUSPassport_Use='0',DateMakeMainDog='2013.07.08',Email_send='0',SMS_send='0',TourName='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Hotel='AMBASCIATORI 4*',PayType='Наличный',Currency='EUR',Course='43,7',RUPrice='',ENPrice='1461',Discount='0' where id='6351'
+08.07.2013 15:49:10update DogovorInfo_temp set Pred_DogovorKey='0',Dogovornum='P-6351-П',DogovorType='Предварительный',Client='3200',FIO='САМСОНЕНКО РАИСА АНДРЕЕВНА',Travelprogram='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Country='1',Startdate='2013.07.28',Enddate='2013.08.04',Travelroute='РОСТОВ - НА - ДОНУ - ВЕНА - ФЛОРЕНЦИЯ - МИЛАН - ВЕНА - РОСТОВ-НА-ДОНУ',Cardnum='',GidTranslate='0',InstructorTranslate='0',VizaHelp='1',EarlyBooking='0',AviaTransport='False',TrainTransport='True11',AvtoTransport='False',Touroperator='Росинтур',Manager='9',ENpassport_Use='1',RUSPassport_Use='0',DateMakeMainDog='2013.07.08',Email_send='0',SMS_send='0',TourName='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Hotel='AMBASCIATORI 4*',PayType='Наличный',Currency='EUR',Course='43,7',RUPrice='',ENPrice='1461',Discount='0' where id='6351'
+08.07.2013 15:49:10update DogovorInfo_temp set Pred_DogovorKey='0',Dogovornum='P-6351-П',DogovorType='Предварительный',Client='3200',FIO='САМСОНЕНКО РАИСА АНДРЕЕВНА',Travelprogram='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Country='1',Startdate='2013.07.28',Enddate='2013.08.04',Travelroute='РОСТОВ - НА - ДОНУ - ВЕНА - ФЛОРЕНЦИЯ - МИЛАН - ВЕНА - РОСТОВ-НА-ДОНУ',Cardnum='',GidTranslate='0',InstructorTranslate='0',VizaHelp='1',EarlyBooking='0',AviaTransport='False',TrainTransport='True111',AvtoTransport='False',Touroperator='Росинтур',Manager='9',ENpassport_Use='1',RUSPassport_Use='0',DateMakeMainDog='2013.07.08',Email_send='0',SMS_send='0',TourName='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Hotel='AMBASCIATORI 4*',PayType='Наличный',Currency='EUR',Course='43,7',RUPrice='',ENPrice='1461',Discount='0' where id='6351'
+08.07.2013 15:49:11update DogovorInfo_temp set Pred_DogovorKey='0',Dogovornum='P-6351-П',DogovorType='Предварительный',Client='3200',FIO='САМСОНЕНКО РАИСА АНДРЕЕВНА',Travelprogram='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Country='1',Startdate='2013.07.28',Enddate='2013.08.04',Travelroute='РОСТОВ - НА - ДОНУ - ВЕНА - ФЛОРЕНЦИЯ - МИЛАН - ВЕНА - РОСТОВ-НА-ДОНУ',Cardnum='',GidTranslate='0',InstructorTranslate='0',VizaHelp='1',EarlyBooking='0',AviaTransport='False',TrainTransport='True1111',AvtoTransport='False',Touroperator='Росинтур',Manager='9',ENpassport_Use='1',RUSPassport_Use='0',DateMakeMainDog='2013.07.08',Email_send='0',SMS_send='0',TourName='ИТАЛИЯ. ИНДИВИДУАЛЬНЫЙ ТУР ',Hotel='AMBASCIATORI 4*',PayType='Наличный',Currency='EUR',Course='43,7',RUPrice='',ENPrice='1461',Discount='0' where id='6351'
+10.07.2013 20:04:20select id, name from managers where managertype='client'
+10.07.2013 20:04:20select id, name from managers where managertype='client'
+10.07.2013 20:04:20select id, name from managers where managertype='client'
+10.07.2013 20:04:20select id, name from managers where managertype='client'
+10.07.2013 20:04:20select id, name from managers where managertype='avia'
+10.07.2013 20:04:20select id, RuName from country
+10.07.2013 20:04:20select id, RuName from country
+10.07.2013 20:04:20select id, RuName from country
+10.07.2013 20:04:20select id, RuName from country
+10.07.2013 20:04:20select id, RuName from country
+10.07.2013 20:04:20select id, RuName from country
+10.07.2013 20:04:20select id, name from managers where managertype='Agent'
+18.07.2013 19:32:16select id, name from managers where managertype='client'
+18.07.2013 19:32:16select id, name from managers where managertype='client'
+18.07.2013 19:32:16select id, name from managers where managertype='client'
+18.07.2013 19:32:16select id, name from managers where managertype='client'
+18.07.2013 19:32:16select id, name from managers where managertype='avia'
+18.07.2013 19:32:16select id, RuName from country
+18.07.2013 19:32:16select id, RuName from country
+18.07.2013 19:32:16select id, RuName from country
+18.07.2013 19:32:16select id, RuName from country
+18.07.2013 19:32:16select id, RuName from country
+18.07.2013 19:32:16select id, RuName from country
+18.07.2013 19:32:16select id, name from managers where managertype='Agent'
+18.07.2013 19:32:25select id, name from managers where managertype='client'
+18.07.2013 19:32:25select id, name from managers where managertype='client'
+18.07.2013 19:32:25select id, name from managers where managertype='client'
+18.07.2013 19:32:25select id, name from managers where managertype='client'
+18.07.2013 19:32:25select id, name from managers where managertype='avia'
+18.07.2013 19:32:25select id, RuName from country
+18.07.2013 19:32:25select id, RuName from country
+18.07.2013 19:32:25select id, RuName from country
+18.07.2013 19:32:25select id, RuName from country
+18.07.2013 19:32:25select id, RuName from country
+18.07.2013 19:32:25select id, RuName from country
+18.07.2013 19:32:25select id, name from managers where managertype='Agent'
+22.07.2013 18:29:36select id, name from managers where managertype='client'
+22.07.2013 18:29:36select id, name from managers where managertype='client'
+22.07.2013 18:29:36select id, name from managers where managertype='client'
+22.07.2013 18:29:36select id, name from managers where managertype='client'
+22.07.2013 18:29:36select id, name from managers where managertype='avia'
+22.07.2013 18:29:36select id, RuName from country
+22.07.2013 18:29:36select id, RuName from country
+22.07.2013 18:29:36select id, RuName from country
+22.07.2013 18:29:37select id, RuName from country
+22.07.2013 18:29:37select id, RuName from country
+22.07.2013 18:29:37select id, RuName from country
+22.07.2013 18:29:37select id, name from managers where managertype='Agent'
+23.09.2013 20:25:52insert into Agent_Confirm values('', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','2013.09.23','2013.09.23','ростов-анталия-ростов','3','1','1000','200','10','100','23.09.2013','26.09.2013','','20','2','Идивидуальный Аэропорт-Отель-Аэропорт','xenos hotel','Standart Room','DBL','HB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 16:49:17insert into Agent_Confirm values('1', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','2013 16:46:06.09.DateTimePicker, Value: 24.Forms.Windows.System','2013 16:46:06.09.DateTimePicker, Value: 30.Forms.Windows.System','ростов-анталия-ростов','3','1','DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','System.Windows.Forms.DateTimePicker, Value: 24.09.2013 16:48:04','System.Windows.Forms.DateTimePicker, Value: 26.09.2013 16:48:04','','20','2','Идивидуальный Отель-Аэропорт','xenos hotel','Standart Room','SNGL','BB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 16:49:17insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 16:49:17insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 16:49:17insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 16:49:17insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=3 }')
+24.09.2013 16:49:17insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=0 }')
+24.09.2013 16:49:17insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=1 }')
+24.09.2013 16:49:17insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=2 }')
+24.09.2013 16:49:56insert into Agent_Confirm values('1', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','2013 16:46:06.09.DateTimePicker, Value: 24.Forms.Windows.System','2013 16:46:06.09.DateTimePicker, Value: 30.Forms.Windows.System','ростов-анталия-ростов','3','1','DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','System.Windows.Forms.DateTimePicker, Value: 24.09.2013 16:48:04','System.Windows.Forms.DateTimePicker, Value: 26.09.2013 16:48:04','','20','2','Идивидуальный Отель-Аэропорт','xenos hotel','Standart Room','SNGL','BB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 16:49:56insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 16:49:56insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 16:49:56insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 16:49:56insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=3 }')
+24.09.2013 16:49:56insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=0 }')
+24.09.2013 16:49:56insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=1 }')
+24.09.2013 16:49:56insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=2 }')
+24.09.2013 16:52:18insert into Agent_Confirm values('1', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','2013 16:46:06.09.DateTimePicker, Value: 24.Forms.Windows.System','2013 16:46:06.09.DateTimePicker, Value: 30.Forms.Windows.System','ростов-анталия-ростов','3','1','DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','System.Windows.Forms.DateTimePicker, Value: 24.09.2013 16:48:04','System.Windows.Forms.DateTimePicker, Value: 26.09.2013 16:48:04','','20','2','Идивидуальный Отель-Аэропорт','xenos hotel','Standart Room','SNGL','BB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 16:52:18insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 16:52:18insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 16:52:18insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 16:52:18insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=3 }')
+24.09.2013 16:52:18insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=0 }')
+24.09.2013 16:52:18insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=1 }')
+24.09.2013 16:52:18insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=2 }')
+24.09.2013 17:02:01insert into Agent_Confirm values('', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','Ростов-на-Дону','2013.09.24','2013.09.30','ростов-анаталия-ростов','3','1','1100','200','10','110','24.09.2013','26.09.2013','','20','2','Идивидуальный Аэропорт-Отель-Аэропорт','xenos hotel','Balcony Room','DBL','BB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 17:02:01insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 17:02:01insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 17:02:01insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 17:02:01insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=3 }')
+24.09.2013 17:02:01insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=0 }')
+24.09.2013 17:02:01insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=1 }')
+24.09.2013 17:02:01insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=2 }')
+24.09.2013 17:02:52insert into Agent_Confirm values('', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','Ростов-на-Дону','2013.09.24','2013.09.30','ростов-анаталия-ростов','3','1','1100','200','10','110','24.09.2013','26.09.2013','','20','2','Идивидуальный Аэропорт-Отель-Аэропорт','xenos hotel','Balcony Room','DBL','BB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 17:02:52insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 17:02:52insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 17:02:52insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 17:02:52insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=3 }')
+24.09.2013 17:02:52insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=0 }')
+24.09.2013 17:02:52insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=1 }')
+24.09.2013 17:02:52insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=2 }')
+24.09.2013 17:06:05insert into Agent_Confirm values('', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','Ростов-на-Дону','2013.09.24','2013.09.30','ростов-анаталия-ростов','3','1','1100','200','10','110','24.09.2013','26.09.2013','','20','2','Идивидуальный Аэропорт-Отель-Аэропорт','xenos hotel','Balcony Room','DBL','BB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 17:06:05insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 17:06:05insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 17:06:05insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 17:06:05insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=3 }')
+24.09.2013 17:06:05insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=0 }')
+24.09.2013 17:06:05insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=1 }')
+24.09.2013 17:06:05insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=2 }')
+24.09.2013 17:07:26insert into Agent_Confirm values('', '','«Золотые купола»','Татьяна Николаевна','Gold1-52@mail.ru','262-04-42','Ростов-на-Дону','2013.09.24','2013.09.30','ростов-анаталия-ростов','3','1','1100','200','10','110','24.09.2013','26.09.2013','','20','2','Идивидуальный Аэропорт-Отель-Аэропорт','xenos hotel','Balcony Room','DBL','BB','-','1','0','0','топливный сбор 40х2 виза 55х2')
+24.09.2013 17:07:26insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 17:07:27insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 17:07:27insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 17:07:27insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=3 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=3 }')
+24.09.2013 17:07:27insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=0 }')
+24.09.2013 17:07:27insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=1 }')
+24.09.2013 17:07:27insert into Agent_confirm_ticket values('', 'DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=5, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=6, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=7, RowIndex=2 }')
+24.09.2013 17:08:26insert into Agent_confirm_ticket values('3', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 17:08:34insert into Agent_confirm_ticket values('3', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=1 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=1 }')
+24.09.2013 17:10:14insert into Agent_confirm_turist values('3', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=2 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=2 }')
+24.09.2013 17:12:01insert into Agent_confirm_turist values('3', 'DataGridViewTextBoxCell { ColumnIndex=1, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=2, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=3, RowIndex=0 }','DataGridViewTextBoxCell { ColumnIndex=4, RowIndex=0 }')
+24.09.2013 17:22:00insert into Agent_confirm_turist values('3', 'ыапыпаыа','1234123','10.10.2013','10.10.2013')
+24.09.2013 17:22:49select id from Agent_confirm_turist where Confirm_key='3' and FIO='ывапывап' and PassportNum ='13241234' and EndTime=''
+24.09.2013 17:23:55select id from Agent_confirm_turist where Confirm_key='3' and FIO='ыапыпаыа' and PassportNum ='1234123'
+24.09.2013 18:06:15insert into Agent_confirm_ticket values('4', '10.10.2013','10:20','10:20','г7 8665','ростов','анталия','3','Невозвратный (чартерный) рейс')
+24.09.2013 18:34:46select id from Agent_confirm_ticket where Confirm_key='4' and Date='2013.10.10' and StartTime='10:20' and EndTime='10:20' and ReisNum='г7 8665'
+26.09.2013 14:23:59select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.name as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate where m.id='-1' and c.id='20'
+26.09.2013 14:30:44select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.name as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate where m.id='-1' and c.id='20'
+26.09.2013 14:46:48select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.runame as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate from City as c, Managers as m, Agent_confirm as ci where m.id='2' and c.id='20'
+26.09.2013 14:47:53select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.runame as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate from City as c, Managers as m, Agent_confirm as ci where m.id='2' and c.id='20'
+01.10.2013 13:58:29select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.runame as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate from City as c, Managers as m, Agent_confirm as ci where ci.country=c.id and ci.manager=m.id
+01.10.2013 18:53:55select id,Number,CreateDate,demandKey,CompanyName,CompanyOperator,CompanyEmail,CompanyPhone,CompanyCity,Startdate,EndDate,TravelPath,ManNum,TourOperator.to_name as TourOperator,TourCost,AdditionalPayment,CommisionPercent,Commision,HalfPaymentDate,FullPaymentDate,Rate,Country,Manager.name as Manager,Transfer,Hotel,RoomType,Room,FoodType,Excursion,Visa,MedicalIns,CanselIns,AdditionalServises from Agent_confirm, touroperators as touroperator,managers as manager where id='4' and touroperator.id=touroperator and manager.id=manager
+01.10.2013 18:57:41select id,Number,CreateDate,demandKey,CompanyName,CompanyOperator,CompanyEmail,CompanyPhone,CompanyCity,Startdate,EndDate,TravelPath,ManNum,TourOperator.to_name as TourOperator,TourCost,AdditionalPayment,CommisionPercent,Commision,HalfPaymentDate,FullPaymentDate,Rate,Country,Manager.name as Manager,Transfer,Hotel,RoomType,Room,FoodType,Excursion,Visa,MedicalIns,CanselIns,AdditionalServises from Agent_confirm, touroperators as touroperator,managers as manager where id='4' and touroperator.id=touroperator and manager.id=manager
+03.10.2013 15:29:11select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.runame as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate from City as c, Managers as m, Agent_confirm as ci where ci.country=c.id and ci.manager=m.id
+03.10.2013 17:21:25select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.runame as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate from City as c, Managers as m, Agent_confirm as ci where ci.country=c.id and ci.manager=m.id
+10.10.2013 18:12:06insert into Agency('', '','','','','')
+10.10.2013 18:13:53insert into Agency('', '','','','','')
+10.10.2013 18:17:40insert into Agency('АП "Sova-Travel", ИП Батиевский Т.В.', 'Ставрополь','','Савватеева Ольга','8(903)4136641, 8(988)0850505','olga-tyragent@yandex.ru')
+10.10.2013 18:18:16select id from Agentcy where Name='АП "Sova-Travel", ИП Батиевский Т.В.' and City='Ставрополь' and Adress='' and Agentname='Савватеева Ольга' and Phone='8(903)4136641, 8(988)0850505' and Email='olga-tyragent@yandex.ru'
+11.10.2013 11:39:28insert into Agent_Confirm values('5', '','АП "Sova-Travel", ИП Батиевский Т.В.','Савватеева Ольга','olga-tyragent@yandex.ru','8(903)4136641, 8(988)0850505','Ставрополь','2013.10.10','2013.10.10','Минеральные воды - Анталия - Минеральные воды','2','1','0','0','-1','942','80','11,5','108','2013.10.11','2013.10.17','','20','-1','Групповой Аэропорт-Отель-Аэропорт','XENO HOTELS SONAS ALPINA','Economy Room','DBL','AI','-','0','1','1','Топливный сбор 40х2')
+11.10.2013 12:02:54insert into Agent_Confirm values('5', '11.10.2013','', '','АП "Sova-Travel", ИП Батиевский Т.В.','Савватеева Ольга','olga-tyragent@yandex.ru','8(903)4136641, 8(988)0850505','Ставрополь','2013.10.10','2013.10.10','Минеральные воды - Анталия - Минеральные воды','2','1','0','0','-1','942','80','11,5','108','2013.10.11','2013.10.17','','20','-1','Групповой Аэропорт-Отель-Аэропорт','XENO HOTELS SONAS ALPINA','Economy Room','DBL','AI','-','0','1','1','Топливный сбор 40х2')
+11.10.2013 12:06:17insert into Agent_Confirm values('5', '11.10.2013', '','АП "Sova-Travel", ИП Батиевский Т.В.','Савватеева Ольга','olga-tyragent@yandex.ru','8(903)4136641, 8(988)0850505','Ставрополь','2013.10.10','2013.10.10','Минеральные воды - Анталия - Минеральные воды','2','1','0','0','-1','942','80','11,5','108','2013.10.11','2013.10.17','','20','-1','Групповой Аэропорт-Отель-Аэропорт','XENO HOTELS SONAS ALPINA','Economy Room','DBL','AI','-','0','1','1','Топливный сбор 40х2')
+11.10.2013 12:08:04insert into Agent_Confirm values('5', '11.10.2013', '','АП "Sova-Travel", ИП Батиевский Т.В.','Савватеева Ольга','olga-tyragent@yandex.ru','8(903)4136641, 8(988)0850505','Ставрополь','2013.10.10','2013.10.10','Минеральные воды - Анталия - Минеральные воды','2','1','0','0','-1','942','80','11,5','108','2013.10.11','2013.10.17','','20','-1','Групповой Аэропорт-Отель-Аэропорт','XENO HOTELS SONAS ALPINA','Economy Room','DBL','AI','-','0','1','1','Топливный сбор 40х2')
+11.10.2013 12:32:52select ci.id,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.runame as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate from City as c, Managers as m, Agent_confirm as ci where ci.country=c.id and ci.manager=m.id
+11.10.2013 12:36:04select c.id,c.Number,c.CreateDate,c.demandKey,c.CompanyName,c.CompanyOperator,c.CompanyEmail,c.CompanyPhone,c.CompanyCity,c.Startdate,c.EndDate,c.TravelPath,c.ManNum,c.Avia,c.Train,c.Bus,TourOperator.to_name as TourOperator,c.TourCost,c.AdditionalPayment,c.CommisionPercent,c.Commision,c.HalfPaymentDate,c.FullPaymentDate,c.Rate,cn.Runame as Country,Manager.name as Manager,c.Transfer,c.Hotel,c.RoomType,c.Room,c.FoodType,c.Excursion,c.Visa,c.MedicalIns,c.CanselIns,c.AdditionalServises from Agent_confirm as c, touroperators as touroperator,managers as manager,country as cn where c.id='9' and touroperator.id=c.touroperator and manager.id=c.manager and cn.id=c.country
+14.10.2013 14:04:08insert into Agent_Confirm values('10', '14.10.2013', '','Л-ТРЕВЕЛ, ИП НЕГРЕБА Л.Н','Людмила','neglyudmila@yandex.ru','(8652) 651866, 642565','Шахты','2014.01.02','2014.01.09','Швеция, Москва-Стокгольм-Москва','3','1','0','0','44','7311','0',cast ('11.5' as float), '841','2013.10.03','2013.10.15','','16','1','Групповой Аэропорт-Отель-Аэропорт','GRAND HOTEL STOCKHOLM 5*','Standart Room','DBL + CHD','BB','Обзорная экскурсия с обедом Групповая 3, Детский день Групповая 3, Посещение Фабрики Далеккарлийской лошадки Групповая 3, Посещение музея сказок Юнибакен Групповая 3, Выезд на дикую природу-собачьи упряжки, мотосание Групповая 3','0','1','1','-')
+14.10.2013 15:38:41update Agent_Confirm set Number='10', CreateDate='2013.10.14', demandKey='0', CompanyId='','', CompanyName='Л-ТРЕВЕЛ, ИП НЕГРЕБА Л.Н',CompanyOperator='Людмила',CompanyEmail='neglyudmila@yandex.ru',CompanyPhone='(8652) 651866, 642565',CompanyCity='Шахты',Startdate'02.01.2014 0:00:00',EndDate'09.01.2014 0:00:00',TravelPath='Швеция, Москва-Стокгольм-Москва',ManNum='3',Avia='True',Train='False',Bus='False',TourOperator='ООО "РУССКИЙ ЭКСПРЕСС"',TourCost='7311',AdditionalPayment='0', CommisionPercent=cast ('11.5' as float), Commision='841',HalfPaymentDate='03.10.2013 0:00:00',FullPaymentDate='15.10.2013 0:00:00',Rate='',Country='Швеция',Manager='Малий Екатерина',Transfer='Групповой Аэропорт-Отель-Аэропорт',Hotel='GRAND HOTEL STOCKHOLM 5*',RoomType='Standart Room',Room='DBL + CHD',FoodType='BB',Excursion='Обзорная экскурсия с обедом Групповая 3, Детский день Групповая 3, Посещение Фабрики Далеккарлийской лошадки Групповая 3, Посещение музея сказок Юнибакен Групповая 3, Выезд на дикую природу-собачьи упряжки, мотосание Групповая 3',Visa='False',MedicalIns='True',CanselIns='True',AdditionalServises='-' where id='11'
+14.10.2013 15:38:57update Agent_confirm_ticket set Confirm_key='11', Date='2014.01.02', TimeStart='18.20', TimeEnd='18.35', ReisNum='SK 731', StartPlace='Москва',EndPlace='Стокгольм',TicketCount='3',Tarif'Невозвратный (чартерный) рейс' where id='4'
+14.10.2013 15:38:58update Agent_confirm_ticket set Confirm_key='11', Date='2014.01.09', TimeStart='18.20', TimeEnd='18.35', ReisNum='SK 730', StartPlace='Стокгольм',EndPlace='Москва',TicketCount='3',Tarif'Невозвратный (чартерный) рейс' where id='5'
+14.10.2013 15:44:58update Agent_Confirm set Number='10', CreateDate='2013.10.14', demandKey='0', CompanyId='','', CompanyName='Л-ТРЕВЕЛ, ИП НЕГРЕБА Л.Н',CompanyOperator='Людмила',CompanyEmail='neglyudmila@yandex.ru',CompanyPhone='(8652) 651866, 642565',CompanyCity='Шахты',Startdate'02.01.2014 0:00:00',EndDate'09.01.2014 0:00:00',TravelPath='Швеция, Москва-Стокгольм-Москва',ManNum='3',Avia='True',Train='False',Bus='False',TourOperator='ООО "РУССКИЙ ЭКСПРЕСС"',TourCost='7311',AdditionalPayment='0', CommisionPercent=cast ('11.5' as float), Commision='841',HalfPaymentDate='03.10.2013 0:00:00',FullPaymentDate='15.10.2013 0:00:00',Rate='',Country='Швеция',Manager='Малий Екатерина',Transfer='Групповой Аэропорт-Отель-Аэропорт',Hotel='GRAND HOTEL STOCKHOLM 5*',RoomType='Standart Room',Room='DBL + CHD',FoodType='BB',Excursion='Обзорная экскурсия с обедом Групповая 3, Детский день Групповая 3, Посещение Фабрики Далеккарлийской лошадки Групповая 3, Посещение музея сказок Юнибакен Групповая 3, Выезд на дикую природу-собачьи упряжки, мотосание Групповая 3',Visa='False',MedicalIns='True',CanselIns='True',AdditionalServises='-' where id='11'
+14.10.2013 15:45:45update Agent_confirm_ticket set Confirm_key='11', Date='2014.01.02', TimeStart='18.20', TimeEnd='18.35', ReisNum='SK 731', StartPlace='Москва',EndPlace='Стокгольм',TicketCount='3',Tarif'Невозвратный (чартерный) рейс' where id='4'
+14.10.2013 15:54:15update Agent_Confirm set Number='10', CreateDate='2013.10.14', demandKey='', CompanyId='','', CompanyName='Л-ТРЕВЕЛ, ИП НЕГРЕБА Л.Н',CompanyOperator='Людмила',CompanyEmail='neglyudmila@yandex.ru',CompanyPhone='(8652) 651866, 642565',CompanyCity='Шахты',Startdate'2014.01.02',EndDate'2014.01.09',TravelPath='Швеция, Москва-Стокгольм-Москва1',ManNum='3',Avia='1',Train='0',Bus='0',TourOperator='44',TourCost='7311',AdditionalPayment='0', CommisionPercent=cast ('11.5' as float), Commision='841',HalfPaymentDate='2013.10.03',FullPaymentDate='2013.10.15',Rate='',Country='16',Manager='1',Transfer='Групповой Аэропорт-Отель-Аэропорт',Hotel='GRAND HOTEL STOCKHOLM 5*1',RoomType='Balcony Room',Room='DBL + EXB',FoodType='HB+',Excursion='Обзорная экскурсия с обедом Групповая 3, Детский день Групповая 3, Посещение Фабрики Далеккарлийской лошадки Групповая 3, Посещение музея сказок Юнибакен Групповая 3, Выезд на дикую природу-собачьи упряжки, мотосание Групповая 3',Visa='0',MedicalIns='1',CanselIns='1',AdditionalServises='-1' where id=''
+15.10.2013 16:55:50select c.id,c.Number,c.CreateDate,c.demandKey,c.CompanyName,c.CompanyOperator,c.CompanyEmail,c.CompanyPhone,c.CompanyCity,c.Startdate,c.EndDate,c.TravelPath,c.ManNum,c.Avia,c.Train,c.Bus,TourOperator.to_name as TourOperator,c.TourCost,c.AdditionalPayment,c.CommisionPercent,c.Commision,c.HalfPaymentDate,c.FullPaymentDate,c.Rate,cn.Runame as Country,Manager.name as Manager,c.Transfer,c.Hotel,c.RoomType,c.Room,c.FoodType,c.Excursion,c.Visa,c.MedicalIns,c.CanselIns,c.AdditionalServises from Agent_confirm as c, touroperators as touroperator,managers as manager,country as cn where c.id='10' and touroperator.id=c.touroperator and manager.id=c.manager and cn.id=c.country
+17.10.2013 17:02:30select id from Agent_confirm_ticket_lite where Confirm_key='13' and Date='U61051 (MRV->AYT-1),Y,(12:25-13:40) / 11.05.2013 ЧАРТЕРНЫЙ РЕЙС, НЕВОЗВРАТНЫЙ ТАРИФ' and TimeStart='2'
+17.10.2013 17:14:39select id from Agent_confirm_ticket_lite where Confirm_key='13' and AviaInfo='U61051 (MRV->AYT-1),Y,(12:25-13:40) / 11.05.2013 ЧАРТЕРНЫЙ РЕЙС, НЕВОЗВРАТНЫЙ ТАРИФ' and TicketCount='2'
+18.10.2013 10:31:20update Agent_confirm_ticket set Confirm_key='13', AviaInfo='U61051 (MRV->AYT-1),Y,(12:25-13:40) / 11.05.2013 ЧАРТЕРНЫЙ РЕЙС, НЕВОЗВРАТНЫЙ ТАРИФ', TicketCount='2'
+18.10.2013 10:31:20update Agent_confirm_ticket set Confirm_key='13', AviaInfo='U61052 (AYT-1->MRV),Y,(07:00-10:05) / 18.05.2013 ЧАРТЕРНЫЙ РЕЙС, НЕВОЗВРАТНЫЙ ТАРИФ', TicketCount='2'
+18.10.2013 17:49:39select to_penalty from touroperators where id='ООО "АНЕКС ТУР"'
+18.10.2013 17:55:13select to_penalty from touroperators where id=(select id from touroperators where name='ООО "АНЕКС ТУР"')
+25.10.2013 18:16:53update Agent_confirm_ticket set Confirm_key='14', AviaInfo=' FZ 978 (B 737-800) 04.12.2013 Минеральные Воды (MRV 04:20) -> DUBAI (DXB2 07:50)  Y/STANDART', TicketCount='2'
+25.10.2013 18:16:53update Agent_confirm_ticket set Confirm_key='14', AviaInfo='FZ 977 (B 737-800) 10.12.2013 DUBAI (DXB2 23:30) -> Минеральные Воды (MRV 03:20+1)  Y/STANDART', TicketCount='2'
+25.10.2013 18:17:07update Agent_confirm_ticket set Confirm_key='14', AviaInfo=' FZ 978 (B 737-800) 04.12.2013 Минеральные Воды (MRV 04:20) -> DUBAI (DXB2 07:50)  Y/STANDART', TicketCount='-'
+25.10.2013 18:17:07update Agent_confirm_ticket set Confirm_key='14', AviaInfo='FZ 977 (B 737-800) 10.12.2013 DUBAI (DXB2 23:30) -> Минеральные Воды (MRV 03:20+1)  Y/STANDART', TicketCount='2'
+30.10.2013 16:49:17select ac.id, ac.Number,convert(varchar,ac.CreateDate,,104) as crdate,ac.CompanyName,ac.CompanyCity, convert(varchar,ac.Startdate,104) as startdate, convert(varchar,ac.EndDate,104) as EndDate,ac.ManNum,ac.TourOperator,ac.TourCost,ac.AdditionalPayment,ac.CommisionPercent,ac.Commision,Rate,ac.Hotel, c.runame as Country,m.name as manager from agent_conform as ac, country as c,manager as m where m.id=ac.manager and c.id=ac.country
+30.10.2013 16:50:44select ac.id, ac.Number,convert(varchar,ac.CreateDate,,104) as crdate,ac.CompanyName,ac.CompanyCity, convert(varchar,ac.Startdate,104) as startdate, convert(varchar,ac.EndDate,104) as EndDate,ac.ManNum,ac.TourOperator,ac.TourCost,ac.AdditionalPayment,ac.CommisionPercent,ac.Commision,Rate,ac.Hotel, c.runame as Country,m.name as manager from agent_conform as ac, country as c,manager as m where m.id=ac.manager and c.id=ac.country
+30.10.2013 16:52:36select ac.id, ac.Number,convert(varchar,ac.CreateDate,,104) as crdate,ac.CompanyName,ac.CompanyCity, convert(varchar,ac.Startdate,104) as startdate, convert(varchar,ac.EndDate,104) as EndDate,ac.ManNum,ac.TourOperator,ac.TourCost,ac.AdditionalPayment,ac.CommisionPercent,ac.Commision,Rate,ac.Hotel, c.runame as Country,m.name as manager from agent_conform as ac, country as c,manager as m where m.id=ac.manager and c.id=ac.country
+30.10.2013 16:53:21select ac.id, ac.Number,convert(varchar,ac.CreateDate,104) as crdate,ac.CompanyName,ac.CompanyCity, convert(varchar,ac.Startdate,104) as startdate, convert(varchar,ac.EndDate,104) as EndDate,ac.ManNum,ac.TourOperator,ac.TourCost,ac.AdditionalPayment,ac.CommisionPercent,ac.Commision,Rate,ac.Hotel, c.runame as Country,m.name as manager from agent_confirm as ac, country as c,manager as m where m.id=ac.manager and c.id=ac.country
+30.10.2013 17:21:13select ac.id, ac.Number,convert(varchar,ac.CreateDate,104) as crdate,ac.CompanyName,ac.CompanyCity, convert(varchar,ac.Startdate,104) as startdate, convert(varchar,ac.EndDate,104) as EndDate,ac.ManNum,t.to_shortname,ac.TourCost,ac.AdditionalPayment,ac.CommisionPercent,ac.Commision,Rate,ac.Hotel, c.runame as Country,m.name as manager from agent_confirm as ac, country as c,managers as m, Touroperators as t where m.id=ac.manager and c.id=ac.country and t.id=ac.TourOperator and CreateDate<='2013.10.30' and CreateDate>='2013.10.10'
+30.10.2013 17:21:21select ac.id, ac.Number,convert(varchar,ac.CreateDate,104) as crdate,ac.CompanyName,ac.CompanyCity, convert(varchar,ac.Startdate,104) as startdate, convert(varchar,ac.EndDate,104) as EndDate,ac.ManNum,t.to_shortname,ac.TourCost,ac.AdditionalPayment,ac.CommisionPercent,ac.Commision,Rate,ac.Hotel, c.runame as Country,m.name as manager from agent_confirm as ac, country as c,managers as m, Touroperators as t where m.id=ac.manager and c.id=ac.country and t.id=ac.TourOperator and CreateDate<='2013.10.30' and CreateDate>='2013.10.09'

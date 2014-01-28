@@ -26,6 +26,7 @@ namespace WordExChec
     {
         string Basepath=Path.GetFullPath("./");
         DogovorInfo Obj_dogovor = new DogovorInfo();
+        ConfirmInfo Confirm = new ConfirmInfo();
         Client Obj_client = new Client();
         //Arg arguments = new Arg();
         Arg Predarguments = new Arg();
@@ -147,7 +148,7 @@ namespace WordExChec
                 {
                     this.comboBox3.Items.Add(to);
                     this.comboBox16.Items.Add(to);
-                    //this.comboBox27.Items.Add(to);
+                    //this.comboBox52.Items.Add(to);
                     //this.comboBox30.Items.Add(to);
                 }
                 /*this.comboBox3.Items.Add("Магазин Путешествий");
@@ -199,6 +200,7 @@ namespace WordExChec
                 this.comboBox16.Items.AddRange(turoper);
                 //pred_teuroper-load
             }
+            FillTourOperator(comboBox52);
             //turoperators__load
             //country_load
             FillCountry(comboBox26);
@@ -206,7 +208,7 @@ namespace WordExChec
             FillCountry(comboBox29);
             FillCountry(comboBox37);
             FillCountry(comboBox56);
-            FillCountry(comboBox56);
+            //FillCountry(comboBox56);
                 this.comboBox26.SelectedItem = "Все";              
                 comboBox28.SelectedItem = "Россия";
                 comboBox29.SelectedItem = "Россия";
@@ -255,6 +257,7 @@ namespace WordExChec
             this.comboBox16.SelectedItem = "Росинтур";
             this.comboBox15.SelectedItem = "РосинтурЮг";
             this.comboBox17.SelectedItem = "Наличный";
+            this.comboBox1.SelectedItem = "Наличный";
             dataGridView5.RowCount = 2;
             dataGridView9.RowCount = 2;
             //
@@ -285,29 +288,14 @@ namespace WordExChec
             //aviaDogovor
 
             //confirmation
-            this.numericUpDown9.Value = date.Year;
-            this.comboBox44.SelectedItem = date.Day.ToString();
-            this.comboBox43.SelectedItem = ((Month)(date.Month)).ToString();
-            comboBox52.SelectedItem = "Росинтур";
-            //this.textBox184.Text = "15";
-           //this.textBox216.Text = "3";
-            
-            /*object[] Amanag = new object[] {
-            "Малий Е.В",
-            "Бровко Л.Ю",
-            "Дьякова Е.Е",
-            "Чумакова О.В"};
-            this.comboBox41.Items.AddRange(Amanag);*/
-            /*List<string> managers = getmanagerList("Agent");
-            if (managers.Count != 0)
-            {
-                foreach (string manager in managers)
-                {
-                    this.comboBox41.Items.Add(manager);
-                }
-            }*/
+            //comboBox52.SelectedItem = "Росинтур";
+            //dataGridView25.Rows.Add();
+            FillCountry(comboBox11);
+            FillManager(comboBox10, "agent");
+            FillManager(comboBox12, "agent");
+            dataGridView27.Rows.Add();
             FillManager(comboBox41, "Agent");
-            numericUpDown14.Value = 20;
+            FillCountry(comboBox49);
             dataGridView27.RowCount = 1;
             dataGridView29.RowCount = 2;
             this.dataGridView27.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView27_CellEndEdit);
@@ -720,7 +708,8 @@ namespace WordExChec
                 }
                 else
                 {
-                    SetBookMarkText("FIO1", obj_Bookmarks, obj_App, this.textBox8.Text + "(номер карты - " + this.textBox136.Text+")");
+
+                    SetBookMarkText("FIO1", obj_Bookmarks, obj_App, this.textBox8.Text + "(номер карты - " + this.textBox136.Text+"-"+comboBox13.Text+")");
                 }
                 string passportStr = "";
                 if (checkBox33.Checked == true)
@@ -772,7 +761,7 @@ namespace WordExChec
                 string avans_str = ""; 
                 if (dataGridView36.RowCount!=0)
                 {
-                    avans_str += "внес на расчетный счет или в кассу Турагента: ";
+                    //avans_str += "внес на расчетный счет или в кассу Турагента: ";
                     foreach (DataGridViewRow r in dataGridView36.Rows)
                     {
                         if (r.Cells[1].Value != null)
@@ -780,13 +769,17 @@ namespace WordExChec
                             avans_str += " "+r.Cells[1].Value + " аванс в сумме " + r.Cells[3].Value + "руб., что эквивалентно " + r.Cells[2].Value + " y.e по курсу  " + r.Cells[4].Value + "; ";
                         }
                     }
-                    avans_str += "(на основании заключенного предварительного договора "+Obj_dogovor.Pred_DogovorNum+"), ";
-                    avans_str += "оставшуюся сумму " + this.textBox46.Text + " руб., что эквивалентно " + this.textBox47.Text + " y.e по курсу  " + textBox45.Text + " по Договору КЛИЕНТ обязан оплатить в день заключения настоящего основного договора";
+                    if (avans_str != "")
+                    {
+                        avans_str += "(на основании заключенного предварительного договора " + Obj_dogovor.Pred_DogovorNum + "), ";
+                        avans_str += "оставшуюся сумму " + this.textBox46.Text + " руб., что эквивалентно " + this.textBox47.Text + " y.e по курсу  " + textBox45.Text + " по Договору КЛИЕНТ обязан оплатить в день заключения настоящего основного договора";
+                    }
+                    else
+                    {
+                        avans_str = "авансовых платежей не вносил";
+                    }
                 }
-                else
-                {
-                    avans_str="авансовых платежей не вносил";
-                }
+
                 SetBookMarkText("avans", obj_Bookmarks, obj_App, avans_str);
             //
                 /*SetBookMarkText("DolgRubSum", obj_Bookmarks, obj_App, this.textBox46.Text);
@@ -832,8 +825,63 @@ namespace WordExChec
                 obj_App.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, obj_App, Param);
                 //object m=System.Type.Missing;
                 Mainarguments.setparam(Doc, Word, obj_App);
-            
-            
+
+            //make insurance
+                Param[0] = GetTempTemlate("Template", "InfoInsurance.doc");
+                object Doc_ins = obj_Doc.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, obj_Doc, Param);
+                object obj_Bookmarks_ins = Doc_ins.GetType().InvokeMember("Bookmarks", BindingFlags.GetProperty, null, Doc_ins, null);
+                /*SetBookMarkText("DayNow", obj_Bookmarks, obj_App, this.comboBox1.SelectedItem.ToString());
+                SetBookMarkText("MonthNow", obj_Bookmarks, obj_App, this.comboBox2.SelectedItem.ToString());
+                SetBookMarkText("YearNow", obj_Bookmarks, obj_App, this.numericUpDown1.Value.ToString());*/
+                SetBookMarkText("dogovor", obj_Bookmarks_ins, obj_App, textBox49.Text+" от "+DateTime.Now.ToShortDateString());
+                SetBookMarkText("dogovor1", obj_Bookmarks_ins, obj_App, textBox49.Text + " от " + DateTime.Now.ToShortDateString());
+                SetBookMarkText("date", obj_Bookmarks_ins, obj_App, dateTimePicker3.Text + " - " + dateTimePicker4.Text);
+                SetBookMarkText("date1", obj_Bookmarks_ins, obj_App, dateTimePicker3.Text + " - " + dateTimePicker4.Text);
+                SetBookMarkText("Manager", obj_Bookmarks_ins, obj_App, comboBox5.Text);
+                SetBookMarkText("Manager1", obj_Bookmarks_ins, obj_App, comboBox5.Text);
+                SetBookMarkText("country", obj_Bookmarks_ins, obj_App, comboBox28.Text);
+                SetBookMarkText("country1", obj_Bookmarks_ins, obj_App, comboBox28.Text);
+                if (radioButton4.Checked == true)
+                {
+                    SetBookMarkText("price", obj_Bookmarks_ins, obj_App, textBox14.Text + " руб.");
+                    SetBookMarkText("price1", obj_Bookmarks_ins, obj_App, textBox14.Text + " руб.");
+                }
+                else
+                {
+                    SetBookMarkText("price", obj_Bookmarks_ins, obj_App, textBox13.Text + " y.e, что эквивалентно " + textBox14.Text + " руб. по курсу " + textBox15.Text);
+                    SetBookMarkText("price1", obj_Bookmarks_ins, obj_App, textBox13.Text + " y.e, что эквивалентно " + textBox14.Text + " руб. по курсу " + textBox15.Text);
+                }
+                obj_Tables = Doc_ins.GetType().InvokeMember("Tables", BindingFlags.GetProperty, null, Doc_ins, null);
+                TableProcessCheck(dataGridView5, obj_Tables, 1);
+                if (dataGridView4.RowCount > 2)
+                {
+                    TableSize(dataGridView4, obj_Tables, 2, 2);
+                }
+                TableProcess(dataGridView4, obj_Tables, 2);
+                TableProcess(dataGridView6, obj_Tables, 3);
+
+                TableProcessCheck(dataGridView5, obj_Tables, 4);
+                if (dataGridView4.RowCount > 2)
+                {
+                    TableSize(dataGridView4, obj_Tables, 5, 2);
+                }
+                TableProcess(dataGridView4, obj_Tables, 5);
+                TableProcess(dataGridView6, obj_Tables, 6);
+
+                if (checkBox3.Checked == true)
+                {
+                    SetBookMarkText("Visa", obj_Bookmarks_ins, obj_App, "Да");
+                    SetBookMarkText("Visa1", obj_Bookmarks_ins, obj_App, "Да");
+                }
+                else
+                {
+                    SetBookMarkText("Visa", obj_Bookmarks_ins, obj_App, "Нет");
+                    SetBookMarkText("Visa1", obj_Bookmarks_ins, obj_App, "Нет");
+                }
+                
+                DocumentsaveDoc(Doc_ins, textBox49.Text, comboBox5.Text, comboBox6.Text, save_param);
+
+
             //make zayvka
             object[] ExcelParam = new object[1];
 
@@ -873,6 +921,14 @@ namespace WordExChec
                 }*/
             }
             SetCellData(comboBox19.Text, "H1", obj_worksheet);
+            if ((textBox136.Text != "") && (textBox136.Text != " ") && (textBox136.Text != null))
+            {
+                SetCellData(textBox136.Text + "-" + comboBox13.Text, "F2", obj_worksheet);
+            }
+            else
+            {
+                SetCellData("Нет", "F3", obj_worksheet);
+            }
             SetCellData(textBox16.Text, "D4", obj_worksheet);
             SetCellData(textBox17.Text, "D5", obj_worksheet);
             SetCellData(textBox18.Text, "D6", obj_worksheet);
@@ -939,28 +995,12 @@ namespace WordExChec
             //SetCellData(zRubSum.ToString(), "J18", obj_worksheet);
             SetCellData(Convert.ToInt32(zRubSum).ToString(), "J19", obj_worksheet);
             //
-            /*if (comboBox3.Text != "Росинтур")
-            {
-                if (comboBox4.Text == "РосинтурЮг")
-                {
-                    SetCellData("ООО ТК \"РОСИНТУР-ЮГ\"", "D24", obj_worksheet);
-                }
-                if (comboBox4.Text == "Магазин Путешествий")
-                {
-                    SetCellData("ООО ТК \"МАГАЗИН ПУТЕШЕСТВИЙ\"", "D24", obj_worksheet); ;
-                }
-                //SetCellData("ООО ТК \"РОСИНТУР-ЮГ\"", "D24", obj_worksheet);
-            }
-            else if (comboBox3.Text == "Росинтур")
-            {
-                SetCellData("ООО ТК \"РОСИНТУР\"", "D24", obj_worksheet);
-            }*/
             string av_sum = "";
             foreach (DataGridViewRow r in dataGridView36.Rows)
             {
                 if (r.Cells[1].Value != null)
                 {
-                    av_sum += r.Cells[1].Value + "   Сумма y.e - " + r.Cells[2].Value + ",  Сумма руб - " + r.Cells[3].Value + ",  курс-" + r.Cells[4].Value + ";            ";
+                    av_sum += r.Cells[1].Value + "   Сумма y.e - " + r.Cells[2].Value + ",  Сумма руб - " + r.Cells[3].Value + ",  курс-" + r.Cells[4].Value + ";                      ";
                 }
             }
             SetCellData(av_sum, "B20", obj_worksheet);
@@ -1010,24 +1050,29 @@ namespace WordExChec
             string orderdata = textBox9.Text + " адрес :" + textBox10.Text;
             SetCellData(orderdata, "A35", obj_worksheet);
             int turputSum = 0;
-            try
+            if (checkBox26.Checked == true)
             {
-                if (checkBox26.Checked == true)
+                if ((textBox14.Text != "") && (textBox14.Text != null))
                 {
-                    if ((textBox14.Text != "") && (textBox14.Text != null))
+                    turputSum = Convert.ToInt32(textBox14.Text);
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow r in dataGridView36.Rows)
+                {
+                    if (r.Cells[1].Value != null)
                     {
-                        turputSum = Convert.ToInt32(textBox14.Text);
+                        turputSum += Convert.ToInt32(r.Cells[3].Value);
                     }
                 }
-                else
+                if (textBox46.Text!="")
                 {
-                    turputSum = Convert.ToInt32(textBox20.Text) + Convert.ToInt32(textBox46.Text);
+                turputSum += Convert.ToInt32(textBox46.Text);
                 }
             }
-            catch
-            {
-
-            }
+           
+             
             /*if ((textBox14.Text != "") && (textBox14.Text != null))
             {*/
                 TranslateData t1 = new TranslateData();
@@ -1381,7 +1426,7 @@ namespace WordExChec
         }
         private void TableSize(DataGridView data, object Tables, int num, int numrows)
         {
-            object[] Parametr, Parametr1, Cells;
+            object[] Parametr, Parametr1;//, Cells;
             Parametr = new object[1];
             Parametr1 = new object[7] { Missing.Value, true, true, true, true, true, true };
             Parametr[0] = num;
@@ -1410,91 +1455,25 @@ namespace WordExChec
             this.textBox16.Text = this.comboBox6.Text;
             this.textBox17.Text = this.textBox2.Text;
             this.textBox18.Text = this.dateTimePicker3.Text+"-"+this.dateTimePicker4.Text;
-            if (this.dataGridView14.Rows[0].Cells[1].Value != null)
+            if (this.dataGridView14.Rows[0].Cells[2].Value != null)
             {
-               this.textBox19.Text = this.dataGridView14.Rows[0].Cells[1].Value.ToString();
+               this.textBox19.Text = this.dataGridView14.Rows[0].Cells[2].Value.ToString();
             }
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-           // Section sec = new Section();
-            object[] WordParam = new object[1];
-            object[] ExcelParam = new object[1];
-            object Doc = Mainarguments.Doc;
-            object WordApp = Mainarguments.App;
-            object Workbook = Mainarguments.WorkBook;
-            /*string path =Path.GetFullPath(sec.readkey("SavePath", "Path", "app.ini"));
-            if ((path != null)&&(Directory.Exists(path)))
-            {
-                ExcelParam[0] = CheckFileName(path + "\\Заявка " + textBox1.Text, ".xls");
-
-                    //object Doc = arguments.Doc;
-                    //object WordApp = arguments.App;
-                    WordParam[0] = CheckFileName(path + "\\Договор №" + textBox1.Text, ".doc");
-                    Doc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Doc, WordParam);
-
-                Workbook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Workbook, ExcelParam);
-            }
-            else
-            {
-                string localpath;
-                if (!Directory.Exists("c:\\КлиентскиеДоговора"))
-                {
-                    Directory.CreateDirectory("c:\\КлиентскиеДоговора");
-                    localpath = "c:\\КлиентскиеДоговора";
-                }
-                else
-                {
-                     localpath= "c:\\КлиентскиеДоговора";
-                }
-
-                    //object Doc = arguments.Doc;
-                    //object WordApp = arguments.App;
-                WordParam[0] = localpath + "\\Договор " + textBox1.Text;
-                    Doc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Doc, WordParam);
-
-                    ExcelParam[0] = localpath + "\\Заявка " + textBox1.Text;
-                Workbook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Workbook, ExcelParam);
-
-            }*/
-            try
-            {
-                DocumentSave(Doc, Workbook);
-                Doc.GetType().InvokeMember("Close", BindingFlags.InvokeMethod, null, Doc, null);
-                WordApp.GetType().InvokeMember("Quit", BindingFlags.InvokeMethod, null, WordApp, null);
-                Workbook.GetType().InvokeMember("Close", BindingFlags.InvokeMethod, null, Workbook, null);
-            }
-            catch
-            {
-
-            }
-            button4.Enabled = false;
-            button3.Enabled = false;
-            Marshal.ReleaseComObject(Mainarguments.Doc);
-            Marshal.ReleaseComObject(Mainarguments.Word);
-            Marshal.ReleaseComObject(Mainarguments.WorkBook);
-            Marshal.ReleaseComObject(Mainarguments.Excel);
             Mainarguments.clean();
+            Obj_dogovor = new DogovorInfo();
             GC.GetTotalMemory(true);
-            /*if ((checkBox26.Checked == true) && (textBox49.Text != ""))
-            {
-                if ((comboBox3.Text == "Росинтур") || (comboBox3.Text == "Магазин Путешествий"))
-                {
-                    IncInINum(comboBox3.Text, textBox49.Text);
-                }
-                else
-                {
-                    IncInINum(comboBox4.Text, textBox49.Text);
-                }
-                //IncInINum(comboBox16.Text, textBox7.Text);
-            }*/
+
             if (checkBox10.Checked == false)
             {
                 FormResetM();
             }
             checkBox10.Checked = false;
+            textBox49.Text = "";
         }
         private string CheckFileName(string str, string ext)
         {
@@ -2014,34 +1993,30 @@ namespace WordExChec
             {
                 if ((e.ColumnIndex != 1) && (e.ColumnIndex != 4) && (e.ColumnIndex != 10))
                 {
-                    if ((e.ColumnIndex == 3) || ((dataGridView7.Rows[e.RowIndex].Cells[2].Value != null) && (dataGridView7.Rows[e.RowIndex].Cells[3].Value != null) && (dataGridView7.Rows[e.RowIndex].Cells[2].Value != "") && (dataGridView7.Rows[e.RowIndex].Cells[3].Value != "")))
+                    if ((e.ColumnIndex == 3) && ((dataGridView7.Rows[e.RowIndex].Cells[2].Value != null) && (dataGridView7.Rows[e.RowIndex].Cells[3].Value != null)))
                     {
-                        m = r.Match(dataGridView7.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                        if (m.ToString() != "")
+                        if ((dataGridView7.Rows[e.RowIndex].Cells[2].Value.ToString() != "") && (dataGridView7.Rows[e.RowIndex].Cells[3].Value.ToString() != ""))
                         {
-                            if ((dataGridView7.Rows[e.RowIndex].Cells[2].Value.ToString() != "") && (dataGridView7.Rows[e.RowIndex].Cells[3].Value.ToString() != ""))
+                            m = r.Match(dataGridView7.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                            if (m.ToString() != "")
                             {
                                 dscount = ((Convert.ToDouble(dataGridView7.Rows[e.RowIndex].Cells[2].Value) / 100) * (Convert.ToDouble(dataGridView7.Rows[e.RowIndex].Cells[3].Value)));
-                            }
-                            //double f1 = (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[1].Value) / 100);
 
-                            //double dscount = f1 * (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[2].Value));
-                            //dataGridView7.Rows[e.RowIndex].Cells[3].Value = ((Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[1].Value) / 100) * (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[2].Value)));
-
-                            if (radioButton4.Checked == true)
-                            {
-                                dataGridView7.Rows[e.RowIndex].Cells[4].Value = Convert.ToInt32(dscount);
+                                if (radioButton4.Checked == true)
+                                {
+                                    dataGridView7.Rows[e.RowIndex].Cells[4].Value = Convert.ToInt32(dscount);
+                                }
+                                else
+                                {
+                                    dataGridView7.Rows[e.RowIndex].Cells[4].Value = dscount;
+                                }
                             }
                             else
                             {
-                                dataGridView7.Rows[e.RowIndex].Cells[4].Value = dscount;
+                                MessageBox.Show("Вводите Цифры");
+                                dataGridView7.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
+                                return;
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Вводите Цифры");
-                            dataGridView7.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
-                            return;
                         }
                     }
 
@@ -2050,27 +2025,31 @@ namespace WordExChec
                         // m = null;
                         for (int i = 0; i < dataGridView7.RowCount; i++)
                         {
-                            if ((dataGridView7.Rows[i].Cells[e.ColumnIndex].Value != null)&&(dataGridView7.Rows[i].Cells[e.ColumnIndex].Value.ToString() != ""))
+                            if ((dataGridView7.Rows[i].Cells[e.ColumnIndex].Value != null))
                             {
-                                m = r.Match(dataGridView7.Rows[i].Cells[e.ColumnIndex].Value.ToString());
-                                if (m.ToString() != "")
+                                if (dataGridView7.Rows[i].Cells[e.ColumnIndex].Value.ToString() != "")
                                 {
-                                    try
+                                    m = r.Match(dataGridView7.Rows[i].Cells[e.ColumnIndex].Value.ToString());
+                                    if (m.ToString() != "")
                                     {
-                                        sumrow = sumrow + Convert.ToDouble(dataGridView7.Rows[i].Cells[e.ColumnIndex].Value);
-                                    }
-                                    catch
-                                    {
-                                        dataGridView7.Rows[i].Cells[e.ColumnIndex].Value = "";
-                                        MessageBox.Show("Вводите Цифры");
-                                    }
+                                        try
+                                        {
+                                            dataGridView7.Rows[i].Cells[e.ColumnIndex].Value = Math.Round(Convert.ToDouble(dataGridView7.Rows[i].Cells[e.ColumnIndex].Value.ToString()), 2);
+                                            sumrow = sumrow + Convert.ToDouble(dataGridView7.Rows[i].Cells[e.ColumnIndex].Value);
+                                        }
+                                        catch
+                                        {
+                                            dataGridView7.Rows[i].Cells[e.ColumnIndex].Value = "";
+                                            MessageBox.Show("Вводите Цифры");
+                                        }
 
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Вводите Цифры");
-                                    dataGridView7.Rows[i].Cells[e.ColumnIndex].Value = null;
-                                    return;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Вводите Цифры");
+                                        dataGridView7.Rows[i].Cells[e.ColumnIndex].Value = null;
+                                        return;
+                                    }
                                 }
                             }
                         }
@@ -2079,30 +2058,40 @@ namespace WordExChec
 
                 }
 
-                for (int i = 1; i < dataGridView7.ColumnCount - 1; i++)
+                for (int i = 2; i < dataGridView7.ColumnCount - 1; i++)
                 {
                     if ((i != 3) && (i != 4))
                     {
-                        if ((dataGridView7.Rows[e.RowIndex].Cells[i].Value != null)&&(dataGridView7.Rows[e.RowIndex].Cells[i].Value.ToString() !=""))
+                        if ((dataGridView7.Rows[e.RowIndex].Cells[i].Value != null))
                         {
-                            m = r.Match(dataGridView7.Rows[e.RowIndex].Cells[i].Value.ToString());
-                            if (m.ToString() != "")
+                            if (dataGridView7.Rows[e.RowIndex].Cells[i].Value.ToString() != "")
                             {
-                                try
+                                m = r.Match(dataGridView7.Rows[e.RowIndex].Cells[i].Value.ToString());
+                                if (m.ToString() != "")
                                 {
-                                    sumcol = sumcol + Convert.ToDouble(dataGridView7.Rows[e.RowIndex].Cells[i].Value);
-                                }
-                                catch
-                                {
-                                    // MessageBox.Show("Вводите Цифры");
+                                    try
+                                    {
+                                        sumcol = sumcol + Convert.ToDouble(dataGridView7.Rows[e.RowIndex].Cells[i].Value);
+                                    }
+                                    catch
+                                    {
+                                        // MessageBox.Show("Вводите Цифры");
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                if ((dataGridView7.Rows[e.RowIndex].Cells[4].Value != null) && (dataGridView7.Rows[e.RowIndex].Cells[4].Value!=""))
+                if ((dataGridView7.Rows[e.RowIndex].Cells[4].Value != null))
                 {
-                    dataGridView7.Rows[e.RowIndex].Cells[10].Value = (sumcol - Convert.ToDouble(dataGridView7.Rows[e.RowIndex].Cells[4].Value));
+                    if (dataGridView7.Rows[e.RowIndex].Cells[4].Value.ToString() != "")
+                    {
+                        dataGridView7.Rows[e.RowIndex].Cells[10].Value = (sumcol - Convert.ToDouble(dataGridView7.Rows[e.RowIndex].Cells[4].Value));
+                    }
+                    else
+                    {
+                        dataGridView7.Rows[e.RowIndex].Cells[10].Value = sumcol;
+                    }
                 }
                 else
                 {
@@ -2257,6 +2246,9 @@ namespace WordExChec
             groupBox2.Visible = false;
             groupBox3.Visible = false;
             groupBox17.Visible = false;
+            FormResetM();
+            checkBox26.Checked = true;
+            groupBox24.Visible = false;
         }
 
         private void предварительныйToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2265,11 +2257,13 @@ namespace WordExChec
             groupBox1.Visible = false;
             groupBox3.Visible = false;
             groupBox17.Visible = false;
+            groupBox24.Visible = false;
+            FormResetP();
 
         }
         private void dataGridView6_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 1)
             {
                 dataGridView7.RowCount = dataGridView6.RowCount;
                 for (int i = 0; i < dataGridView6.RowCount; i++)
@@ -2489,7 +2483,16 @@ namespace WordExChec
                 }
                 //SetAgentReqvizit(Word, obj_Bookmarks, obj_App, Doc);
                 if (this.comboBox14.SelectedItem != null) { SetBookMarkText("manager", obj_Bookmarks, obj_App, this.comboBox14.SelectedItem.ToString()); SetBookMarkText("manager1", obj_Bookmarks, obj_App, this.comboBox14.SelectedItem.ToString()); }
-                SetBookMarkText("FIO1", obj_Bookmarks, obj_App, this.textBox34.Text);
+                if (this.textBox107.Text == "")
+                {
+                    SetBookMarkText("FIO1", obj_Bookmarks, obj_App, this.textBox34.Text);
+                }
+                else
+                {
+
+                    SetBookMarkText("FIO1", obj_Bookmarks, obj_App, this.textBox34.Text + "(номер карты - " + this.textBox107.Text + "-" + comboBox38.Text + ")");
+                }
+                //SetBookMarkText("FIO1", obj_Bookmarks, obj_App, this.textBox34.Text);
                 string passportStr="";
                 if (checkBox21.Checked == true)
                 {
@@ -2592,6 +2595,14 @@ namespace WordExChec
                     SetCellData("ООО ТК \"РОСИНТУР-ЮГ\"", "A2", obj_worksheet);
                 }
                 SetCellData(comboBox17.Text, "H2", obj_worksheet);
+            if ((textBox107.Text!="")&&(textBox107.Text!=" ")&&(textBox107.Text!=null))
+            {
+                SetCellData(textBox107.Text+"-"+comboBox38.Text, "F3", obj_worksheet);
+            }
+            else
+            {
+                SetCellData("Нет", "F3", obj_worksheet);
+            }
                 SetCellData(textBox38.Text, "D5", obj_worksheet);
                 SetCellData(textBox37.Text, "D6", obj_worksheet);
                 SetCellData(textBox36.Text, "D7", obj_worksheet);
@@ -2653,11 +2664,13 @@ namespace WordExChec
                 if ((textBox26.Text != "") && (textBox29.Text != ""))
                 {
                     yedolg = Convert.ToDouble(textBox26.Text) - Convert.ToDouble(textBox29.Text);
-                    rusdolg = Convert.ToDouble(textBox24.Text) - Convert.ToDouble(textBox28.Text);
-
                 }
-                SetCellData(yedolg.ToString(), "C22", obj_worksheet);
-                SetCellData(rusdolg.ToString(), "J22", obj_worksheet);
+                if ((textBox24.Text != "") && (textBox28.Text != ""))
+                {
+                    rusdolg = Convert.ToDouble(textBox24.Text) - Convert.ToDouble(textBox28.Text);
+                }
+                SetCellData(Math.Round(Convert.ToDouble(yedolg.ToString()),2).ToString(), "C22", obj_worksheet);
+                SetCellData(Math.Round(Convert.ToDouble(rusdolg.ToString()), 2).ToString(), "J22", obj_worksheet);
                 /*string avans_sum = "";
                 foreach (DataGridViewRow r in dataGridView37.Rows)
                 {
@@ -2751,9 +2764,9 @@ namespace WordExChec
             this.textBox34.Text = this.comboBox9.Text;
             this.textBox37.Text = this.textBox25.Text;
             this.textBox36.Text = this.dateTimePicker1.Text + "-" + this.dateTimePicker2.Text;
-            if (this.dataGridView17.Rows[0].Cells[1].Value != null)
+            if (this.dataGridView17.Rows[0].Cells[2].Value != null)
             {
-                this.textBox35.Text = this.dataGridView17.Rows[0].Cells[1].Value.ToString();
+                this.textBox35.Text = this.dataGridView17.Rows[0].Cells[2].Value.ToString();
             }
         }
         private string GetCellData(object worksheet, string cell)
@@ -2833,33 +2846,36 @@ namespace WordExChec
 
             if ((e.ColumnIndex != 1) && (e.ColumnIndex != 4) && (e.ColumnIndex != 10))
             {
-                if ((e.ColumnIndex == 3) || ((dataGridView16.Rows[e.RowIndex].Cells[2].Value != null) && (dataGridView16.Rows[e.RowIndex].Cells[3].Value != null) && (dataGridView16.Rows[e.RowIndex].Cells[2].Value != "") && (dataGridView16.Rows[e.RowIndex].Cells[3].Value != "")))
+                if ((e.ColumnIndex == 3) && ((dataGridView16.Rows[e.RowIndex].Cells[2].Value != null) && (dataGridView16.Rows[e.RowIndex].Cells[3].Value != null)))
                 {
                     //m = null;
-                    m = r.Match(dataGridView16.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                    if (m.ToString() != "")
+                    if ((dataGridView16.Rows[e.RowIndex].Cells[2].Value.ToString() != "") && (dataGridView16.Rows[e.RowIndex].Cells[3].Value.ToString() != ""))
                     {
-
-                        double dscount = ((Convert.ToDouble(dataGridView16.Rows[e.RowIndex].Cells[2].Value) / 100) * (Convert.ToDouble(dataGridView16.Rows[e.RowIndex].Cells[3].Value)));
-                        //double f1 = (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[1].Value) / 100);
-
-                        //double dscount = f1 * (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[2].Value));
-                        //dataGridView7.Rows[e.RowIndex].Cells[3].Value = ((Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[1].Value) / 100) * (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[2].Value)));
-
-                        if (radioButton1.Checked == true)
+                        m = r.Match(dataGridView16.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                        if (m.ToString() != "")
                         {
-                            dataGridView16.Rows[e.RowIndex].Cells[4].Value = Convert.ToInt32(dscount);
+
+                            double dscount = ((Convert.ToDouble(dataGridView16.Rows[e.RowIndex].Cells[2].Value) / 100) * (Convert.ToDouble(dataGridView16.Rows[e.RowIndex].Cells[3].Value)));
+                            //double f1 = (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[1].Value) / 100);
+
+                            //double dscount = f1 * (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[2].Value));
+                            //dataGridView7.Rows[e.RowIndex].Cells[3].Value = ((Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[1].Value) / 100) * (Convert.ToInt32(dataGridView7.Rows[e.RowIndex].Cells[2].Value)));
+
+                            if (radioButton1.Checked == true)
+                            {
+                                dataGridView16.Rows[e.RowIndex].Cells[4].Value = Convert.ToInt32(dscount);
+                            }
+                            else
+                            {
+                                dataGridView16.Rows[e.RowIndex].Cells[4].Value = dscount;
+                            }
                         }
                         else
                         {
-                            dataGridView16.Rows[e.RowIndex].Cells[4].Value = dscount;
+                            MessageBox.Show("Вводите Цифры");
+                            dataGridView16.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
+                            return;
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Вводите Цифры");
-                        dataGridView16.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
-                        return;
                     }
                 }
 
@@ -2868,27 +2884,31 @@ namespace WordExChec
                     //m = null;
                     for (int i = 0; i < dataGridView16.RowCount; i++)
                     {
-                        if ((dataGridView16.Rows[i].Cells[e.ColumnIndex].Value != null)&&(dataGridView16.Rows[i].Cells[e.ColumnIndex].Value != ""))
+                        if (dataGridView16.Rows[i].Cells[e.ColumnIndex].Value != null)
                         {
-                            m = r.Match(dataGridView16.Rows[i].Cells[e.ColumnIndex].Value.ToString());
-                            if (m.ToString() != "")
+                            if (dataGridView16.Rows[i].Cells[e.ColumnIndex].Value.ToString() != "")
                             {
-                                try
+                                m = r.Match(dataGridView16.Rows[i].Cells[e.ColumnIndex].Value.ToString());
+                                if (m.ToString() != "")
                                 {
-                                    sumrow = sumrow + Convert.ToDouble(dataGridView16.Rows[i].Cells[e.ColumnIndex].Value);
-                                }
-                                catch
-                                {
-                                    dataGridView16.Rows[i].Cells[e.ColumnIndex].Value = "";
-                                    MessageBox.Show("Вводите Цифры");
-                                }
+                                    try
+                                    {
+                                        dataGridView16.Rows[i].Cells[e.ColumnIndex].Value = Math.Round(Convert.ToDouble(dataGridView16.Rows[i].Cells[e.ColumnIndex].Value.ToString()), 2);
+                                        sumrow = sumrow + Convert.ToDouble(dataGridView16.Rows[i].Cells[e.ColumnIndex].Value);
+                                    }
+                                    catch
+                                    {
+                                        dataGridView16.Rows[i].Cells[e.ColumnIndex].Value = "";
+                                        MessageBox.Show("Вводите Цифры");
+                                    }
 
-                            }
-                            else
-                            {
-                                MessageBox.Show("Вводите Цифры");
-                                dataGridView16.Rows[i].Cells[e.ColumnIndex].Value = null;
-                                return;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Вводите Цифры");
+                                    dataGridView16.Rows[i].Cells[e.ColumnIndex].Value = null;
+                                    return;
+                                }
                             }
                         }
                     }
@@ -2920,7 +2940,7 @@ namespace WordExChec
                     }
                 }
             }
-            if ((dataGridView16.Rows[e.RowIndex].Cells[4].Value != null) && (dataGridView16.Rows[e.RowIndex].Cells[4].Value != ""))
+            if ((dataGridView16.Rows[e.RowIndex].Cells[4].Value != null) && (dataGridView16.Rows[e.RowIndex].Cells[4].Value.ToString() != ""))
             {
                 dataGridView16.Rows[e.RowIndex].Cells[10].Value = (sumcol - Convert.ToDouble(dataGridView16.Rows[e.RowIndex].Cells[4].Value));
             }
@@ -3053,6 +3073,150 @@ namespace WordExChec
 
             }
         }
+        private void DocumentsaveA(object OWorkBook, string num, string managername, string client, string param)
+        {
+            Section sec = new Section();
+
+            object[] ExcelParam = new object[1];
+            string path = Path.GetFullPath(sec.readkey("SavePath", "ClientPath", "app.ini"));
+            try
+            {
+                if (path != null)
+                {
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                }
+            }
+            catch
+            {
+                path = null;
+            }
+            if ((path != null) && (Directory.Exists(path)))
+            {
+                if (managername != "")
+                {
+                    path += "\\" + managername + "\\" + DateTime.Now.Year.ToString();
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                }
+                /*if (checkBox11.Checked == true)
+                {
+                    ExcelParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Заявка " + num + "(проект)", ".xls");
+
+                    WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Заявка " + num + "(проект)", ".doc");
+                }
+                else
+                {
+                    ExcelParam[0] = CheckFileName(path + "\\"+ "(" + client + ")"+"Заявка " + num+"("+DateTime.Now.Day+" " +((Month)DateTime.Now.Month).ToString()+" "+DateTime.Now.Year+")", ".xls");
+
+                    WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Договор " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                }*/
+                ExcelParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + param + "Заявка " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".xls");
+
+                //WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + param + "Договор " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                //ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
+                OWorkBook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, OWorkBook, ExcelParam);
+
+            }
+            else
+            {
+                string localpath;
+                if (!Directory.Exists("c:\\КлиентскиеДоговора"))
+                {
+                    Directory.CreateDirectory("c:\\КлиентскиеДоговора");
+                    localpath = "c:\\КлиентскиеДоговора";
+                }
+                else
+                {
+                    localpath = "c:\\КлиентскиеДоговора";
+                }
+
+                //object Doc = arguments.Doc;
+                //object WordApp = arguments.App;
+                //WordParam[0] = CheckFileName(localpath + "\\" + "(" + client + ")" + "Договор " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                //ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
+                ExcelParam[0] = CheckFileName(localpath + "\\" + "(" + client + ")" + param + "Заявка " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".xls");
+                OWorkBook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, OWorkBook, ExcelParam);
+
+            }
+        }
+        private void DocumentsaveDoc(object ODoc, string num, string managername, string client, string param)
+        {
+            Section sec = new Section();
+
+            object[] WordParam = new object[1];
+            string path = Path.GetFullPath(sec.readkey("SavePath", "ClientPath", "app.ini"));
+            try
+            {
+                if (path != null)
+                {
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                }
+            }
+            catch
+            {
+                path = null;
+            }
+            if ((path != null) && (Directory.Exists(path)))
+            {
+                if (managername != "")
+                {
+                    path += "\\" + managername + "\\" + DateTime.Now.Year.ToString();
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                }
+                /*if (checkBox11.Checked == true)
+                {
+                    ExcelParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Заявка " + num + "(проект)", ".xls");
+
+                    WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Заявка " + num + "(проект)", ".doc");
+                }
+                else
+                {
+                    ExcelParam[0] = CheckFileName(path + "\\"+ "(" + client + ")"+"Заявка " + num+"("+DateTime.Now.Day+" " +((Month)DateTime.Now.Month).ToString()+" "+DateTime.Now.Year+")", ".xls");
+
+                    WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Договор " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                }*/
+                WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + param + "Бланк о страховании " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+
+                //WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + param + "Договор " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                //ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
+                ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
+
+            }
+            else
+            {
+                string localpath;
+                if (!Directory.Exists("c:\\КлиентскиеДоговора"))
+                {
+                    Directory.CreateDirectory("c:\\КлиентскиеДоговора");
+                    localpath = "c:\\КлиентскиеДоговора";
+                }
+                else
+                {
+                    localpath = "c:\\КлиентскиеДоговора";
+                }
+
+                //object Doc = arguments.Doc;
+                //object WordApp = arguments.App;
+                //WordParam[0] = CheckFileName(localpath + "\\" + "(" + client + ")" + "Договор " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                //ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
+                WordParam[0] = CheckFileName(localpath + "\\" + "(" + client + ")" + param + "Бланк о страховании " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
+
+            }
+        }
         private void DocumentSave(object ODoc, object OWorkbook)
         {
             ODoc.GetType().InvokeMember("Save", BindingFlags.InvokeMethod, null, ODoc, null);
@@ -3089,79 +3253,9 @@ namespace WordExChec
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            //Section sec = new Section();
-            /*object[] WordParam = new object[1];
-            object[] ExcelParam = new object[1];
-            object Doc = Predarguments.Doc;
-            object WordApp = Predarguments.App;
-            object Workbook = Predarguments.WorkBook;
-            //Marshal.GetActiveObject(Marshal.GenerateProgIdForType(GetType(Doc)));
-            ////string path = Path.GetFullPath(sec.readkey("SavePath", "Path", "app.ini"));
-            /*if ((path != null) && (Directory.Exists(path)))
-            {
-                ExcelParam[0] = CheckFileName(path + "\\Заявка " + textBox7.Text, ".xls");
 
-                    //object Doc = arguments.Doc;
-                    //object WordApp = arguments.App;
-                WordParam[0] = CheckFileName(path + "\\Договор " + textBox7.Text, ".doc");
-                    Doc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Doc, WordParam);
-                    Workbook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Workbook, ExcelParam);
-            }
-            else
-            {
-                string localpath;
-                if (!Directory.Exists("c:\\КлиентскиеДоговора"))
-                {
-                    Directory.CreateDirectory("c:\\КлиентскиеДоговора");
-                    localpath = "c:\\КлиентскиеДоговора";
-                }
-                else
-                {
-                    localpath = "c:\\КлиентскиеДоговора";
-                }
-
-                    //object Doc = arguments.Doc;
-                    //object WordApp = arguments.App;
-                WordParam[0] = localpath + "\\Договор " + textBox7.Text;
-                    Doc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Doc, WordParam);
-                    ExcelParam[0] = localpath + "\\Заявка " + textBox7.Text;
-                    Workbook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, Workbook, ExcelParam);
-
-            }*/
-
-           /* try
-            {
-                DocumentSave(Doc, Workbook);
-                Doc.GetType().InvokeMember("Close", BindingFlags.InvokeMethod, null, Doc, null);
-                WordApp.GetType().InvokeMember("Quit", BindingFlags.InvokeMethod, null, WordApp, null);
-                Workbook.GetType().InvokeMember("Close", BindingFlags.InvokeMethod, null, Workbook, null);
-            }
-            catch
-            {
-
-            }
-            button1.Enabled = false;
-            button5.Enabled = false;
-
-            Marshal.ReleaseComObject(Predarguments.Doc);
-            Marshal.ReleaseComObject(Predarguments.Word);
-            Marshal.ReleaseComObject(Predarguments.WorkBook);
-            Marshal.ReleaseComObject(Predarguments.Excel);
-            Predarguments.clean();
             GC.GetTotalMemory(true);
-            /*try
-            {
-                if (textBox7.Text != "")
-                {
-                    IncInINum(comboBox16.Text, textBox7.Text);
-                }
-            }
-            catch
-            {
-
-            }*/
-            GC.GetTotalMemory(true);
-            Obj_dogovor = null;
+            Obj_dogovor = new DogovorInfo();
             if (checkBox22.Checked == false)
             {
                 FormResetP();
@@ -3177,7 +3271,7 @@ namespace WordExChec
                 if ((textBox27.Text != "") && (textBox28.Text != ""))
                 {
                     double yecena = Convert.ToDouble(textBox28.Text) / Convert.ToDouble(textBox27.Text);
-                    textBox29.Text = formatDouble(yecena,3);
+                    textBox29.Text = formatDouble(yecena,2);
                 }
                 else
                 {
@@ -3228,7 +3322,7 @@ namespace WordExChec
                 if ((textBox14.Text != "") && (textBox15.Text != ""))
                 {
                     double sum = Convert.ToDouble(textBox14.Text) / Convert.ToDouble(textBox15.Text);
-                    textBox13.Text = sum.ToString();
+                    textBox13.Text = formatDouble(sum, 2);
                 }
                 else
                 {
@@ -3371,14 +3465,17 @@ namespace WordExChec
 
         private void dataGridView18_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView16.RowCount = dataGridView18.RowCount;
-            for (int i = 0; i < dataGridView18.RowCount; i++)
+            if (e.ColumnIndex == 1)
             {
+                dataGridView16.RowCount = dataGridView18.RowCount;
+                for (int i = 0; i < dataGridView18.RowCount; i++)
+                {
 
-                // if (dataGridView6.Rows[i].Cells[0]!=null)
-                // {
-                dataGridView16.Rows[i].Cells[1].Value = dataGridView18.Rows[i].Cells[1].Value;
-                // }
+                    // if (dataGridView6.Rows[i].Cells[0]!=null)
+                    // {
+                    dataGridView16.Rows[i].Cells[1].Value = dataGridView18.Rows[i].Cells[1].Value;
+                    // }
+                }
             }
         }
 
@@ -3460,50 +3557,6 @@ namespace WordExChec
                 MessageBox.Show("Ошибка при открытии файла. Возможно не правильно указано имя");
             }
         }*/
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {/*
-            string m = null;
-            string[] strobj;
-            TextBox obj=(TextBox)sender;
-            string result = null;
-
-            Regex r=new Regex("[А-Я]+(-)[0-9][0-9]-[0-9]+(-П)");
-            m=r.Match(obj.Text).ToString();
-            if ((m.ToString() != "") && (m != null))
-            {
-                strobj = m.Split('-');
-                strobj[3] = "О";
-                result = string.Join("-", strobj);
-                textBox49.Text = result;
-                button10.Enabled = true;
-                //button2.Enabled = true;
-            }
-            else
-            {
-                button10.Enabled = false;
-            }
-           */
-            if ((checkBox26.Checked == false)&&(textBox1.Text!=""))
-            {
-                if (comboBox3.Text == "Росинтур")
-                {
-                    //textBox1.Text = "Р-";
-                    label195.Text = "Р-" + textBox1.Text + "-П";
-                }
-                if ((comboBox3.Text != "Росинтур") && (comboBox4.Text == "РосинтурЮг"))
-                {
-                    //textBox1.Text = "Ю-";
-                    label195.Text = "Ю-" + textBox1.Text + "-П";
-                }
-                if ((comboBox3.Text == "Магазин Путешествий") || (comboBox4.Text == "Магазин Путешествий"))
-                {
-                    //textBox1.Text = "МП-";
-                    label195.Text = "МП-" + textBox1.Text + "-П";
-                }
-            }
-
-        }
 
         private void textBox15_TextChanged_1(object sender, EventArgs e)
         {
@@ -3589,7 +3642,7 @@ namespace WordExChec
 
         private void checkBox26_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox26.Checked == true)
+            /*if (checkBox26.Checked == true)
             {
                 //button15.Enabled = true;
                 textBox1.Text = "";
@@ -3615,7 +3668,7 @@ namespace WordExChec
             {
                 textBox49.Text = "";
                 //button15.Enabled = false;
-            }
+            }*/
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -3639,6 +3692,7 @@ namespace WordExChec
 
         private void button16_Click(object sender, EventArgs e)
         {
+            Obj_dogovor = new DogovorInfo();
             //1
             comboBox6.Text = comboBox9.Text;
             textBox2.Text = textBox25.Text;
@@ -3693,10 +3747,10 @@ namespace WordExChec
             DataGridDataCopy(dataGridView16, dataGridView7);
             //DataGridDataCopy(dataGridView15, dataGridView8);
             textBox15.Text = textBox27.Text;
-            textBox20.Text = textBox27.Text;
+            //textBox20.Text = textBox27.Text;
             textBox13.Text = textBox26.Text;
             textBox14.Text = textBox24.Text;
-            textBox27.Text = textBox15.Text;
+            //textBox27.Text = textBox15.Text;
             //textBox44.Text = textBox29.Text;
             //textBox43.Text = textBox28.Text;
             DataGridViewCellEventArgs earg = new DataGridViewCellEventArgs(1, 0);
@@ -3719,6 +3773,7 @@ namespace WordExChec
         }
         private void button36_Click(object sender, EventArgs e)
         {
+            Obj_dogovor = new DogovorInfo();
             //1
             comboBox9.Text = comboBox6.Text;
             textBox25.Text = textBox2.Text;
@@ -3773,10 +3828,10 @@ namespace WordExChec
             DataGridDataCopy(dataGridView7, dataGridView16);
             //DataGridDataCopy(dataGridView8, dataGridView15);
             textBox27.Text = textBox15.Text;
-            textBox27.Text = textBox20.Text;
+            //textBox27.Text = textBox20.Text;
             textBox26.Text = textBox13.Text;
             textBox24.Text = textBox14.Text;
-            textBox15.Text = textBox27.Text;
+            //textBox15.Text = textBox27.Text;
             //textBox29.Text = textBox44.Text;
             //textBox28.Text = textBox43.Text;
             DataGridViewCellEventArgs earg = new DataGridViewCellEventArgs(1, 0);
@@ -4202,7 +4257,7 @@ namespace WordExChec
                     if ((textBox46.Text != "") && (textBox45.Text != ""))
                     {
                         double sum = Convert.ToDouble(textBox46.Text) / Convert.ToDouble(textBox45.Text);
-                        textBox47.Text = formatDouble(sum, 3);
+                        textBox47.Text = formatDouble(sum, 2);
                     }
                     //MessageBox.Show("Введите курс и сумму в рублях");
                 }
@@ -4536,6 +4591,15 @@ namespace WordExChec
             {
                 query = "select id,DInfoKey,FIO,convert(varchar,birthday,104),pasport,PaspBeginDAte,PaspEndDAte from " + table + " where DInfoKey='" + DogovorNum + "'";
             }
+            else if (data.Name == "dataGridView40")
+            {
+                //query = "select [id],[Confirm_key],convert(varchar,[Date],104),[TimeStart],[TimeEnd],[ReisNum],[StartPlace],[EndPlace],[TicketCount],[Tarif] from " + table + " where Confirm_Key='" + DogovorNum + "'";
+                query = "select [id],[Confirm_key],[Aviainfo],[TicketCount] from " + table + " where Confirm_Key='" + DogovorNum + "'";
+            }
+            else if (data.Name == "dataGridView25")
+            {
+                query = "select * from " + table + " where Confirm_Key='" + DogovorNum + "'";
+            }
             else
             {
                 query = "select * from " + table + " where DInfoKey='" + DogovorNum + "'";
@@ -4576,6 +4640,33 @@ namespace WordExChec
             }
             
         }
+        private void DatagridInit(DataGridView data,string ch)
+        {
+
+            if (data.Name == "dataGridView27")
+            {
+                for (int j = 0; j < data.Rows[0].Cells.Count; j++)
+                {
+                    if (data.Rows[0].Cells[j].Value == null)
+                    {
+                        data.Rows[0].Cells[j].Value = ch;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < data.RowCount - 1; i++)
+                {
+                    for (int j = 0; j < data.Rows[i].Cells.Count; j++)
+                    {
+                        if (data.Rows[i].Cells[j].Value == null)
+                        {
+                            data.Rows[i].Cells[j].Value = ch;
+                        }
+                    }
+                }
+            }
+        }
         private void getDogovorList(ComboboxItem country, ComboboxItem manager, DataGridView data, string type)
         {
             SqlConnectionStringBuilder connectStr = GetConnectSTR();
@@ -4585,9 +4676,13 @@ namespace WordExChec
             string query = "select d.id, d.dogovornum, d.dogovordate, d.fio, c.RuName as country, m.name as manager from DogovorInfo_temp as d, country as c, managers as m";//tyroperator='" + tyroperator+"'";//"' and dogovornum='" + num + "'";// +client.ENpaspOwn + "," + client.RUpaspSeriy + "," + client.RUpaspnum + "," + client.RUpaspDate + "," + client.RUpaspOwn + "," + client.Phone + "," + client.Email;
             
             query += " where m.id=d.manager and c.id=d.country";
-            if (type=="Предварительный")
+            if (type == "Предварительный")
             {
-            query+=" and DogovorType='" + type + "' ";
+                query += " and DogovorType='" + type + "' ";
+            }
+            else if (type == "Основной")
+            {
+                query += " and DogovorType='" + type + "' ";
             }
             if ((manager.Text != "Все") || (country.Text != "Все"))
             {
@@ -4598,35 +4693,42 @@ namespace WordExChec
                 }
                 if (country.Text != "Все")
                 {
-                    query += "and d.country='" + country.Value + "'";
+                    query += " and d.country='" + country.Value + "'";
                 }
             }
             query += " order by d.id DESC";
-            SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
-            connect.Open();
-            if (connect.State == ConnectionState.Open)
+            try
             {
-                data.Rows.Clear();
-                sqlcom = new SqlCommand(query, connect);
-                reader = sqlcom.ExecuteReader();
-                if (reader.HasRows != false)
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
                 {
-                    while (reader.Read())
+                    data.Rows.Clear();
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    if (reader.HasRows != false)
                     {
-                        data.Rows.Add();
-                        data.Rows[count].Cells[0].Value = reader["id"];
-                        data.Rows[count].Cells[1].Value = reader["dogovornum"];
-                        data.Rows[count].Cells[2].Value = reader["dogovordate"];
-                        data.Rows[count].Cells[3].Value = reader["country"];
-                        data.Rows[count].Cells[4].Value = reader["manager"];
-                        data.Rows[count].Cells[5].Value = reader["fio"];
-                        count++;
-                        //data.Rows.Add();
+                        while (reader.Read())
+                        {
+                            data.Rows.Add();
+                            data.Rows[count].Cells[0].Value = reader["id"];
+                            data.Rows[count].Cells[1].Value = reader["dogovornum"];
+                            data.Rows[count].Cells[2].Value = reader["dogovordate"];
+                            data.Rows[count].Cells[3].Value = reader["country"];
+                            data.Rows[count].Cells[4].Value = reader["manager"];
+                            data.Rows[count].Cells[5].Value = reader["fio"];
+                            count++;
+                            //data.Rows.Add();
+                        }
                     }
                 }
+                reader.Close();
+                connect.Close();
             }
-            reader.Close();
-            connect.Close();
+            catch
+            {
+                MessageBox.Show("Неудалось соединиться с сервером");
+            }
         }
         private void getDogovorList(string country, string manager, DataGridView data, string type)
         {
@@ -4641,16 +4743,16 @@ namespace WordExChec
             {
                 query += " and DogovorType='" + type + "' ";
             }
-            if ((manager != "Все") || (country != "Все"))
+            if ((manager != "-1") || (country != "-1"))
             {
 
-                if (manager != "Все")
+                if (manager != "-1")
                 {
                     query += " and d.manager='" + manager + "'";
                 }
-                if (country != "Все")
+                if (country != "-1")
                 {
-                    query += "and d.country='" + country + "'";
+                    query += " and d.country='" + country + "'";
                 }
             }
             query += " order by d.id DESC";
@@ -5301,6 +5403,7 @@ namespace WordExChec
                     {
                         //MessageBox.Show("Ошибка вставки блока данных");
                         richTextBox1.AppendText("Ошибка вставки блока данных при сохранении грида\n\r");
+                        str = "";
                     }
                 }
                     
@@ -5312,7 +5415,7 @@ namespace WordExChec
                          }
                          else
                          {*/
-                        if ((data.Rows[i].Cells[j].Value != null) && (data.Rows[i].Cells[j].Value != null))
+                        if (data.Rows[i].Cells[j].Value != null)
                         {
                             str_beg = "insert into " + table + " values('" + DIKey + "'"; str_e = ")";
                             if ((data.Name == "dataGridView6") || (data.Name == "dataGridView18"))
@@ -5326,17 +5429,17 @@ namespace WordExChec
                                     }
                                     else
                                     {
-                                        str_m += ", " + "'" + data.Rows[i].Cells[j].Value + "'";
+                                        str_m += ", " + "'" + data.Rows[i].Cells[j].Value.ToString().Replace("'", "''") + "'";
                                     }
                                 }
                                 else
                                 {
-                                    str_m += ", " + "'" + data.Rows[i].Cells[j].Value + "'";
+                                    str_m += ", " + "'" + data.Rows[i].Cells[j].Value.ToString().Replace("'", "''") + "'";
                                 }
                             }
                             else
                             {
-                                str_m += ", " + "'" + data.Rows[i].Cells[j].Value + "'";
+                                str_m += ", " + "'" + data.Rows[i].Cells[j].Value.ToString().Replace("'", "''") + "'";
                             }
                             // }
                         }
@@ -5371,6 +5474,7 @@ namespace WordExChec
                     richTextBox1.AppendText("Ошибка вставки блока данных при сохранении грида\n\r");
                 }
             }
+            DatagridRead(data, table, DIKey, GetConnectSTR());
         }
         private void DatagridsaveCheck(DataGridView data, string table, SqlConnection connect, string DIKey)
         {
@@ -5540,11 +5644,12 @@ namespace WordExChec
 
                 dataGridView21.Visible = true;
                 dataGridView21.Rows.Clear();
-                ComboboxItem i_с = (ComboboxItem)comboBox26.Items[comboBox26.SelectedIndex];
-                ComboboxItem i_m = (ComboboxItem)comboBox27.Items[comboBox27.SelectedIndex];
+                //ComboboxItem i_с = (ComboboxItem)comboBox26.Items[comboBox26.SelectedIndex];
+                //ComboboxItem i_m = (ComboboxItem)comboBox27.Items[comboBox27.SelectedIndex];
+            
                 try
                 {
-                    getDogovorList(i_с, i_m, dataGridView21, textBox33.Text);
+                    getDogovorList(Get_Value_combobox(comboBox26),Get_Value_combobox(comboBox27), dataGridView21, textBox33.Text);
                 }
                 catch
                 {
@@ -5645,7 +5750,7 @@ namespace WordExChec
                             }*/
                             SetCellData(reader["FIO"].ToString() + "+" + mannum, "I" + count.ToString(), obj_worksheet);
                             SetCellData(reader["phone"].ToString(), "J" + count.ToString(), obj_worksheet);
-                            SetCellData(reader["Tyroperator"].ToString(), "K" + count.ToString(), obj_worksheet);
+                            SetCellData(reader["Touroperator"].ToString(), "K" + count.ToString(), obj_worksheet);
                             //SetCellData(reader["ENpassportseriy"].ToString() + " " + reader["ENpassportnum"].ToString(), "J" + count.ToString(), obj_worksheet);
                         //SetCellData(reader["c.ENpassportnum"], "A" + count.ToString(), obj_worksheet);
                             //SetCellData(reader["ENpassportStartDate"].ToString(), "K" + count.ToString(), obj_worksheet);
@@ -5692,7 +5797,7 @@ namespace WordExChec
         private void button25_Click(object sender, EventArgs e)
         {
 
-            string query = "select f.DInfoKey, convert(varchar(15),f.date,104) as date,f.time,f.flightnum,f.startcity,f.endcity, f.hotel,f.fio,f.mannum, f.fioid, c.fio, c.phone,d.manager,d.EndDate, d.Country, d.Tyroperator from FlightInfo as f, Clients as c, dogovorinfo as d where c.id=f.FIOid and d.id=f.DInfoKey and f.date='" + makeSQLdate(dateTimePicker7.Text, '.') + "' order by  f.date,d.country";
+            string query = "select f.DInfoKey, convert(varchar(15),f.date,104) as date,f.time,f.flightnum,f.startcity,f.endcity, f.hotel,f.fio,f.mannum, f.fioid, c.fio, c.phone,d.manager,d.EndDate, d.Country, d.Touroperator from FlightInfo as f, Clients as c, dogovorinfo_temp as d where c.id=f.FIOid and d.id=f.DInfoKey and f.date='" + makeSQLdate(dateTimePicker7.Text, '.') + "' order by  f.date,d.country";
             makeFlightInformation(query);
 
         }
@@ -5710,7 +5815,7 @@ namespace WordExChec
         }
         private void button26_Click(object sender, EventArgs e)
         {
-            string query = "select f.DInfoKey, convert(varchar(15),f.date,104) as date,f.time,f.flightnum,f.startcity,f.endcity, f.hotel,f.fio,f.mannum, f.fioid, c.fio, c.phone,d.EndDate,d.manager,d.Country, d.Tyroperator from FlightInfo as f, Clients as c, dogovorinfo as d where c.id=f.FIOid and d.id=f.DInfoKey and f.date>='" + makeSQLdate(dateTimePicker8.Text, '.') + "' and f.date<='" + makeSQLdate(dateTimePicker9.Text, '.') + "' order by f.date, d.country";
+            string query = "select f.DInfoKey, convert(varchar(15),f.date,104) as date,f.time,f.flightnum,f.startcity,f.endcity, f.hotel,f.fio,f.mannum, f.fioid, c.fio, c.phone,d.EndDate,d.manager,d.Country, d.Touroperator from FlightInfo as f, Clients as c, dogovorinfo_temp as d where c.id=f.FIOid and d.id=f.DInfoKey and f.date>='" + makeSQLdate(dateTimePicker8.Text, '.') + "' and f.date<='" + makeSQLdate(dateTimePicker9.Text, '.') + "' order by f.date, d.country";
             makeFlightInformation(query);
 
         }
@@ -5985,10 +6090,12 @@ namespace WordExChec
         {
             dataGridView22.Visible = true;
             //getData
-            string query = "select dogovorInfo.id, dogovorInfo.dogovornum, dogovorInfo.currency, convert(varchar(20),dogovorInfo.dogovordate,105) as dogovordate,dogovorInfo.Tyroperator, clients.FIO, clients.ENpassportseriy, clients.ENpassportnum, clients.Birthdate, dogovorInfo.StartDate,dogovorInfo.EndDate, dogovorInfo.Country,  dogovorInfo.Hotel, dogovorInfo.RUPrice,dogovorInfo.Discount, dogovorInfo.ENPrice, dogovorInfo.Manager, dogovorInfo.Course from dogovorInfo,clients where dogovordate>='" + makeSQLdate(dateTimePicker11.Text, '.') + "' and dogovordate<='" + makeSQLdate(dateTimePicker10.Text, '.') + "' and clients.id=dogovorInfo.client" + " and dogovorInfo.DogovorType='Основной'"; 
+            string query = "select dogovorInfo_temp.id, dogovorInfo_temp.dogovornum, dogovorInfo_temp.currency, convert(varchar(20),dogovorInfo_temp.dogovordate,105) as dogovordate,dogovorInfo_temp.Touroperator, clients.FIO, clients.ENpassportseriy, clients.ENpassportnum, clients.Birthdate, dogovorInfo_temp.StartDate,dogovorInfo_temp.EndDate, Country.Runame as country,  dogovorInfo_temp.Hotel, dogovorInfo_temp.RUPrice,dogovorInfo_temp.Discount, dogovorInfo_temp.ENPrice, Managers.name as manager, dogovorInfo_temp.Course from dogovorInfo_temp,clients,country,managers where managers.id=dogovorInfo_temp.manager and country.id=dogovorInfo_temp.manager and dogovordate>='" + makeSQLdate(dateTimePicker11.Text, '.') + "' and dogovordate<='" + makeSQLdate(dateTimePicker10.Text, '.') + "' and clients.id=dogovorInfo_temp.client" + " and dogovorInfo_temp.DogovorType='Основной'"; 
             if (comboBox30.Text != "Все")
             {
-                query += " and manager='" + comboBox30.Text + "'";
+                /*ComboboxItem c = new ComboboxItem();
+                c = Get_Value_combobox(comboBox30);*/
+                query += " and dogovorInfo_temp.manager='" + Get_Value_combobox(comboBox30) + "'";
             }
 
                    
@@ -6012,7 +6119,7 @@ namespace WordExChec
             //ArrayList idslist = new ArrayList();
             string tquery = ""; dataGridView22.RowCount = 1;
             SqlConnectionStringBuilder connectStr = GetConnectSTR();
-            SqlDataReader reader; SqlDataReader treader;
+            SqlDataReader reader; //SqlDataReader treader;
             SqlCommand sqlcom = null; double enDiscount=0;
             SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
             connect.Open();
@@ -6031,7 +6138,7 @@ namespace WordExChec
                         dataGridView22.Rows[count].Cells[1].Value = reader["manager"].ToString();
                         dataGridView22.Rows[count].Cells[2].Value = reader["dogovornum"].ToString();
                         dataGridView22.Rows[count].Cells[3].Value = reader["dogovordate"].ToString();
-                        dataGridView22.Rows[count].Cells[4].Value = reader["Tyroperator"].ToString();
+                        dataGridView22.Rows[count].Cells[4].Value = reader["Touroperator"].ToString();
                         dataGridView22.Rows[count].Cells[5].Value = reader["FIO"].ToString();
                         //dataGridView22.Rows[count].Cells[5].Value = reader["###"].ToString();
                         GetturistToDogovor((DataGridViewComboBoxCell)dataGridView22.Rows[count].Cells[6], reader["id"].ToString());
@@ -6151,6 +6258,30 @@ namespace WordExChec
                     while (reader.Read())
                     {
                        /// DataGridViewComboBoxCell tdata = data;
+                        data.Items.Add(reader["FIO"].ToString()); data.Style.NullValue = reader["FIO"].ToString();
+                        //data.Selected = true;
+                    }
+                }
+            }
+            connect.Close();
+        }
+        private void GetturistToConfirm(DataGridViewComboBoxCell data, string id)
+        {
+            SqlConnectionStringBuilder connectStr = GetConnectSTR();
+            string query = "";
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+            query = "select id,Confirm_Key, fio from Agent_confirm_turist where  Confirm_Key='" + id + "'";
+            connect.Open();
+            {
+                sqlcom = new SqlCommand(query, connect);
+                reader = sqlcom.ExecuteReader();
+                if (reader.HasRows != false)
+                {
+                    while (reader.Read())
+                    {
+                        /// DataGridViewComboBoxCell tdata = data;
                         data.Items.Add(reader["FIO"].ToString()); data.Style.NullValue = reader["FIO"].ToString();
                         //data.Selected = true;
                     }
@@ -6316,7 +6447,145 @@ namespace WordExChec
             Marshal.ReleaseComObject(obj_worksheets);
             //SetCellData(
         }
+        private void make_agent_manage_report_ex()
+        {
+            object[] ExcelParam = new object[1];
 
+            Type obj_excel = Type.GetTypeFromProgID("Excel.Application");
+            object Excel = Activator.CreateInstance(obj_excel);
+
+            object obj_workbooks = Excel.GetType().InvokeMember("Workbooks", BindingFlags.GetProperty, null, Excel, null);
+            ExcelParam[0] = Basepath + @"Template\AgentManager_report.xls";
+            object obj_workbook = obj_workbooks.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, obj_workbooks, ExcelParam);
+            object obj_worksheets = obj_workbook.GetType().InvokeMember("Worksheets", BindingFlags.GetProperty, null, obj_workbook, null);
+            ExcelParam[0] = 1;
+            object obj_worksheet = obj_worksheets.GetType().InvokeMember("Item", BindingFlags.GetProperty, null, obj_worksheets, ExcelParam);
+            DataGridViewComboBoxCell data = new DataGridViewComboBoxCell();
+            DataGridViewComboBoxCell.ObjectCollection obj; string turists = "";
+            for (int i = 0; i < dataGridView41.RowCount; i++)
+            {
+                turists = "";
+                //for (int j = 0; j < dataGridView22.ColumnCount; j++)
+                //{
+                if (dataGridView41.Rows[i].Cells[3].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[3].Value.ToString(), "B" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[0].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[0].Value.ToString(), "C" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[1].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[1].Value.ToString(), "D" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[2].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[2].Value.ToString(), "E" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[4].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[4].Value.ToString(), "F" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[5].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[5].Value.ToString(), "G" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[6].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[6].Value.ToString(), "H" + (2 + i), obj_worksheet); }
+                data = (DataGridViewComboBoxCell)dataGridView41.Rows[i].Cells[7];
+                if (data.Items.Count != 0)
+                {
+
+                    obj = data.Items;
+                    for (int j = 0; j < obj.Count; j++)
+                    {
+                        turists += obj[j].ToString() + "; ";
+                    }
+                    SetCellData(turists, "I" + (2 + i), obj_worksheet);
+                }
+                
+                if (dataGridView41.Rows[i].Cells[8].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[8].Value.ToString(), "J" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[9].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[9].Value.ToString(), "K" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[10].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[10].Value.ToString(), "L" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[11].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[11].Value.ToString(), "M" + (2 + i), obj_worksheet); }
+                if (dataGridView41.Rows[i].Cells[12].Value != null) { SetCellData(dataGridView41.Rows[i].Cells[12].Value.ToString(), "N" + (2 + i), obj_worksheet); }
+                if ((dataGridView41.Rows[i].Cells[9].Value != null) && (dataGridView41.Rows[i].Cells[11].Value != null) && (dataGridView41.Rows[i].Cells[12].Value != null)) { SetCellData(((Int32)dataGridView41.Rows[i].Cells[9].Value - (Int32)dataGridView41.Rows[i].Cells[11].Value + (Int32)dataGridView41.Rows[i].Cells[12].Value).ToString(), "O" + (2 + i), obj_worksheet); }
+                /*if (dataGridView22.Rows[i].Cells[13].Value != null) { SetCellData(dataGridView22.Rows[i].Cells[13].Value.ToString(), "N" + (2 + i), obj_worksheet); }
+                if (dataGridView22.Rows[i].Cells[14].Value != null) { SetCellData(dataGridView22.Rows[i].Cells[14].Value.ToString(), "O" + (2 + i), obj_worksheet); }
+                if (dataGridView22.Rows[i].Cells[15].Value != null) { SetCellData(dataGridView22.Rows[i].Cells[15].Value.ToString(), "P" + (2 + i), obj_worksheet); }
+                if (dataGridView22.Rows[i].Cells[16].Value != null) { SetCellData(dataGridView22.Rows[i].Cells[16].Value.ToString(), "Q" + (2 + i), obj_worksheet); }
+                if (dataGridView22.Rows[i].Cells[17].Value != null) { SetCellData(dataGridView22.Rows[i].Cells[17].Value.ToString(), "R" + (2 + i), obj_worksheet); }
+                if (dataGridView22.Rows[i].Cells[18].Value != null) { SetCellData(dataGridView22.Rows[i].Cells[18].Value.ToString(), "S" + (2 + i), obj_worksheet); }
+                if (dataGridView22.Rows[i].Cells[19].Value != null) { SetCellData(dataGridView22.Rows[i].Cells[19].Value.ToString(), "T" + (2 + i), obj_worksheet); }*/
+                //}
+            }
+            ExcelParam[0] = "True";
+            Excel.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, Excel, ExcelParam);
+            //save
+            string managername = "";
+            Section sec = new Section();
+            string path = Path.GetFullPath(sec.readkey("SavePath", "AgentPath", "app.ini"));
+            if (comboBox12.Text != "Все")
+            {
+                managername = comboBox12.Text;
+                //managername = managername.Replace('.', '_');
+            }
+            /* if ((path != null) && (Directory.Exists(path)))
+             {
+                 if (managername != "")
+                 {
+                     path = Path.GetFullPath(sec.readkey("SavePath", "ClientPath", "app.ini") + "\\" + managername + "\\Отчеты");
+                     if (!Directory.Exists(path))
+                     {
+                         Directory.CreateDirectory(path);
+                     }
+
+                 }*/
+            if (path != null)
+            {
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+            if ((path != null) && (Directory.Exists(path)))
+            {
+                if (managername != "")
+                {
+                    path += "\\Отчеты" + "\\" + managername + "\\" + DateTime.Now.Year.ToString();
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                }
+                /*if (checkBox11.Checked == true)
+                {
+                    ExcelParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Заявка " + num + "(проект)", ".xls");
+
+                    WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Заявка " + num + "(проект)", ".doc");
+                }
+                else
+                {
+                    ExcelParam[0] = CheckFileName(path + "\\"+ "(" + client + ")"+"Заявка " + num+"("+DateTime.Now.Day+" " +((Month)DateTime.Now.Month).ToString()+" "+DateTime.Now.Year+")", ".xls");
+
+                    WordParam[0] = CheckFileName(path + "\\" + "(" + client + ")" + "Договор " + num + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
+                }*/
+                managername = managername.Replace('.', '_');
+                ExcelParam[0] = CheckFileName(path + "\\Отчет по продажам " + managername + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".xls");
+                obj_workbook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, obj_workbook, ExcelParam);
+
+            }
+            else
+            {
+                string localpath;
+                if (!Directory.Exists("c:\\КлиентскиеДоговора"))
+                {
+                    Directory.CreateDirectory("c:\\КлиентскиеДоговора");
+                    localpath = "c:\\КлиентскиеДоговора";
+                }
+                else
+                {
+                    localpath = "c:\\КлиентскиеДоговора";
+                }
+
+                //object Doc = arguments.Doc;
+                //object WordApp = arguments.App;;
+                ExcelParam[0] = localpath + "\\Отчет по продажам " + managername + "(" + DateTime.Now.ToLongDateString() + ")";
+                obj_workbook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, obj_workbook, ExcelParam);
+
+            }
+            //
+            //clean excel
+
+            Marshal.ReleaseComObject(obj_workbooks);
+            Marshal.ReleaseComObject(obj_workbook);
+            Marshal.ReleaseComObject(obj_worksheet);
+            Marshal.ReleaseComObject(obj_worksheets);
+            //SetCellData(
+        }
         private void dataGridView24_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //DataGridView data = (DataGridView)sender; Point p_cell;
@@ -7261,273 +7530,324 @@ namespace WordExChec
 
         private void button55_Click(object sender, EventArgs e)
         {
-            object obj_App;
-            object obj_Doc;
-            object obj_Bookmarks;
-            //object obj_Bookmark;
-            //object obj_Selection;
-            //object obj_Range;
-            object obj_Tables;
-            object[] Param;
-            Param = new object[1];
-            //string managernum = getmanagerNum(comboBox52.Text);
-            Type obj_Class = Type.GetTypeFromProgID("Word.Application");
-            object Word = Activator.CreateInstance(obj_Class);
-            Param[0] = Basepath + @"Template\Confirm.doc";
-            obj_App = Word.GetType().InvokeMember("Application", BindingFlags.GetProperty, null, Word, null);
-            obj_Doc = obj_App.GetType().InvokeMember("Documents", BindingFlags.GetProperty, null, obj_App, null);
-            ManagerInfo manager = GetmanagerInfo(comboBox41.Text);
-            object Doc = obj_Doc.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, obj_Doc, Param);
-            obj_Bookmarks = Doc.GetType().InvokeMember("Bookmarks", BindingFlags.GetProperty, null, Doc, null);
-            SetBookMarkText("DateNow", obj_Bookmarks, obj_App, DateTime.Now.ToShortDateString());
-            SetBookMarkText("FirmName", obj_Bookmarks, obj_App, this.textBox201.Text + "," + comboBox38.Text);
-            SetBookMarkText("ClientName", obj_Bookmarks, obj_App, this.textBox177.Text);
-            SetBookMarkText("ClientPhone", obj_Bookmarks, obj_App, this.textBox175.Text);
-            SetBookMarkText("ClientEmail", obj_Bookmarks, obj_App, this.textBox172.Text);
-            SetBookMarkText("Way", obj_Bookmarks, obj_App, this.textBox178.Text);
-            SetBookMarkText("TravelDate", obj_Bookmarks, obj_App, this.dateTimePicker13.Value.ToShortDateString() + " - " + this.dateTimePicker12.Value.ToShortDateString());
-            SetBookMarkText("ManNum", obj_Bookmarks, obj_App, this.textBox171.Text);
-            SetBookMarkText("DogNum", obj_Bookmarks, obj_App, this.textBox179.Text);
-            SetBookMarkText("zayavkanum", obj_Bookmarks, obj_App, this.textBox197.Text);
-            obj_Tables = Doc.GetType().InvokeMember("Tables", BindingFlags.GetProperty, null, Doc, null);
-            if (dataGridView25.RowCount > 3)
+            tabControl6_SelectedIndexChanged(sender, e);
+            
+            if ((comboBox41.Text != "Все")&&(comboBox52.Text != "Все")&&(comboBox49.Text != "Все"))
             {
-                TableSize(dataGridView25, obj_Tables, 2, 3);
-            }
-            TableProcess(dataGridView25, obj_Tables, 2);
-            if (dataGridView26.RowCount > 2)
-            {
-                TableSize(dataGridView26, obj_Tables, 3, 2);
-            } 
-            TableProcess(dataGridView26, obj_Tables, 3);
-           /* if (checkBox69.Checked == true)
-            {
-                SetBookMarkText("Journey", obj_Bookmarks, obj_App, checkBox69.Text);
-            }
-            else if (checkBox68.Checked == true)
-            {
-                SetBookMarkText("Journey", obj_Bookmarks, obj_App, checkBox68.Text);
-            }
-            else if (checkBox67.Checked == true)
-            {
-                SetBookMarkText("Journey", obj_Bookmarks, obj_App, checkBox67.Text);
-            }*/
-            SetBookMarkText("Journey", obj_Bookmarks, obj_App, comboBox55.Text);
-            SetBookMarkText("Transfer", obj_Bookmarks, obj_App, this.comboBox39.Text);
-            SetBookMarkText("Hotel", obj_Bookmarks, obj_App, this.textBox185.Text);
-            SetBookMarkText("Tour", obj_Bookmarks, obj_App, this.comboBox48.Text);
-            SetBookMarkText("RoomType", obj_Bookmarks, obj_App, this.comboBox46.Text + "/" + this.comboBox45.Text);
-            SetBookMarkText("FoodType", obj_Bookmarks, obj_App, this.comboBox40.Text);
-            SetBookMarkText("Viza", obj_Bookmarks, obj_App, this.textBox186.Text);
-            SetBookMarkText("Excoursion", obj_Bookmarks, obj_App, this.textBox189.Text);
-            SetBookMarkText("AddService", obj_Bookmarks, obj_App, this.textBox177.Text);
-            SetBookMarkText("MedicalStrach", obj_Bookmarks, obj_App, this.textBox188.Text);
-            SetBookMarkText("CanselStrach", obj_Bookmarks, obj_App, this.textBox187.Text);
-            SetBookMarkText("Partner", obj_Bookmarks, obj_App, this.comboBox47.Text);
-            //mahangerdata
-            string fullsum = "";string finalsum="";
-            if (textBox180.Text == "1")
-            {
-                fullsum = textBox192.Text + " ";
-            }
-            else
-            {
-                fullsum += textBox192.Text + "x" + textBox180.Text;
-            }
-            if ((textBox173.Text!="")&&(textBox170.Text!=""))
-            {
-                fullsum += " + "+textBox173.Text + "x" + textBox170.Text;
-            }
-            if ((textBox176.Text != "") && (textBox174.Text != ""))
-            {
-                fullsum += " + " + textBox176.Text + "x" + textBox174.Text;
-            }
-            if ((textBox184.Text != "") && (textBox183.Text != ""))
-            {
-                fullsum += " + " + textBox184.Text + "x" + textBox183.Text;
-            }
-            if ((textBox191.Text != "") && (textBox190.Text != ""))
-            {
-                fullsum += " + " + textBox191.Text + "x" + textBox190.Text;
-            }
-            fullsum += " = " + dataGridView27.Rows[0].Cells[7].Value.ToString();
-            SetBookMarkText("TourFullPrice", obj_Bookmarks, obj_App, fullsum);
-            SetBookMarkText("AgentSum", obj_Bookmarks, obj_App, this.textBox182.Text + " % - " + this.textBox181.Text);
-            if (dataGridView27.Rows[0].Cells[6].Value != null)
-            {
-                finalsum=dataGridView27.Rows[0].Cells[6].Value.ToString();
-                SetBookMarkText("FinalPrice", obj_Bookmarks, obj_App, dataGridView27.Rows[0].Cells[8].Value.ToString());
-            }
-           
+                object obj_App;
+                object obj_Doc;
+                object obj_Bookmarks;
+                //object obj_Bookmark;
+                //object obj_Selection;
+                //object obj_Range;
+                object obj_Tables;
+                object[] Param;
+                Param = new object[1];
+                //string managernum = getmanagerNum(comboBox52.Text);
+                Type obj_Class = Type.GetTypeFromProgID("Word.Application");
+                object Word = Activator.CreateInstance(obj_Class);
+                Param[0] = Basepath + @"Template\Confirm.doc";
+                obj_App = Word.GetType().InvokeMember("Application", BindingFlags.GetProperty, null, Word, null);
+                obj_Doc = obj_App.GetType().InvokeMember("Documents", BindingFlags.GetProperty, null, obj_App, null);
+                ManagerInfo manager = GetmanagerInfo(comboBox41.Text);
+                object Doc = obj_Doc.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, obj_Doc, Param);
+                obj_Bookmarks = Doc.GetType().InvokeMember("Bookmarks", BindingFlags.GetProperty, null, Doc, null);
+                SetBookMarkText("DateNow", obj_Bookmarks, obj_App, dateTimePicker25.Value.ToShortDateString());
+                SetBookMarkText("FirmName", obj_Bookmarks, obj_App, this.textBox201.Text + "," + textBox44.Text);
+                SetBookMarkText("ClientName", obj_Bookmarks, obj_App, this.textBox177.Text);
+                SetBookMarkText("ClientPhone", obj_Bookmarks, obj_App, this.textBox175.Text);
+                SetBookMarkText("ClientEmail", obj_Bookmarks, obj_App, this.textBox172.Text);
+                SetBookMarkText("Way", obj_Bookmarks, obj_App, this.textBox178.Text);
+                SetBookMarkText("TravelDate", obj_Bookmarks, obj_App, this.dateTimePicker13.Value.ToShortDateString() + " - " + this.dateTimePicker12.Value.ToShortDateString());
+                SetBookMarkText("ManNum", obj_Bookmarks, obj_App, this.textBox171.Text);
+                SetBookMarkText("DogNum", obj_Bookmarks, obj_App, this.textBox179.Text);
+                SetBookMarkText("zayavkanum", obj_Bookmarks, obj_App, this.textBox197.Text);
+                string currency = "";
+                if (radioButton4.Checked == true)
+                {
+                    currency = "RUR";
+                }
+                else if (radioButton5.Checked == true)
+                {
+                    currency = "EUR";
+                }
+                else if (radioButton6.Checked == true)
+                {
+                    currency = "USD";
+                }
+                obj_Tables = Doc.GetType().InvokeMember("Tables", BindingFlags.GetProperty, null, Doc, null);
+                if (dataGridView25.RowCount > 3)
+                {
+                    TableSize(dataGridView25, obj_Tables, 2, 3);
+                }
+                TableProcess(dataGridView25, obj_Tables, 2);
+                if (dataGridView40.RowCount > 2)
+                {
+                    TableSize(dataGridView40, obj_Tables, 3, 2);
+                }
+                TableProcess(dataGridView40, obj_Tables, 3);
+                /* if (checkBox69.Checked == true)
+                 {
+                     SetBookMarkText("Journey", obj_Bookmarks, obj_App, checkBox69.Text);
+                 }
+                 else if (checkBox68.Checked == true)
+                 {
+                     SetBookMarkText("Journey", obj_Bookmarks, obj_App, checkBox68.Text);
+                 }
+                 else if (checkBox67.Checked == true)
+                 {
+                     SetBookMarkText("Journey", obj_Bookmarks, obj_App, checkBox67.Text);
+                 }*/
+                string transport = "";
+                if (checkBox9.Checked == true)
+                {
+                    transport += "Авиа ";
+                }
+                if (checkBox8.Checked == true)
+                {
+                    transport += "Ж\\Д ";
+                }
+                if (checkBox7.Checked == true)
+                {
+                    transport += "Автобус ";
+                }
+                SetBookMarkText("Journey", obj_Bookmarks, obj_App, transport);
+                SetBookMarkText("Transfer", obj_Bookmarks, obj_App, this.comboBox39.Text);
+                if (this.textBox43.Text != "")
+                {
+                    SetBookMarkText("Hotel", obj_Bookmarks, obj_App, this.textBox185.Text + "/" + this.comboBox39.Text);
+                }
+                else
+                {
+                    SetBookMarkText("Hotel", obj_Bookmarks, obj_App, this.textBox185.Text);
+                }
+                //SetBookMarkText("Tour", obj_Bookmarks, obj_App, this.textBox43.Text);
+                SetBookMarkText("RoomType", obj_Bookmarks, obj_App, this.comboBox46.Text + "/" + this.comboBox45.Text);
+                SetBookMarkText("FoodType", obj_Bookmarks, obj_App, this.comboBox40.Text);
+                if (checkBox18.Checked == true)
+                {
+                    SetBookMarkText("Viza", obj_Bookmarks, obj_App, "Да");
+                }
+                else
+                {
+                    SetBookMarkText("Viza", obj_Bookmarks, obj_App, "Нет");
+                }
+                if (checkBox19.Checked == true)
+                {
+                    SetBookMarkText("MedicalStrach", obj_Bookmarks, obj_App, "Да");
+                }
+                else
+                {
+                    SetBookMarkText("MedicalStrach", obj_Bookmarks, obj_App, "Нет");
+                }
+                if (checkBox20.Checked == true)
+                {
+                    SetBookMarkText("CanselStrach", obj_Bookmarks, obj_App, "Да");
+                }
+                else
+                {
+                    SetBookMarkText("CanselStrach", obj_Bookmarks, obj_App, "Нет");
+                }
+                //SetBookMarkText("Viza", obj_Bookmarks, obj_App, this.textBox186.Text);
+                SetBookMarkText("Excoursion", obj_Bookmarks, obj_App, this.textBox189.Text);
+                SetBookMarkText("AddService", obj_Bookmarks, obj_App, this.textBox196.Text);
+                //SetBookMarkText("MedicalStrach", obj_Bookmarks, obj_App, this.textBox188.Text);
+                //SetBookMarkText("CanselStrach", obj_Bookmarks, obj_App, this.textBox187.Text);
+                SetBookMarkText("Partner", obj_Bookmarks, obj_App, this.comboBox52.Text);
+                //mahangerdata
+                //string fullsum = "";string finalsum="";
+                //fullsum += " = " + dataGridView27.Rows[0].Cells[4].Value.ToString();
+                SetBookMarkText("TourFullPrice", obj_Bookmarks, obj_App, dataGridView27.Rows[0].Cells[0].Value.ToString() + "+" + dataGridView27.Rows[0].Cells[3].Value.ToString() + "=" + dataGridView27.Rows[0].Cells[4].Value.ToString()+" "+currency);
+                SetBookMarkText("AgentSum", obj_Bookmarks, obj_App, dataGridView27.Rows[0].Cells[1].Value.ToString() + " % - " + dataGridView27.Rows[0].Cells[2].Value.ToString() + " " + currency);
+                if (dataGridView27.Rows[0].Cells[5].Value != null)
+                {
+                    //finalsum=dataGridView27.Rows[0].Cells[6].Value.ToString();
+                    SetBookMarkText("FinalPrice", obj_Bookmarks, obj_App, dataGridView27.Rows[0].Cells[5].Value.ToString() +" "+currency);
+                }
+                // dataGridView27.Rows[0].Cells[0].Value.ToString()+"+"+dataGridView27.Rows[0].Cells[3].Value.ToString()+"="+dataGridView27.Rows[0].Cells[5].Value.ToString()
 
-            SetBookMarkText("Manager_name", obj_Bookmarks, obj_App, manager.name);
-            SetBookMarkText("Manager_ICQ", obj_Bookmarks, obj_App, "ICQ "+manager.icq);
-            SetBookMarkText("Manager_email", obj_Bookmarks, obj_App, manager.email);
-            SetBookMarkText("PredPayHalf", obj_Bookmarks, obj_App, this.dateTimePicker15.Value.ToShortDateString());
-            SetBookMarkText("PayFull", obj_Bookmarks, obj_App, this.dateTimePicker14.Value.ToShortDateString());
-            SetBookMarkText("DocumentDate", obj_Bookmarks, obj_App, this.dateTimePicker16.Value.ToShortDateString());
-            SetBookMarkText("penalty100", obj_Bookmarks, obj_App, this.textBox193.Text);
-            SetBookMarkText("penalty50", obj_Bookmarks, obj_App, this.textBox194.Text);
-            SetBookMarkText("FirmaCours", obj_Bookmarks, obj_App, this.textBox195.Text);
-            //make_invoice
+                SetBookMarkText("Manager_name", obj_Bookmarks, obj_App, manager.name);
+                SetBookMarkText("Manager_ICQ", obj_Bookmarks, obj_App, "ICQ " + manager.icq);
+                SetBookMarkText("Manager_email", obj_Bookmarks, obj_App, manager.email);
+                SetBookMarkText("managerUpemail", obj_Bookmarks, obj_App, manager.email);
+                if (!checkBox64.Checked)
+                {
+                    SetBookMarkText("PredPayHalf", obj_Bookmarks, obj_App, this.dateTimePicker15.Value.ToShortDateString());
+                }
+                if (!checkBox65.Checked)
+                {
+                    SetBookMarkText("PayFull", obj_Bookmarks, obj_App, this.dateTimePicker14.Value.ToShortDateString());
+                }
+                if (!checkBox63.Checked)
+                {
+                    SetBookMarkText("DocumentDate", obj_Bookmarks, obj_App, this.dateTimePicker16.Value.ToShortDateString());
+                }
+                //SetBookMarkText("penalty100", obj_Bookmarks, obj_App, this.textBox193.Text);
+                //SetBookMarkText("penalty50", obj_Bookmarks, obj_App, this.textBox194.Text);
+                SetBookMarkText("FirmaCours", obj_Bookmarks, obj_App, this.comboBox52.Text);
+                if (Get_Value_combobox(comboBox52) != null)
+                {
+                    SetBookMarkText("Penalty", obj_Bookmarks, obj_App, Confirm.getToPenalty(GetConnectSTR(),Get_Value_combobox(comboBox52)));
+                }
 
 
-            //sqlsave
-            string agentid = "";
-            if ((agent_key != null) && (agent_key != ""))
-            {
-                agentid = GetagentKey(textBox201.Text, textBox177.Text, comboBox38.Text, textBox175.Text, textBox172.Text);
-            }
-            else
-            {
-                agentid = agent_key;
-            }
-            DataGridViewCell cell = dataGridView31.SelectedCells[0];
-            DataGridViewRow row = dataGridView31.Rows[cell.RowIndex];
-            string cId="";
-            ConfirInfo cinfo = new ConfirInfo(row.Cells[11].Value.ToString(), textBox178.Text, numericUpDown12.Value.ToString(),numericUpDown13.Value.ToString(), dateTimePicker13.Value.ToShortDateString(), dateTimePicker12.Value.ToShortDateString(), textBox185.Text, comboBox48.Text, comboBox41.Text, fullsum, textBox181.Text, textBox182.Text, finalsum, comboBox47.Text, agent_key,comboBox49.Text,comboBox52.Text);
-            try
-            {
-                cId = ConfirmSave(cinfo);
-            }
-            catch
-            {
-                this.richTextBox1.AppendText("Ошибка при получении клиента в основном договоре \n\r");
-            }
-            //make bill
-            object[] ExcelParam = new object[1];
-            string touroperator = comboBox52.Text;
-            Type obj_excel = Type.GetTypeFromProgID("Excel.Application");
-            object Excel = Activator.CreateInstance(obj_excel);
+                //make_invoice
 
-            object obj_workbooks = Excel.GetType().InvokeMember("Workbooks", BindingFlags.GetProperty, null, Excel, null);
-            if (touroperator == "Росинтур")
-            {
-                ExcelParam[0] = Basepath + @"Template\Invoice_rosintour.xls";
-            }
-            else if (touroperator == "РосинтурЮг")
-            {
+
+                //sqlsave
+                /*string agentid = "";
+                if ((agent_key != null) && (agent_key != ""))
+                {
+                    agentid = GetagentKey(textBox201.Text, textBox177.Text, comboBox38.Text, textBox175.Text, textBox172.Text);
+                }
+                else
+                {
+                    agentid = agent_key;
+                }
+                DataGridViewCell cell = dataGridView31.SelectedCells[0];
+                DataGridViewRow row = dataGridView31.Rows[cell.RowIndex];
+                string cId="";
+                //ConfirInfo cinfo=null;
+                //ConfirInfo cinfo = new ConfirInfo(row.Cells[11].Value.ToString(), textBox178.Text, numericUpDown12.Value.ToString(),numericUpDown13.Value.ToString(), dateTimePicker13.Value.ToShortDateString(), dateTimePicker12.Value.ToShortDateString(), textBox185.Text, comboBox48.Text, comboBox41.Text, fullsum, textBox181.Text, textBox182.Text, finalsum, comboBox47.Text, agent_key,comboBox49.Text,comboBox52.Text);
+                try
+                {
+                   // cId = ConfirmSave(cinfo);
+                }
+                catch
+                {
+                    this.richTextBox1.AppendText("Ошибка при получении клиента в основном договоре \n\r");
+                }*/
+                //make bill
+                object[] ExcelParam = new object[1];
+                string touroperator = comboBox52.Text;
+                Type obj_excel = Type.GetTypeFromProgID("Excel.Application");
+                object Excel = Activator.CreateInstance(obj_excel);
+
+                object obj_workbooks = Excel.GetType().InvokeMember("Workbooks", BindingFlags.GetProperty, null, Excel, null);
+                /*if (touroperator == "Росинтур")
+                {
+                    ExcelParam[0] = Basepath + @"Template\Invoice_rosintour.xls";
+                }
+                else if (touroperator == "РосинтурЮг")
+                {*/
                 ExcelParam[0] = Basepath + @"Template\Invoice_rosintourUg.xls";
-            }
-            else if (touroperator == "Магазин Путешествий")
-            {
-                ExcelParam[0] = Basepath + @"Template\Invoice_travelMag.xls";
-            }
-            //ExcelParam[0] = Basepath + @"Template\Manager_report.xls";
-            object obj_workbook = obj_workbooks.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, obj_workbooks, ExcelParam);
-            object obj_worksheets = obj_workbook.GetType().InvokeMember("Worksheets", BindingFlags.GetProperty, null, obj_workbook, null);
-            ExcelParam[0] = 1;
-            object obj_worksheet = obj_worksheets.GetType().InvokeMember("Item", BindingFlags.GetProperty, null, obj_worksheets, ExcelParam);
-            SetCellData(label345.Text + " от " + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + " г.", "B11", obj_worksheet);
-            SetCellData(textBox212.Text, "C14", obj_worksheet);
-            SetCellData(textBox211.Text, "C15", obj_worksheet);
-            for (int i = 0; i < dataGridView29.RowCount; i++)
-            {
+                /*}
+                else if (touroperator == "Магазин Путешествий")
+                {
+                    ExcelParam[0] = Basepath + @"Template\Invoice_travelMag.xls";
+                }*/
+                //ExcelParam[0] = Basepath + @"Template\Manager_report.xls";
+                object obj_workbook = obj_workbooks.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, obj_workbooks, ExcelParam);
+                object obj_worksheets = obj_workbook.GetType().InvokeMember("Worksheets", BindingFlags.GetProperty, null, obj_workbook, null);
+                ExcelParam[0] = 1;
+                object obj_worksheet = obj_worksheets.GetType().InvokeMember("Item", BindingFlags.GetProperty, null, obj_worksheets, ExcelParam);
+                SetCellData(label345.Text + " от " + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + " г.", "B11", obj_worksheet);
+                SetCellData("Заказчик" + textBox201.Text + "," + textBox44.Text, "C14", obj_worksheet);
+                SetCellData("Платильщик" + textBox201.Text + "," + textBox44.Text, "C15", obj_worksheet);
+                for (int i = 0; i < dataGridView29.RowCount; i++)
+                {
 
-                if (dataGridView29.Rows[i].Cells[0].Value != null)
-                {
-                    SetCellData(dataGridView29.Rows[i].Cells[0].Value.ToString(), "B" + (17 + i).ToString(), obj_worksheet);
+                    if (dataGridView29.Rows[i].Cells[0].Value != null)
+                    {
+                        SetCellData(dataGridView29.Rows[i].Cells[0].Value.ToString(), "B" + (17 + i).ToString(), obj_worksheet);
+                    }
+                    if (dataGridView29.Rows[i].Cells[1].Value != null)
+                    {
+                        SetCellData(dataGridView29.Rows[i].Cells[1].Value.ToString(), "c" + (17 + i).ToString(), obj_worksheet);
+                    }
+                    if (dataGridView29.Rows[i].Cells[2].Value != null)
+                    {
+                        SetCellData(dataGridView29.Rows[i].Cells[2].Value.ToString(), "E" + (17 + i).ToString(), obj_worksheet);
+                    }
+                    if (dataGridView29.Rows[i].Cells[3].Value != null)
+                    {
+                        SetCellData(dataGridView29.Rows[i].Cells[3].Value.ToString(), "F" + (17 + i).ToString(), obj_worksheet);
+                    }
+                    if (dataGridView29.Rows[i].Cells[4].Value != null)
+                    {
+                        SetCellData(dataGridView29.Rows[i].Cells[4].Value.ToString(), "G" + (17 + i).ToString(), obj_worksheet);
+                    }
+                    if (dataGridView29.Rows[i].Cells[5].Value != null)
+                    {
+                        SetCellData(dataGridView29.Rows[i].Cells[5].Value.ToString(), "H" + (17 + i).ToString(), obj_worksheet);
+                    }
                 }
-                if (dataGridView29.Rows[i].Cells[1].Value != null)
+                if (dataGridView30.Rows[0].Cells[0].Value != null)
                 {
-                    SetCellData(dataGridView29.Rows[i].Cells[1].Value.ToString(), "c" + (17 + i).ToString(), obj_worksheet);
+                    SetCellData(dataGridView30.Rows[0].Cells[0].Value.ToString(), "H19", obj_worksheet);
                 }
-                if (dataGridView29.Rows[i].Cells[2].Value != null)
+                if (dataGridView30.Rows[1].Cells[0].Value != null)
                 {
-                    SetCellData(dataGridView29.Rows[i].Cells[2].Value.ToString(), "D" + (17 + i).ToString(), obj_worksheet);
+                    SetCellData(dataGridView30.Rows[1].Cells[0].Value.ToString(), "H20", obj_worksheet);
                 }
-                if (dataGridView29.Rows[i].Cells[3].Value != null)
+                
+                string curname = "";
+                if (currency == "RUR")
                 {
-                    SetCellData(dataGridView29.Rows[i].Cells[3].Value.ToString(), "F" + (17 + i).ToString(), obj_worksheet);
+                    curname = getcurrencyname(textBox214.Text, currency);
+                    SetCellData("Всего наименований " + textBox213.Text + " на сумму " + textBox214.Text + " " + curname, "B23", obj_worksheet);
+                    SetCellData("Счет действителен в течении " + textBox216.Text + " " + getbankdayword(Convert.ToInt32(textBox216.Text)), "B25", obj_worksheet);
                 }
-                if (dataGridView29.Rows[i].Cells[4].Value != null)
+                else if ((currency == "EUR") || (currency == "USD"))
                 {
-                    SetCellData(dataGridView29.Rows[i].Cells[4].Value.ToString(), "G" + (17 + i).ToString(), obj_worksheet);
+                    curname = "y.e";
+                    SetCellData("Курс 1 у.е = 1 " + currency + " = " + textBox215.Text, "B22", obj_worksheet);
+                    SetCellData("Всего наименований " + textBox213.Text + " на сумму " + textBox214.Text + " " + curname, "B23", obj_worksheet);
+                    SetCellData("Оплата по курсу туроператора на день оплаты.", "B24", obj_worksheet);
+                    //SetCellData("Оплата по курсу туроператора на день оплаты. "+"1 y.e = 1 "+currency+" = "+textBox215.Text, "B24", obj_worksheet);
+                    SetCellData("Счет действителен в течении " + textBox216.Text + " " + getbankdayword(Convert.ToInt32(textBox216.Text)), "B25", obj_worksheet);
                 }
-                if (dataGridView29.Rows[i].Cells[5].Value != null)
+                //view
+                Param[0] = "true";
+                obj_App.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, obj_App, Param);
+                ExcelParam[0] = "True";
+                Excel.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, Excel, ExcelParam);
+                setdefmanager(comboBox41.Text);
+                // try
+                //{
+                string fname = textBox201.Text;
+                fname = fname.Replace('"', ' ');
+                fname=fname.Replace('.', ' ');
+                fname=fname.Replace(',', ' ');
+                DocumentAgentSave(Doc, obj_workbook, textBox179.Text, manager.name, manager.number, fname + "+" + (Convert.ToInt32(textBox171.Text) - 1).ToString(), comboBox52.Text);
+                /*}
+                catch
                 {
-                    SetCellData(dataGridView29.Rows[i].Cells[5].Value.ToString(), "H" + (17 + i).ToString(), obj_worksheet);
+                    this.richTextBox1.AppendText("Ошибка при сохранении потверждения и счета \n\r");
+                }*/
+                try
+                {
+                    Section sec = new Section();
+                    int number = Convert.ToInt32(textBox179.Text);
+                    number++;
+                    sec.writekey("AgentDocCount", "number_" + this.comboBox52.Text, "app.ini", number.ToString());
                 }
-            }
-            if (dataGridView30.Rows[0].Cells[0].Value != null)
-            {
-                SetCellData(dataGridView30.Rows[0].Cells[0].Value.ToString(), "H19", obj_worksheet);
-            }
-            if (dataGridView30.Rows[1].Cells[0].Value != null)
-            {
-                SetCellData(dataGridView30.Rows[1].Cells[0].Value.ToString(), "H20", obj_worksheet);
-            }
-            string currency = "";
-            if (checkBox65.Checked == true)
-            {
-                currency = "RUR";
-            }
-            else if (checkBox64.Checked == true)
-            {
-                currency = "USD";
-            }
-            else if (checkBox63.Checked == true)
-            {
-                currency = "EUR";
-            }
-            string curname = "";
-            if (currency == "RUR")
-            {
-                curname = getcurrencyname(textBox214.Text,currency);
-                SetCellData("Всего наименований " + textBox213.Text + " на сумму " + textBox214.Text + " " + curname, "B23", obj_worksheet);
-                SetCellData("Счет действителен в течении " + textBox216.Text + " " + getbankdayword(Convert.ToInt32(textBox216.Text)), "B25", obj_worksheet);
-            }
-            else if ((currency == "EUR") || (currency == "USD"))
-            {
-                curname = "y.e";
-                SetCellData("Курс 1 у.е = 1 " + currency + " = " + textBox215.Text, "B22", obj_worksheet);
-                SetCellData("Всего наименований " + textBox213.Text + " на сумму " + textBox214.Text + " " + curname, "B23", obj_worksheet);
-                SetCellData("Оплата по курсу туроператора на день оплаты.", "B24", obj_worksheet);
-                //SetCellData("Оплата по курсу туроператора на день оплаты. "+"1 y.e = 1 "+currency+" = "+textBox215.Text, "B24", obj_worksheet);
-                SetCellData("Счет действителен в течении " + textBox216.Text + " " + getbankdayword(Convert.ToInt32(textBox216.Text)), "B25", obj_worksheet);
-            }
-            //view
-            Param[0] = "true";
-            obj_App.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, obj_App, Param);
-            ExcelParam[0] = "True";
-            Excel.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, Excel, ExcelParam);
-            setdefmanager(comboBox41.Text);
-            try
-            {
-                DocumentAgentSave(Doc, obj_workbook, textBox179.Text, manager.name, manager.number, textBox201.Text + "+" + (Convert.ToInt32(textBox171.Text) - 1).ToString(), comboBox52.Text);
-            }
-            catch
-            {
-                this.richTextBox1.AppendText("Ошибка при сохранении потверждения и счета \n\r");
-            }
-            try
-            {
-                Section sec = new Section();
-                int number = Convert.ToInt32(textBox179.Text);
-                number++;
-                sec.writekey("AgentDocCount", "number_" + this.comboBox52.Text, "app.ini", number.ToString());
-            }
-            catch
-            {
-                this.richTextBox1.AppendText("Ошибка увеличения номера договора");
-            }
+                catch
+                {
+                    this.richTextBox1.AppendText("Ошибка увеличения номера договора");
+                }
 
-            //clean W
-            Marshal.ReleaseComObject(obj_Tables);
-            // Marshal.ReleaseComObject(obj_Selection);
-            //Marshal.ReleaseComObject(obj_Range);
-            Marshal.ReleaseComObject(obj_Doc);
-            Marshal.ReleaseComObject(obj_Bookmarks);
-            //Marshal.ReleaseComObject(obj_Bookmark);
-            Marshal.ReleaseComObject(obj_App);
-            // Marshal.ReleaseComObject(Word);
-            // GC.GetTotalMemory(true);
-            //clean Ex
+                //clean W
+                Marshal.ReleaseComObject(obj_Tables);
+                // Marshal.ReleaseComObject(obj_Selection);
+                //Marshal.ReleaseComObject(obj_Range);
+                Marshal.ReleaseComObject(obj_Doc);
+                Marshal.ReleaseComObject(obj_Bookmarks);
+                //Marshal.ReleaseComObject(obj_Bookmark);
+                Marshal.ReleaseComObject(obj_App);
+                // Marshal.ReleaseComObject(Word);
+                // GC.GetTotalMemory(true);
+                //clean Ex
 
-            Marshal.ReleaseComObject(obj_workbooks);
-            Marshal.ReleaseComObject(obj_worksheet);
-            Marshal.ReleaseComObject(obj_workbook);
-            Marshal.ReleaseComObject(obj_worksheets);
+                Marshal.ReleaseComObject(obj_workbooks);
+                Marshal.ReleaseComObject(obj_worksheet);
+                Marshal.ReleaseComObject(obj_workbook);
+                Marshal.ReleaseComObject(obj_worksheets);
+            }
+            else
+            {
+                MessageBox.Show("Выберите менеджера, страну и туроператора");
+            }
         }
 
         private void DocumentAgentSave(object ODoc, object OWorkBook, string num, string managername, string managernum, string client,string touroperator)
@@ -7544,30 +7864,31 @@ namespace WordExChec
             }
             if ((path != null) && (Directory.Exists(path)))
             {
-                confirmpath=path+ "\\Подтвержения";
-                invoicepath=path+ "\\Счета";
-                    if (touroperator != "")
+                confirmpath = path + "\\Счета и подтверждения";
+                //invoicepath=path+ "\\Счета";
+                    /*if (touroperator != "")
                     {
                         confirmpath+="\\"+touroperator;
-                        invoicepath+="\\"+touroperator;
-                    }
+                        //invoicepath+="\\"+touroperator;
+                    }*/
 
 
                     if (managername != "")
                     {
-                        confirmpath += "\\" + managername + " " + managernum + "\\" + DateTime.Now.Year.ToString();
-                        invoicepath += "\\" + managername + " " + managernum + "\\" + DateTime.Now.Year.ToString();
+                        //confirmpath += "\\" + managername + " " + managernum + "\\" + DateTime.Now.Year.ToString();
+                        confirmpath += "\\" + managername + "\\" + DateTime.Now.Year.ToString();
+                        //invoicepath += "\\" + managername + " " + managernum + "\\" + DateTime.Now.Year.ToString();
                     }
                 if (!Directory.Exists(confirmpath))
                 {
                     Directory.CreateDirectory(confirmpath);
                 }
-                if (!Directory.Exists(invoicepath))
+                /*if (!Directory.Exists(invoicepath))
                 {
                     Directory.CreateDirectory(invoicepath);
-                }
-                ExcelParam[0] = CheckFileName(invoicepath + "\\Счет " + num + " " + client, ".xls");
-                WordParam[0] = CheckFileName(confirmpath + "\\Подтверждение " + num + " " + client, ".doc");
+                }*/
+                ExcelParam[0] = CheckFileName(confirmpath + "\\Счет " + num + " " + client + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".xls");
+                WordParam[0] = CheckFileName(confirmpath + "\\Подтверждение " + num + " " + client + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")", ".doc");
                 ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
                 OWorkBook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, OWorkBook, ExcelParam);
             }
@@ -7586,9 +7907,9 @@ namespace WordExChec
 
                 //object Doc = arguments.Doc;
                 //object WordApp = arguments.App;
-                WordParam[0] = localpath + "\\Подтверждение " + num + " " + client;
+                WordParam[0] = localpath + "\\Счет и Подтверждение" + num + " " + client + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")";
                 ODoc.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, ODoc, WordParam);
-                ExcelParam[0] = localpath + "\\Счет " + num + " " +client;
+                ExcelParam[0] = localpath + "\\Счет и Подтверждение" + num + " " + client + "(" + DateTime.Now.Day + " " + ((Month)DateTime.Now.Month).ToString() + " " + DateTime.Now.Year + ")";
                 OWorkBook.GetType().InvokeMember("SaveAs", BindingFlags.InvokeMethod, null, OWorkBook, ExcelParam);
 
             }
@@ -7849,63 +8170,7 @@ namespace WordExChec
             }
             return id;
         }
-        private void textBox192_TextChanged(object sender, EventArgs e)
-        {
-            int sum = 0; double agentsum = 0; int viza = 0; int medstrach = 0; double canselstrach = 0; int addsum = 0; double sumturpaket = 0;
-            if ((this.textBox192.Text != "") && (this.textBox180.Text != ""))
-            {
-                sum = (Convert.ToInt32(textBox192.Text) * Convert.ToInt32(textBox180.Text));
-            }
-            if (this.textBox182.Text != "")
-            {
-                try
-                {
-                agentsum = ((Convert.ToDouble(sum) /100)* Convert.ToDouble(textBox182.Text));
-                this.textBox181.Text = agentsum.ToString();
-                   }
-                catch
-                {
-                    MessageBox.Show("Вводите цифры");
-                }
-            }
-            if ((this.textBox173.Text != "") && (this.textBox170.Text != ""))
-            {
-                viza = (Convert.ToInt32(textBox173.Text) * Convert.ToInt32(textBox170.Text));
-                textBox186.Text = textBox173.Text + " x " + textBox170.Text;
-            }
-            if ((this.textBox176.Text != "") && (this.textBox174.Text != ""))
-            {
-                medstrach = (Convert.ToInt32(textBox176.Text) * Convert.ToInt32(textBox174.Text));
-                textBox188.Text = textBox176.Text + " x " + textBox174.Text;
-            }
-            if ((this.textBox191.Text != "") && (this.textBox190.Text != ""))
-            {
-                addsum = (Convert.ToInt32(textBox191.Text) * Convert.ToInt32(textBox190.Text));
-                textBox196.Text = textBox191.Text + " x " + textBox190.Text;
-            }
-            if ((this.textBox184.Text != "")&&(this.textBox183.Text != ""))
-            {
-                try
-                {
-                    //sumturpaket = Convert.ToDouble(sum + addsum + viza);
-                    //canselstrach = ((sumturpaket/ 100) * Convert.ToDouble(textBox184.Text));
-                    canselstrach = (Convert.ToInt32(textBox184.Text) * Convert.ToInt32(textBox183.Text));
-                    textBox187.Text = textBox184.Text + " x " + textBox183.Text;
-                    //this.textBox183.Text = canselstrach.ToString();
-                }
-                catch
-                {
-                    MessageBox.Show("Вводите цифры");
-                }
-            }
-            dataGridView27.Rows[0].Cells[0].Value = sum;
-            dataGridView27.Rows[0].Cells[1].Value=this.textBox182.Text;
-            dataGridView27.Rows[0].Cells[2].Value=agentsum;
-            dataGridView27.Rows[0].Cells[3].Value=medstrach;
-            dataGridView27.Rows[0].Cells[4].Value=canselstrach;
-            dataGridView27.Rows[0].Cells[5].Value = viza;
-            dataGridView27.Rows[0].Cells[6].Value = addsum;
-        }
+        
 
         private void textBox182_TextChanged(object sender, EventArgs e)
         {
@@ -7914,25 +8179,36 @@ namespace WordExChec
 
         private void dataGridView27_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            double finalSum = 0; double fullSum = 0;
-            for (int i = 0; i < dataGridView27.ColumnCount-2; i++)
+            
+            if (dataGridView27.Rows[0].Cells[0].Value != null) { dataGridView27.Rows[0].Cells[0].Value = Convert.ToInt32(Convert.ToDouble(dataGridView27.Rows[0].Cells[0].Value)); }
+            if (dataGridView27.Rows[0].Cells[0].Value != null) { dataGridView27.Rows[0].Cells[3].Value = Convert.ToInt32(Convert.ToDouble(dataGridView27.Rows[0].Cells[3].Value)); }
+            if ((e.ColumnIndex != 4) && (e.ColumnIndex != 5))
             {
-                if ((dataGridView27.Rows[0].Cells[i].Value != null) && (dataGridView27.Rows[0].Cells[i].Value.ToString() != "") && (i != 2) && (i != 1))
+                double finalSum = 0; double fullSum = 0; //double dscount = 0;
+                for (int i = 0; i < dataGridView27.ColumnCount - 2; i++)
                 {
-                    finalSum += Convert.ToDouble(dataGridView27.Rows[0].Cells[i].Value);
-                    fullSum += Convert.ToDouble(dataGridView27.Rows[0].Cells[i].Value);
+                    if ((dataGridView27.Rows[0].Cells[i].Value != null) && (dataGridView27.Rows[0].Cells[i].Value.ToString() != "") && (i != 2) && (i != 1))
+                    {
+                        finalSum += Convert.ToDouble(dataGridView27.Rows[0].Cells[i].Value);
+                        fullSum += Convert.ToDouble(dataGridView27.Rows[0].Cells[i].Value);
+                    }
                 }
-                else  if (i == 2)
-                {
-                    finalSum -= Convert.ToDouble(dataGridView27.Rows[0].Cells[i].Value);
-                }
+                if (((e.ColumnIndex == 1) || (e.ColumnIndex == 0)) && (dataGridView27.Rows[0].Cells[1].Value != null) && (dataGridView27.Rows[0].Cells[1].Value.ToString() != "") && (dataGridView27.Rows[0].Cells[0].Value != null) && (dataGridView27.Rows[0].Cells[0].Value.ToString() != ""))
+                    {
+                        //dataGridView27.Rows[0].Cells[2].Value=((Convert.ToDouble(dataGridView27.Rows[0].Cells[0].Value)*Convert.ToDouble(dataGridView27.Rows[0].Cells[i].Value))/100);
+                        dataGridView27.Rows[0].Cells[2].Value = Convert.ToInt32(((Convert.ToDouble(dataGridView27.Rows[e.RowIndex].Cells[0].Value) / 100) * (Convert.ToDouble(dataGridView27.Rows[e.RowIndex].Cells[1].Value))));
+                    }
+                if ((dataGridView27.Rows[0].Cells[2].Value != null))
+                    {
+                        finalSum -= Convert.ToDouble(dataGridView27.Rows[0].Cells[2].Value);
+                    }
+                dataGridView27.Rows[0].Cells[4].Value = Convert.ToInt32(fullSum);
+                dataGridView27.Rows[0].Cells[5].Value = Convert.ToInt32(finalSum);
             }
-            dataGridView27.Rows[0].Cells[7].Value = Convert.ToInt32(fullSum);
-            dataGridView27.Rows[0].Cells[8].Value = Convert.ToInt32(finalSum);
         }
 
         //SQL
-        private string ConfirmSave(ConfirInfo cinfo)
+       /* private string ConfirmSave(ConfirInfo cinfo)
         {
             string c_id = "";
             SqlConnectionStringBuilder connectStr = GetConnectSTR();
@@ -7963,7 +8239,7 @@ namespace WordExChec
             }
             connect.Close();
             return c_id;
-        }
+        }*/
 
         private void button60_Click(object sender, EventArgs e)
         {
@@ -8044,7 +8320,7 @@ namespace WordExChec
                 {
                     if (first == 0)
                     {
-                        query += " name='" + name + "'";
+                        query += " name like('%" + name + "%')";
                         first = 1;
                     }
                 }
@@ -8052,12 +8328,12 @@ namespace WordExChec
                 {
                     if (first == 0)
                     {
-                        query += " agentname='" + agentname + "'";
+                        query += " agentname like('%'" + agentname + "%')";
                         first = 1;
                     }
                     else
                     {
-                        query += " and agentname='" + agentname + "'";
+                        query += " and agentname like('%" + agentname + "%')";
                     }
                 }
                 if (city != "")
@@ -8076,24 +8352,24 @@ namespace WordExChec
                 {
                     if (first == 0)
                     {
-                        query += " phone='" + phone + "'";
+                        query += " phone like('%" + phone + "%')";
                         first = 1;
                     }
                     else
                     {
-                        query += " phone='" + phone + "'";
+                        query += " phone like('%" + phone + "%')";
                     }
                 }
                 if (email != "")
                 {
                     if (first == 0)
                     {
-                        query += " email='" + email + "'";
+                        query += " email like('%" + email + "%')";
                         first = 1;
                     }
                     else
                     {
-                        query += " email='" + email + "'";
+                        query += " email like('%" + email + "%')";
                     }
                 }
             }
@@ -8147,11 +8423,18 @@ namespace WordExChec
             string id="";
             try
             {
-                id=AddAgency(textBox203.Text, textBox206.Text,comboBox42.Text, textBox204.Text, textBox205.Text);
+               /* id=AddAgency(textBox203.Text, textBox206.Text,comboBox42.Text, textBox204.Text, textBox205.Text);
                 textBox202.Text = textBox203.Text;
                 textBox200.Text = textBox206.Text;
                 comboBox50.Text = comboBox42.Text;
-                //textBox204.Text = textBox205.Text;
+                //textBox204.Text = textBox205.Text;*/
+                Agency ag = new Agency();
+                ag.Name = textBox203.Text;
+                ag.City = comboBox42.Text;
+                ag.Phone = textBox204.Text;
+                ag.Email = textBox205.Text;
+                ag.Operator = textBox206.Text;
+                ag.insert(GetConnectSTR());
                 getagencyresult(textBox202.Text, textBox200.Text, comboBox50.Text, textBox198.Text, textBox199.Text);
                 tabControl7.SelectedTab = tabPage19;
                 
@@ -8239,7 +8522,7 @@ namespace WordExChec
                 }
                 if (row.Cells[1].Value != null)
                 {
-                    comboBox38.Text = row.Cells[1].Value.ToString();
+                    textBox44.Text = row.Cells[1].Value.ToString();
                 }
                 if (row.Cells[2].Value != null)
                 {
@@ -8253,6 +8536,7 @@ namespace WordExChec
                 {
                     textBox172.Text = row.Cells[4].Value.ToString();
                 }
+                Confirm.agent.Id = row.Cells[5].Value.ToString();
             }
         }
         private string getmanagerNum(string manager)
@@ -8285,33 +8569,36 @@ namespace WordExChec
         {
             //0
             label345.Text = "Счет № " + textBox179.Text;
-            textBox212.Text = textBox201.Text +" "+ comboBox38.Text;
-            textBox211.Text = textBox201.Text + " " + comboBox38.Text;
+            textBox212.Text = textBox201.Text +" "+ textBox44.Text;
+            textBox211.Text = textBox201.Text + " " + textBox44.Text;
             dataGridView29.Rows[0].Cells[0].Value = "1";
             dataGridView29.Rows[0].Cells[1].Value = "Оплата путевки " + comboBox49.Text + ", " + textBox178.Text + " " + dateTimePicker13.Value.ToShortDateString() + "-" + dateTimePicker12.Value.ToShortDateString() ;
             if (dataGridView25.Rows[0].Cells[1].Value != null)
             {
-                dataGridView29.Rows[0].Cells[1].Value += dataGridView25.Rows[0].Cells[1].Value.ToString() + "+" + (Convert.ToInt32(textBox171.Text) - 1).ToString();
+                dataGridView29.Rows[0].Cells[1].Value += " " +dataGridView25.Rows[0].Cells[1].Value.ToString() + "+" + (Convert.ToInt32(textBox171.Text) - 1).ToString();
             }
             dataGridView29.Rows[0].Cells[2].Value = "шт";
             dataGridView29.Rows[0].Cells[3].Value = textBox171.Text;
-            textBox213.Text = "2";
+            textBox213.Text = "1";
             //dataGridView29.Rows[0].Cells[1].Value = "1";
-            if (dataGridView27.Rows[0].Cells[7].Value != null)
+            if (dataGridView27.Rows[0].Cells[4].Value != null)
             {
-                dataGridView29.Rows[0].Cells[5].Value = (Convert.ToInt32(dataGridView27.Rows[0].Cells[8].Value.ToString()) + (Convert.ToInt32(textBox171.Text) * Convert.ToInt32(numericUpDown14.Value))).ToString();
+                //dataGridView29.Rows[0].Cells[5].Value = (Convert.ToInt32(dataGridView27.Rows[0].Cells[8].Value.ToString()) + (Convert.ToInt32(textBox171.Text) * Convert.ToInt32(numericUpDown14.Value))).ToString();
+                dataGridView29.Rows[0].Cells[5].Value = dataGridView27.Rows[0].Cells[4].Value;
+                dataGridView29.Rows[0].Cells[4].Value = dataGridView27.Rows[0].Cells[4].Value;
             }
             //1
             dataGridView29.Rows[1].Cells[0].Value = "2";
             dataGridView29.Rows[1].Cells[1].Value = "Агентское вознаграждение ";// +textBox182.Text;
-            /*if (dataGridView27.Rows[0].Cells[2].Value != null)
+            if (dataGridView27.Rows[0].Cells[2].Value != null)
             {
                 dataGridView29.Rows[1].Cells[5].Value = dataGridView27.Rows[0].Cells[2].Value.ToString();
-            }*/
-            dataGridView29.Rows[1].Cells[5].Value = (Convert.ToInt32(textBox171.Text) * Convert.ToInt32(numericUpDown14.Value)).ToString();
-            if ((dataGridView27.Rows[0].Cells[2].Value != null) && (dataGridView27.Rows[0].Cells[7].Value != null))
+            }
+           // dataGridView29.Rows[1].Cells[5].Value = (Convert.ToInt32(textBox171.Text) * Convert.ToInt32(numericUpDown14.Value)).ToString();
+            if ((dataGridView27.Rows[0].Cells[2].Value != null) && (dataGridView27.Rows[0].Cells[4].Value != null))
             {
-                dataGridView30.Rows[1].Cells[0].Value = Convert.ToInt32(dataGridView27.Rows[0].Cells[7].Value) - Convert.ToInt32(dataGridView27.Rows[0].Cells[2].Value);
+                dataGridView30.Rows[0].Cells[0].Value = "0";
+                dataGridView30.Rows[1].Cells[0].Value = Convert.ToInt32(dataGridView27.Rows[0].Cells[4].Value) - Convert.ToInt32(dataGridView27.Rows[0].Cells[2].Value);
                 textBox214.Text = GetWordSum(dataGridView30.Rows[1].Cells[0].Value.ToString());
             }
              
@@ -8334,7 +8621,7 @@ namespace WordExChec
 
         private void button52_Click(object sender, EventArgs e)
         {
-            Section sec = new Section();
+            /*Section sec = new Section();
             if (comboBox52.Text != "")
             {
                 textBox179.Text = sec.readkey("AgentDocCount", "number_" + comboBox52.Text, "app.ini");
@@ -8342,7 +8629,7 @@ namespace WordExChec
             else
             {
                 MessageBox.Show("Выберите туроператора");
-            }
+            }*/
         }
 
         private void dataGridView4_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -8393,35 +8680,42 @@ namespace WordExChec
         private List<string> getmangerList(string type)
         {
             List<string> managers=new List<string>();
-            SqlConnectionStringBuilder connectStr = GetConnectSTR();
-            string query = "";
-            SqlCommand sqlcom = null; SqlDataReader reader;
-            SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
-            if (type == "agent")
+            try
             {
-                query = "select name from managers where isagentmanager='1'";
-            }
-            else if (type == "client")
-            {
-                query = "select name from managers where isagentmanager<>'1'";
-            }
-            connect.Open();
-            {
-                if (connect.State == ConnectionState.Open)
+                SqlConnectionStringBuilder connectStr = GetConnectSTR();
+                string query = "";
+                SqlCommand sqlcom = null; SqlDataReader reader;
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                if (type == "agent")
                 {
-                    sqlcom = new SqlCommand(query, connect);
-                    reader = sqlcom.ExecuteReader();
-                    while (reader.Read())
+                    query = "select name from managers where isagentmanager='1'";
+                }
+                else if (type == "client")
+                {
+                    query = "select name from managers where isagentmanager<>'1'";
+                }
+                connect.Open();
+                {
+                    if (connect.State == ConnectionState.Open)
                     {
-                        if (reader["name"] != null)
+                        sqlcom = new SqlCommand(query, connect);
+                        reader = sqlcom.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            if (reader["name"] != null)
                             {
                                 managers.Add(reader["name"].ToString());
                             }
+                        }
                     }
+
                 }
+                connect.Close();
+            }
+            catch
+            {
 
             }
-            connect.Close();
             return managers; 
         }
        /* private List<string> getcountryList()
@@ -8480,13 +8774,14 @@ namespace WordExChec
         }
         private void getagentdemandlist(string st_date,string end_date, string manager, string country)
         {
+            
             SqlConnectionStringBuilder connectStr = GetConnectSTR();
             string query = "";
             SqlCommand sqlcom = null;SqlDataReader  reader;
             SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
             int first=0;
-            query = "select Agent_demand.id,Agent_demand.FirmName, Agent_demand.Client, Agent_demand.Phone,Agent_demand.Email,Agent_demand.Adult,Agent_demand.Child,Agent_demand.Path,Agent_demand.Days,Agent_demand.nights,convert(varchar,Agent_demand.startdate,105) as startdate ,convert(varchar,Agent_demand.enddate,105) as enddate,Agent_demand.Manager,convert(varchar,Agent_demand.DateCreate,105) as DateCreate, Country.Runame as country,managers.name as manager_name, managers.id as manager, Agent_demand.number from Agent_demand, managers, country where Agent_demand.country=country.id and Agent_demand.manager=managers.id";
-            if ((st_date != "") ||(end_date != "") || (manager != "") || (country != ""))
+            query = "select Agent_demand.id,Agent_demand.FirmName, Agent_demand.Client, Agent_demand.Phone,Agent_demand.Email,Agent_demand.Adult,Agent_demand.Child,Agent_demand.Path,Agent_demand.Days,Agent_demand.nights,convert(varchar,Agent_demand.startdate,105) as startdate ,convert(varchar,Agent_demand.enddate,105) as enddate,convert(varchar,Agent_demand.DateCreate,105) as DateCreate, Country.Runame as country, Agent_demand.number from Agent_demand, country where Agent_demand.country=country.id";
+            if ((st_date != "") ||(end_date != "") || (country != ""))
             {
                 //query+=" where ";
                 if (st_date != "")
@@ -8513,18 +8808,6 @@ namespace WordExChec
                     query += " and Agent_demand.datecreate<='" + makeSQLdate(end_date, '.') + " 23:59:59'";
                     // }
                 }
-                if (manager != "")
-                {
-                   /* if (first == 0)
-                    {
-                        query += "Manager in (select id from managers where name='" + manager + "')";
-                        first = 1;
-                    }
-                    else
-                    {*/
-                query += " and Agent_demand.Manager in (select id from managers where name='" + manager + "')";
-                    //}
-                }
                 if (country != "")
                 {
                    /* if (first == 0)
@@ -8542,123 +8825,126 @@ namespace WordExChec
             //FirmName, Client, Phone,Email,Adult,Child,Path,Days,nights,convert(varchar,startdate,105) ,convert(varchar,enddate,105),Manager,convert(varchar,DateCreate,105),Country";
             //query = "update agency set name='" + textBox207.Text + "', Agentname='" + textBox210.Text + "', City='" + comboBox51.Text + "', Phone='" + textBox208.Text + "', Email='" + textBox209.Text + "' where id='" + row.Cells[5].Value.ToString() + "'";
             int count = 0;
-            connect.Open();
+            try
             {
-                if (connect.State == ConnectionState.Open)
+                connect.Open();
                 {
-                    sqlcom = new SqlCommand(query, connect);
-                    reader = sqlcom.ExecuteReader();
-                    dataGridView31.RowCount = 1;
-                    if (reader.HasRows != false)
+                    if (connect.State == ConnectionState.Open)
                     {
-                        
-                        while(reader.Read())
+                        sqlcom = new SqlCommand(query, connect);
+                        reader = sqlcom.ExecuteReader();
+                        dataGridView31.RowCount = 1;
+                        if (reader.HasRows != false)
                         {
-                            dataGridView31.Rows.Add();
-                            if (reader["Number"] != null)
+
+                            while (reader.Read())
                             {
-                                dataGridView31.Rows[count].Cells[0].Value = reader["Number"].ToString();
-                            }
-                            if (reader["DateCreate"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[1].Value = reader["DateCreate"].ToString();
-                            }
-                            if (reader["FirmName"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[2].Value = reader["FirmName"].ToString();
-                            }
-                            if (reader["id"] != null)
-                            {
-                                GetturistFromDemand((DataGridViewComboBoxCell)dataGridView31.Rows[count].Cells[3], reader["id"].ToString());
-                               // dataGridView31.Rows[count].Cells[3]
-                            }
-                            if (reader["startdate"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[4].Value = reader["startdate"].ToString();
-                            }
-                            if (reader["enddate"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[5].Value = reader["enddate"].ToString();
-                            }
-                            if (reader["Path"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[6].Value = reader["Path"].ToString();
-                            }
-                            if (reader["Days"] != null)
-                            {
-                                dataGridView31.Rows[0].Cells[7].Value = reader["Days"].ToString();
-                            }
-                            if (reader["nights"] != null)
-                            {
-                                dataGridView31.Rows[0].Cells[8].Value = reader["nights"].ToString();
-                            }
-                            if (reader["Country"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[9].Value = reader["Country"].ToString();
-                            }
-                            if (reader["Manager_name"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[10].Value = reader["Manager_name"].ToString();
-                            }
-                            if (reader["id"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[11].Value = reader["id"].ToString();
-                            }
-                            /*if (reader["FirmName"]!=null)
-                            {
-                                dataGridView31.Rows[count].Cells[0].Value = reader["FirmName"].ToString();
-                            }
-                            if (reader["Client"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[1].Value = reader["Client"].ToString();
-                            }
-                            if (reader["Phone"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[2].Value = reader["Phone"].ToString();
-                            }
-                            if (reader["Email"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[3].Value = reader["Email"].ToString();
-                            }
-                            if (reader["Adult"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[4].Value = reader["Adult"].ToString();
-                            }
-                            if (reader["Child"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[5].Value = reader["Child"].ToString();
-                            }
-                            if (reader["Path"] != null)
-                            {
-                                dataGridView31.Rows[count].Cells[6].Value = reader["Path"].ToString();
-                            }
+                                dataGridView31.Rows.Add();
+                                if (reader["Number"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[1].Value = reader["Number"].ToString();
+                                }
+                                if (reader["DateCreate"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[2].Value = reader["DateCreate"].ToString();
+                                }
+                                if (reader["FirmName"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[3].Value = reader["FirmName"].ToString();
+                                }
+                                if (reader["id"] != null)
+                                {
+                                    GetturistFromDemand((DataGridViewComboBoxCell)dataGridView31.Rows[count].Cells[4], reader["id"].ToString());
+                                    // dataGridView31.Rows[count].Cells[3]
+                                }
+                                if (reader["startdate"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[5].Value = reader["startdate"].ToString();
+                                }
+                                if (reader["enddate"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[6].Value = reader["enddate"].ToString();
+                                }
+                                if (reader["Path"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[7].Value = reader["Path"].ToString();
+                                }
+                                if (reader["Days"] != null)
+                                {
+                                    dataGridView31.Rows[0].Cells[8].Value = reader["Days"].ToString();
+                                }
+                                if (reader["nights"] != null)
+                                {
+                                    dataGridView31.Rows[0].Cells[9].Value = reader["nights"].ToString();
+                                }
+                                if (reader["Country"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[10].Value = reader["Country"].ToString();
+                                }
+                                if (reader["id"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[0].Value = reader["id"].ToString();
+                                }
+                                /*if (reader["FirmName"]!=null)
+                                {
+                                    dataGridView31.Rows[count].Cells[0].Value = reader["FirmName"].ToString();
+                                }
+                                if (reader["Client"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[1].Value = reader["Client"].ToString();
+                                }
+                                if (reader["Phone"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[2].Value = reader["Phone"].ToString();
+                                }
+                                if (reader["Email"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[3].Value = reader["Email"].ToString();
+                                }
+                                if (reader["Adult"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[4].Value = reader["Adult"].ToString();
+                                }
+                                if (reader["Child"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[5].Value = reader["Child"].ToString();
+                                }
+                                if (reader["Path"] != null)
+                                {
+                                    dataGridView31.Rows[count].Cells[6].Value = reader["Path"].ToString();
+                                }
                     
-                            if (reader["startdate"] != null)
-                            {
-                                dataGridView31.Rows[0].Cells[0].Value = reader["startdate"].ToString();
+                                if (reader["startdate"] != null)
+                                {
+                                    dataGridView31.Rows[0].Cells[0].Value = reader["startdate"].ToString();
+                                }
+                                if (reader["enddate"] != null)
+                                {
+                                    dataGridView31.Rows[0].Cells[0].Value = reader["enddate"].ToString();
+                                }
+                                if (reader["Manager"] != null)
+                                {
+                                    dataGridView31.Rows[0].Cells[0].Value = reader["Manager"].ToString();
+                                }
+                                if (reader["DateCreate"] != null)
+                                {
+                                    dataGridView31.Rows[0].Cells[0].Value = reader["DateCreate"].ToString();
+                                }
+                                if (reader["Country"] != null)
+                                {
+                                    dataGridView31.Rows[0].Cells[0].Value = reader["Country"].ToString();
+                                }*/
+                                count++;
                             }
-                            if (reader["enddate"] != null)
-                            {
-                                dataGridView31.Rows[0].Cells[0].Value = reader["enddate"].ToString();
-                            }
-                            if (reader["Manager"] != null)
-                            {
-                                dataGridView31.Rows[0].Cells[0].Value = reader["Manager"].ToString();
-                            }
-                            if (reader["DateCreate"] != null)
-                            {
-                                dataGridView31.Rows[0].Cells[0].Value = reader["DateCreate"].ToString();
-                            }
-                            if (reader["Country"] != null)
-                            {
-                                dataGridView31.Rows[0].Cells[0].Value = reader["Country"].ToString();
-                            }*/
-                            count++;
                         }
                     }
                 }
+                connect.Close();
             }
-            connect.Close();
+            catch
+            {
+
+            }
         }
 
         private void button63_Click(object sender, EventArgs e)
@@ -8675,7 +8961,7 @@ namespace WordExChec
                 string query = "";
                 SqlCommand sqlcom = null; SqlDataReader reader;
                 SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
-                query = "select Agent_demand.id,Agent_demand.FirmName, Agent_demand.Client, Agent_demand.Number, Agent_demand.Phone,Agent_demand.Email,Agent_demand.Adult,Agent_demand.Child,Agent_demand.Path,Agent_demand.Days,Agent_demand.nights,convert(varchar,Agent_demand.startdate,105) as startdate ,convert(varchar,Agent_demand.enddate,105) as enddate,Managers.name as manager,Managers.number as managernum,convert(varchar,Agent_demand.DateCreate,105) as DateCreate,Country.Runame as country,agency.city as ag_city,Agent_demand.number,Agent_demand.Transport,Agent_demand.Transfer,Agent_demand.Transport,Agent_demand.Tour,Agent_demand.TourType,Agent_demand.Hotel,Agent_demand.NomerType,Agent_demand.Categorytype,Agent_demand.FoodType,Agent_demand.Excursion, Agent_demand.Adv from Agent_demand, agency,country,managers where Agent_demand.country=country.id and Agent_demand.manager=managers.id and Agent_demand.agency_key=agency.id and Agent_demand.id='" + row.Cells[11].Value.ToString() + "'";
+                query = "select Agent_demand.id,Agent_demand.FirmName, Agent_demand.Client, Agent_demand.Number, Agent_demand.Phone,Agent_demand.Email,Agent_demand.Adult,Agent_demand.Child,Agent_demand.Path,Agent_demand.Days,Agent_demand.nights,convert(varchar,Agent_demand.startdate,105) as startdate ,convert(varchar,Agent_demand.enddate,105) as enddate,convert(varchar,Agent_demand.DateCreate,105) as DateCreate,Country.Runame as country,agency.city as ag_city,Agent_demand.number,Agent_demand.Transport,Agent_demand.Transfer,Agent_demand.Transport,Agent_demand.Tour,Agent_demand.TourType,Agent_demand.Hotel,Agent_demand.NomerType,Agent_demand.Categorytype,Agent_demand.FoodType,Agent_demand.Excursion, Agent_demand.Adv from Agent_demand, agency,country where Agent_demand.country=country.id and Agent_demand.agency_key=agency.id and Agent_demand.id='" + row.Cells[0].Value.ToString() + "'";
                 connect.Open();
                 {
                     if (connect.State == ConnectionState.Open)
@@ -8705,7 +8991,7 @@ namespace WordExChec
                                 }
                                 if (reader["ag_city"] != null)
                                 {
-                                    comboBox38.Text = reader["ag_city"].ToString();
+                                    textBox44.Text = reader["ag_city"].ToString();
                                 }
                                 if (reader["Adult"] != null)
                                 {
@@ -8743,7 +9029,7 @@ namespace WordExChec
 
                                 if (reader["Transport"] != null)
                                 {
-                                    comboBox55.SelectedItem = reader["Transport"].ToString();
+                                    //comboBox55.SelectedItem = reader["Transport"].ToString();
                                 }
                                 if (reader["Transfer"] != null)
                                 {
@@ -8751,7 +9037,7 @@ namespace WordExChec
                                 }
                                 if (reader["Tour"] != null)
                                 {
-                                    comboBox48.Text = getTourInfo(reader["TourType"].ToString(),reader["Tour"].ToString());
+                                    //comboBox48.Text = getTourInfo(reader["TourType"].ToString(),reader["Tour"].ToString());
                                 }
                                 if (reader["Hotel"] != null)
                                 {
@@ -8769,19 +9055,19 @@ namespace WordExChec
                                 {
                                     comboBox40.Text = reader["FoodType"].ToString();
                                 }
-                                if (reader["Excursion"] != null)
+                                /*if (reader["Excursion"] != null)
                                 {
                                     textBox189.Text = reader["Excursion"].ToString();
                                 }
                                 if (reader["Adv"] != null)
                                 {
                                     textBox196.Text = reader["Adv"].ToString();
-                                }
+                                }*/
                             }
                 
                         }
                         reader.Close();
-                        query = "select FIO,PassportNum,Birthdate,PassportEnd from Agent_demand_turist where DemandKey='"+row.Cells[11].Value.ToString() + "'";
+                        query = "select FIO,PassportNum,Birthdate,PassportEnd from Agent_demand_turist where DemandKey='"+row.Cells[0].Value.ToString() + "'";
                         int count=0;
                         if (connect.State == ConnectionState.Open)
                         {
@@ -8839,12 +9125,17 @@ namespace WordExChec
 
         private void папкаСПотдвеждениямиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Section sec = new Section();
+            /*Section sec = new Section();
             string path = Path.GetFullPath(sec.readkey("SavePath", "AgentPath", "app.ini"));
             if ((path != null) && (Directory.Exists(path)))
             {
                 Process.Start(path);
-            }
+            }*/
+            Confirm = new ConfirmInfo();
+            textBox179.Text = Confirm.getNum(GetConnectSTR());
+            groupBox24.Visible = true;
+            panel11.Visible = false;
+
         }
 
         private void textBox11_Click(object sender, EventArgs e)
@@ -8864,7 +9155,7 @@ namespace WordExChec
             string query = ""; int count=0;
             SqlCommand sqlcom = null; SqlDataReader reader;
             SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
-            query = "select d.id, d.country, d.dogovornum, convert(varchar, d.dogovordate,104) as date, d.DogovorType, d.manager,d.email_yes,d.sms_yes,  cl.phone, cl.fio, cl.email,convert(varchar,cl.birthdate,104) as birthdate, cl.state_phone from clients as cl, dogovorinfo as d where cl.id=d.client and d.dogovordate>='" + makeSQLdate(dateTimePicker20.Text, '.') + "' and d.dogovordate<='" + makeSQLdate(dateTimePicker19.Text, '.') + "'";
+            query = "select d.id, c.Runame as country, d.dogovornum, convert(varchar, d.dogovordate,104) as date, d.DogovorType, m.name as manager,d.email_send,d.sms_send,  cl.phone, cl.fio, cl.email,convert(varchar,cl.birthdate,104) as birthdate, cl.state_phone from clients as cl, dogovorinfo_temp as d, country as c,managers as m where c.id=d.country and m.id=d.manager and cl.id=d.client and d.dogovordate>='" + makeSQLdate(dateTimePicker20.Text, '.') + "' and d.dogovordate<='" + makeSQLdate(dateTimePicker19.Text, '.') + "'";
             connect.Open();
             {
                 
@@ -8911,13 +9202,27 @@ namespace WordExChec
                             {
                                 dataGridView32.Rows[count].Cells[7].Value = reader["email"].ToString();
                             }
-                            if (reader["email_yes"] != null)
+                            if (reader["email_send"] != null)
                             {
-                                dataGridView32.Rows[count].Cells[8].Value = reader["email_yes"].ToString();
+                                if (Convert.ToBoolean(reader["email_send"])==true)
+                                {
+                                    dataGridView32.Rows[count].Cells[8].Value = "Да";
+                                }
+                                else
+                                {
+                                    dataGridView32.Rows[count].Cells[8].Value = "Нет";
+                                }
                             }
-                            if (reader["sms_yes"] != null)
+                            if (reader["sms_send"] != null)
                             {
-                                dataGridView32.Rows[count].Cells[9].Value = reader["sms_yes"].ToString();
+                                if (Convert.ToBoolean(reader["sms_send"]) == true)
+                                {
+                                    dataGridView32.Rows[count].Cells[9].Value = "Да";
+                                }
+                                else
+                                {
+                                    dataGridView32.Rows[count].Cells[9].Value = "Нет";
+                                }
                             }
                             if (reader["country"] != null)
                             {
@@ -9335,20 +9640,29 @@ namespace WordExChec
             Obj_dogovor.EndDate = makeSQLdate(dateTimePicker2.Text, '.');
             Obj_dogovor.TravelPath = textBox21.Text;
             //Obj_dogovor.CardNum = cardnum;
+            Obj_dogovor.CardNum = textBox107.Text;
+            if (comboBox38.Text == "VIP")
+            {
+                Obj_dogovor.CardNum += "-V";
+            }
+            else if (comboBox38.Text == "Привилегированная")
+            {
+                Obj_dogovor.CardNum += "-P";
+            }
             Obj_dogovor.GidTranslate =Convert.ToInt16(checkBox14.Checked).ToString();
             Obj_dogovor.InstructorTranslate = Convert.ToInt16(checkBox13.Checked).ToString();
             Obj_dogovor.VizaHelp = Convert.ToInt16(checkBox12.Checked).ToString();
             Obj_dogovor.EarlyBooking = Convert.ToInt16(checkBox73.Checked).ToString();
             if (this.checkBox17.Checked) { Obj_dogovor.AviaTransport = "1"; }
-            if (this.checkBox16.Checked) { Obj_dogovor.TrainTransport += "1"; }
-            if (this.checkBox15.Checked) { Obj_dogovor.AvtoTransport += "1"; }
+            if (this.checkBox16.Checked) { Obj_dogovor.TrainTransport = "1"; }
+            if (this.checkBox15.Checked) { Obj_dogovor.AvtoTransport = "1"; }
             Obj_dogovor.Tyroperator = comboBox16.Text;
             Obj_dogovor.Manager = Get_Value_combobox(comboBox14);
             Obj_dogovor.DateMakeMainDog = makeSQLdate(dateTimePicker22.Text,'.');
             Obj_dogovor.SMS_send = Convert.ToInt16(checkBox70.Checked).ToString();
             Obj_dogovor.Email_send =  Convert.ToInt16(checkBox69.Checked).ToString();
             Obj_dogovor.TourName = textBox37.Text;
-            Obj_dogovor.Hotel = textBox35.Text;
+            Obj_dogovor.Hotel = textBox35.Text.Replace("'", "''");
             Obj_dogovor.PayType = comboBox17.Text;
             if (radioButton1.Checked) { Obj_dogovor.Currency = "Руб"; }
             if (radioButton2.Checked) { Obj_dogovor.Currency = "EUR"; }
@@ -9434,7 +9748,72 @@ namespace WordExChec
 
             }
         }
-
+        private void FillTourOperator(ComboBox obj)
+        {
+            Set_Value_combobox("Все", "-1", obj);
+            obj.SelectedIndex = 0;
+            string query = "select id, to_shortname from touroperators";
+            //ComboboxItem item = new ComboboxItem();
+            try
+            {
+                SqlConnectionStringBuilder connectStr = GetConnectSTR();
+                SqlCommand sqlcom = null; SqlDataReader reader = null;
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                {
+                    if (connect.State == ConnectionState.Open)
+                    {
+                        sqlcom = new SqlCommand(query, connect);
+                        reader = sqlcom.ExecuteReader();
+                        if (reader.HasRows != false)
+                        {
+                            while (reader.Read())
+                            {
+                                /*   ComboboxItem item = new ComboboxItem();
+                                   item.Text = reader["RuName"].ToString();
+                                   item.Value = reader["id"].ToString();
+                                   obj.Items.Add(item);*/
+                                Set_Value_combobox(reader["to_shortname"].ToString(), reader["id"].ToString(), obj);
+                            }
+                        }
+                        reader.Close();
+                    }
+                }
+                connect.Close();
+                if ((obj.Name == "comboBox29") || (obj.Name == "comboBox28"))
+                {
+                    obj.SelectedIndex = 1;
+                }
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+                object[] countrys = new object[] {
+            "Anextour",
+            "Coral",
+            "Pegas",
+            "TezTour",
+            "Росинтур",
+            "Магазин Путешествий",
+            "Intourist",
+            "Labirinth",
+            "Натали",
+            "Ланта_тур_вояж",
+            "Тур_Транс_Вояж",
+            "Дельфин",
+            "Аврора_Интур",
+            "АлеанСПА"
+            };
+                this.comboBox26.Items.AddRange(countrys);
+                this.comboBox26.SelectedItem = "Все";
+                this.comboBox28.Items.AddRange(countrys);
+                this.comboBox29.Items.AddRange(countrys);
+                comboBox28.SelectedItem = "Россия";
+                comboBox29.SelectedItem = "Россия";
+                this.comboBox37.Items.AddRange(countrys);
+                comboBox37.SelectedItem = "Италия";
+            }
+        }
         private void FillCountry(ComboBox obj)
         {
             Set_Value_combobox("Все", "-1", obj);
@@ -9467,6 +9846,10 @@ namespace WordExChec
                     }
                 }
                 connect.Close();
+                if ((obj.Name == "comboBox29") || (obj.Name == "comboBox28"))
+                {
+                    obj.SelectedIndex = 1;
+                }
             }
             catch
             {
@@ -9532,6 +9915,10 @@ namespace WordExChec
                     }
                 }
                 connect.Close();
+                if ((obj.Name == "comboBox14") || (obj.Name == "comboBox5"))
+                {
+                    obj.SelectedIndex = 1;
+                }
             }
             catch
             {
@@ -9568,8 +9955,12 @@ namespace WordExChec
         }
         private void внесениеПлатежейToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            comboBox2.SelectedItem = "Предварительный";
             FillCountry(comboBox56);
             FillManager(comboBox57, "client");
+            panel10.Visible = true;
+            groupBox1.Visible = false;
+            groupBox2.Visible = false;
         }
         private void Set_Value_combobox(string text, string value, ComboBox obj)
         {
@@ -9591,9 +9982,9 @@ namespace WordExChec
         private void button73_Click(object sender, EventArgs e)
         {
             
-            ComboboxItem i_с = (ComboboxItem)comboBox56.Items[comboBox56.SelectedIndex];
-            ComboboxItem i_m = (ComboboxItem)comboBox57.Items[comboBox57.SelectedIndex];
-            getDogovorList(i_с, i_m, dataGridView34, "Предварительный");
+            //ComboboxItem i_с = (ComboboxItem)comboBox56.Items[comboBox56.SelectedIndex];
+            //ComboboxItem i_m = (ComboboxItem)comboBox57.Items[comboBox57.SelectedIndex];
+            getDogovorList(Get_Value_combobox(comboBox56), Get_Value_combobox(comboBox57), dataGridView34, comboBox2.Text);
             /*string query = "select id, name from managers";
             try
             {
@@ -9679,16 +10070,47 @@ namespace WordExChec
                 erorrFSave("error.txt", query);
             }
         }
+        private void get_dogovorPaymentList(string mkey, string pkey, DataGridView data)
+        {
+            int count = 0;
+            string query = " select p.id, convert(varchar,p.date,105) as date, p.sum_en,p.sum_ru,p.course, d.dogovornum from payment as p, dogovorinfo_temp as d where (dogovor_key='" + mkey + "' or dogovor_key='" + pkey + "') and p.dogovor_key=d.id";
+            try
+            {
+                SqlConnectionStringBuilder connectStr = GetConnectSTR();
+                SqlCommand sqlcom = null; SqlDataReader reader = null;
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    data.Rows.Clear();
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    if (reader.HasRows != false)
+                    {
+                        while (reader.Read())
+                        {
+                            data.Rows.Add();
+                            data.Rows[count].Cells[0].Value = reader["id"].ToString();
+                            data.Rows[count].Cells[1].Value = reader["date"].ToString();
+                            data.Rows[count].Cells[2].Value = reader["sum_en"].ToString();
+                            data.Rows[count].Cells[3].Value = reader["sum_ru"].ToString();
+                            data.Rows[count].Cells[4].Value = reader["course"].ToString();
+                            data.Rows[count].Cells[5].Value = reader["dogovornum"].ToString();
+                            count++;
+                        }
+                    }
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+       
         private void dataGridView34_SelectionChanged(object sender, EventArgs e)
         {
-            DataGridView data = (DataGridView)sender;
-            if (data.SelectedCells.Count != 0)
-            {
-                if (data.Rows[data.SelectedCells[0].RowIndex].Cells[0].Value != null)
-                {
-                    get_dogovorPaymentList(data.Rows[data.SelectedCells[0].RowIndex].Cells[0].Value.ToString(), dataGridView35);
-                }
-            }
+         
         }
 
         private void button77_Click(object sender, EventArgs e)
@@ -9730,17 +10152,18 @@ namespace WordExChec
                 try
                 {
                     SqlConnectionStringBuilder connectStr = GetConnectSTR();
-                    SqlCommand sqlcom = null; SqlDataReader reader = null;
+                    SqlCommand sqlcom = null;
                     SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
                     connect.Open();
                     if (connect.State == ConnectionState.Open)
                     {
                         sqlcom = new SqlCommand(query, connect);
                         sqlcom.ExecuteNonQuery();
-                        get_dogovorPaymentList(dataGridView34.Rows[dataGridView34.SelectedCells[0].RowIndex].Cells[0].Value.ToString(), dataGridView35);
+                        //get_dogovorPaymentList(dataGridView34.Rows[dataGridView34.SelectedCells[0].RowIndex].Cells[0].Value.ToString(), dataGridView35);
                         payment_to_1C(dataGridView34.Rows[dataGridView34.SelectedCells[0].RowIndex].Cells[0].Value.ToString(),DateTime.Now.ToShortDateString(), textBox146.Text, textBox153.Text, textBox163.Text);
                     }
                     connect.Close();
+                    button98_Click(sender, e);
                 }
                 catch
                 {
@@ -9765,8 +10188,8 @@ namespace WordExChec
             wr.Close();
             XmlDocument doc = new XmlDocument();
             doc.Load(xmlpath);
-            
-            string query = "select d.dogovornum,d.dogovordate, d.FIO,c.RuName as country,m.name as manager from dogovorinfo_temp as d,country as c, managers as m where d.id='"+dogovor_key+"' and m.id=d.manager and c.id=d.country";
+
+            string query = "select d.dogovornum,d.Currency,convert(varchar,d.dogovordate,104) as dogovordate, convert(varchar,d.startdate,104) as startdate, convert(varchar,d.enddate,104) as enddate, d.FIO,c.RuName as country,m.name as manager from dogovorinfo_temp as d,country as c, managers as m where d.id='" + dogovor_key + "' and m.id=d.manager and c.id=d.country";
             try
                 {
                     SqlConnectionStringBuilder connectStr = GetConnectSTR();
@@ -9780,18 +10203,22 @@ namespace WordExChec
                         while (reader.Read())
                         {
                             addXmlnode("UID", dogovor_key, doc);
+                            //addXmlnode("UID", Obj_dogovor.payment.Id, doc);
                             addXmlnode("dogovor_number", reader["dogovornum"].ToString(), doc);
                             addXmlnode("dogovor_date", reader["dogovordate"].ToString(), doc);
                             addXmlnode("manager", reader["manager"].ToString(), doc);
                             addXmlnode("country", reader["country"].ToString(), doc);
+                            addXmlnode("begin_date", reader["startdate"].ToString(), doc);
+                            addXmlnode("end_date", reader["enddate"].ToString(), doc);
                             addXmlnode("Client", reader["FIO"].ToString(), doc);
                             addXmlnode("payment_date", date, doc);
+                            addXmlnode("currency", reader["currency"].ToString(), doc);
                             addXmlnode("yesum", yesum, doc);
                             addXmlnode("rubsum", rubsum, doc);
                             addXmlnode("course", course, doc);
                         }
                     }
-                    connect.Close(); doc.Save(xmlpath);
+                    connect.Close(); doc.Save(xmlpath); MessageBox.Show("Данные в 1С выгружены");
                 }
             catch
             {
@@ -9832,7 +10259,7 @@ namespace WordExChec
                 try
                 {
                     SqlConnectionStringBuilder connectStr = GetConnectSTR();
-                    SqlCommand sqlcom = null; SqlDataReader reader = null;
+                    SqlCommand sqlcom = null;
                     SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
                     connect.Open();
                     if (connect.State == ConnectionState.Open)
@@ -9898,7 +10325,7 @@ namespace WordExChec
             try
             {
                 SqlConnectionStringBuilder connectStr = GetConnectSTR();
-                SqlCommand sqlcom = null; SqlDataReader reader = null;
+                SqlCommand sqlcom = null;
                 SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
                 connect.Open();
                 if (connect.State == ConnectionState.Open)
@@ -9927,32 +10354,47 @@ namespace WordExChec
         }
         private void button75_Click(object sender, EventArgs e)
         {
-            delete_payment(dataGridView35);  
+            delete_payment(dataGridView35);
+            button98_Click(sender, e);
         }
 
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;
             textBox33.Text = "Предварительный";
+            textBox49.Text = "";
+            textBox7.Text = "";
             groupBox1.Visible = false;
             groupBox2.Visible = false;
             Obj_dogovor = null;
             dataGridView21.Rows.Clear();
+            groupBox24.Visible = false;
         }
 
         private void загрузитьToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;
             textBox33.Text = "Основной";
+            textBox49.Text = "";
+            textBox7.Text = "";
             groupBox1.Visible = false;
             groupBox2.Visible = false;
             Obj_dogovor = null;
             dataGridView21.Rows.Clear();
+            groupBox24.Visible = false;
         }
 
         private void dataGridView33_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        private string Match_func(string pattern, string str)
+        {
+            string result=null;
+            Regex regex = new Regex(pattern);
+            Match match = regex.Match(str);
+            result = match.Value;
+            return result;
         }
 
         private void MainDogovorRead()
@@ -9961,9 +10403,16 @@ namespace WordExChec
             textBox33.Text = "";
             groupBox1.Visible = true;
             //load
-            comboBox6.Text = Obj_dogovor.clientID.FIO;
+            if (Obj_dogovor.clientID.FIO != null)
+            {
+                comboBox6.Text = Obj_dogovor.clientID.FIO;
+            }
+            else
+            {
+                comboBox6.Text = Obj_dogovor.FIO;
+            }
             textBox2.Text = Obj_dogovor.Travelprogram;
-            dateTimePicker24.Text = Obj_dogovor.DateMakeMainDog;
+            //dateTimePicker24.Text = Obj_dogovor.DateMakeMainDog;
             dateTimePicker3.Text = Obj_dogovor.StartDate;
             dateTimePicker4.Text = Obj_dogovor.EndDate;
             comboBox28.Text = Obj_dogovor.Country;
@@ -9972,7 +10421,18 @@ namespace WordExChec
             if (Obj_dogovor.InstructorTranslate != "") {checkBox2.Checked = Convert.ToBoolean(Obj_dogovor.InstructorTranslate);}
             if (Obj_dogovor.VizaHelp != "") {checkBox3.Checked = Convert.ToBoolean(Obj_dogovor.VizaHelp);}
             if (Obj_dogovor.EarlyBooking != "") {checkBox72.Checked = Convert.ToBoolean(Obj_dogovor.EarlyBooking);}
-            textBox136.Text = Obj_dogovor.CardNum;
+            textBox136.Text = Match_func("[0-9]*", Obj_dogovor.CardNum);
+            if ((Obj_dogovor.CardNum != null) && (Obj_dogovor.CardNum != ""))
+            {
+                if (Obj_dogovor.CardNum.Substring(Obj_dogovor.CardNum.Length - 1, 1) == "V")
+                {
+                    comboBox13.Text = "VIP";
+                }
+                else
+                {
+                    comboBox13.Text = "Привилегированная";
+                }
+            }
             //
             if (Obj_dogovor.AviaTransport != "") { this.checkBox4.Checked = Convert.ToBoolean(Obj_dogovor.AviaTransport); }
             if (Obj_dogovor.TrainTransport != "") { this.checkBox5.Checked = Convert.ToBoolean(Obj_dogovor.TrainTransport); }
@@ -9981,6 +10441,7 @@ namespace WordExChec
             comboBox3.Text = Obj_dogovor.Tyroperator;
             comboBox5.Text = Obj_dogovor.Manager;
             textBox1.Text = Obj_dogovor.Pred_DogovorNum;
+            //textBox49.Text = Obj_dogovor.Dogovornum;
             textBox8.Text = Obj_dogovor.clientID.FIO;
             if (Obj_dogovor.Enpass_use != "") { checkBox33.Checked = Convert.ToBoolean(Obj_dogovor.Enpass_use); }
             if (Obj_dogovor.Rupass_use != "") { checkBox34.Checked = Convert.ToBoolean(Obj_dogovor.Rupass_use); }
@@ -10013,7 +10474,7 @@ namespace WordExChec
             { radioButton5.Checked = true; }
             else if (Obj_dogovor.Currency == "USD")
             { radioButton6.Checked = true; }
-            //Obj_dogovor.payment.load(GetConnectSTR(), Obj_dogovor.Id, makeSQLdate(Obj_dogovor.DogovorDate,'.'));
+            Obj_dogovor.payment.load(GetConnectSTR(), Obj_dogovor.Id, makeSQLdate(Obj_dogovor.DogovorDate,'.'));
             /*if (Obj_dogovor.payment.Ye_sum != Obj_dogovor.ENPrice)
             {
                 textBox47.Text = Obj_dogovor.payment.Ye_sum;
@@ -10028,9 +10489,16 @@ namespace WordExChec
             textBox33.Text = "";
             groupBox2.Visible = true;
             //load
-            comboBox9.Text = Obj_dogovor.clientID.FIO;
+            if (Obj_dogovor.clientID.FIO != null)
+            {
+                comboBox9.Text = Obj_dogovor.clientID.FIO;
+            }
+            else
+            {
+                comboBox9.Text = Obj_dogovor.FIO;
+            }
             textBox25.Text = Obj_dogovor.Travelprogram;
-            dateTimePicker23.Text = Obj_dogovor.DateMakeMainDog;
+            //dateTimePicker23.Text = Obj_dogovor.DateMakeMainDog;
             dateTimePicker1.Text = Obj_dogovor.StartDate;
             dateTimePicker2.Text = Obj_dogovor.EndDate;
             this.comboBox29.Text = Obj_dogovor.Country;
@@ -10040,6 +10508,19 @@ namespace WordExChec
             if (Obj_dogovor.VizaHelp != "") { checkBox12.Checked = Convert.ToBoolean(Obj_dogovor.VizaHelp); }
             if (Obj_dogovor.EarlyBooking != "") { checkBox73.Checked = Convert.ToBoolean(Obj_dogovor.EarlyBooking); }
             //textBox136.Text = Obj_dogovor.CardNum;
+            textBox107.Text = Match_func("[0-9]*", Obj_dogovor.CardNum);
+           // textBox107.Text = Obj_dogovor.CardNum;
+            if ((Obj_dogovor.CardNum != null) && (Obj_dogovor.CardNum != ""))
+            {
+                if (Obj_dogovor.CardNum.Substring(Obj_dogovor.CardNum.Length - 1, 1) == "V")
+                {
+                    comboBox38.Text = "VIP";
+                }
+                else
+                {
+                    comboBox38.Text = "Привилегированная";
+                }
+            }
             //
             if (Obj_dogovor.AviaTransport != "") { this.checkBox17.Checked = Convert.ToBoolean(Obj_dogovor.AviaTransport); }
             if (Obj_dogovor.TrainTransport != "") { this.checkBox16.Checked = Convert.ToBoolean(Obj_dogovor.TrainTransport); }
@@ -10114,6 +10595,7 @@ namespace WordExChec
                     if (Obj_dogovor.DogovorType == "Предварительный")
                     {
                         textBox1.Text = Obj_dogovor.Dogovornum;
+                        checkBox26.Checked = false;
                         Unlink_datagridkey(dataGridView14);
                         Unlink_datagridkey(dataGridView1);
                         Unlink_datagridkey(dataGridView2);
@@ -10124,6 +10606,7 @@ namespace WordExChec
                         Unlink_datagridkey(dataGridView7);
                         Obj_dogovor = new DogovorInfo(Obj_dogovor.Id);
                     }
+                    //get_dogovorPaymentList(Obj_dogovor.Id, dataGridView36);
                     
                 }
                 else if (textBox33.Text == "Предварительный")
@@ -10161,11 +10644,14 @@ namespace WordExChec
                     {
                         foreach (DataGridViewRow r in data.Rows)
                         {
-                            if ((r.Cells[0].Value != null) && (r.Cells[0].Value != ""))
+                            if (r.Cells[0].Value != null) 
                             {
-                                query = "delete from " + table + " where id='" + r.Cells[0].Value.ToString() + "'";
-                                sqlcom = new SqlCommand(query, connect);
-                                sqlcom.ExecuteNonQuery();
+                                if (r.Cells[0].Value.ToString() != "")
+                                {
+                                    query = "delete from " + table + " where id='" + r.Cells[0].Value.ToString() + "'";
+                                    sqlcom = new SqlCommand(query, connect);
+                                    sqlcom.ExecuteNonQuery();
+                                }
                             }
 
                         }
@@ -10228,6 +10714,14 @@ namespace WordExChec
             Obj_dogovor.EndDate = makeSQLdate(dateTimePicker4.Text,'.');
             Obj_dogovor.TravelPath = textBox6.Text;
             Obj_dogovor.CardNum = textBox136.Text;
+            if (comboBox13.Text == "VIP")
+            {
+                Obj_dogovor.CardNum += "-V";
+            }
+            else if (comboBox13.Text == "Привилегированная")
+            {
+                Obj_dogovor.CardNum += "-P";
+            }
             Obj_dogovor.GidTranslate = Convert.ToInt16(checkBox1.Checked).ToString(); ;
             Obj_dogovor.InstructorTranslate = Convert.ToInt16(checkBox2.Checked).ToString(); ;
             Obj_dogovor.VizaHelp = Convert.ToInt16(checkBox3.Checked).ToString(); ;
@@ -10242,7 +10736,7 @@ namespace WordExChec
             Obj_dogovor.SMS_send = Convert.ToInt16(checkBox67.Checked).ToString(); ;
             Obj_dogovor.Email_send = Convert.ToInt16(checkBox68.Checked).ToString(); ;
             Obj_dogovor.TourName = textBox17.Text;
-            Obj_dogovor.Hotel = textBox19.Text;
+            Obj_dogovor.Hotel = textBox19.Text.Replace("'","''");
             Obj_dogovor.PayType = comboBox19.Text;
             if (radioButton4.Checked) { Obj_dogovor.Currency = "Руб"; }
             if (radioButton5.Checked) { Obj_dogovor.Currency = "EUR"; }
@@ -10277,7 +10771,7 @@ namespace WordExChec
                 {
                     Obj_dogovor.clientID.Insert(GetConnectSTR());
                 }
-                textBox49.Text = Obj_dogovor.Dogovornum;
+                //textBox49.Text = Obj_dogovor.Dogovornum;
             }
             Obj_dogovor.DogovorInfoSave(GetConnectSTR());
             if ((Obj_dogovor.payment.Id != "")&&(Obj_dogovor.payment.Id != null))
@@ -10286,7 +10780,6 @@ namespace WordExChec
             }
             else
             {
-                
                 if ((textBox20.Text != "") && ((textBox47.Text != "") || (textBox46.Text != "")))
                 {
                     Obj_dogovor.payment.Ye_sum = textBox47.Text;
@@ -10310,7 +10803,7 @@ namespace WordExChec
             try
             {
                 SqlConnectionStringBuilder connectStr = GetConnectSTR();
-                SqlCommand sqlcom = null; SqlDataReader reader = null;
+                SqlCommand sqlcom = null; 
                 SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
                 connect.Open();
                 if (connect.State == ConnectionState.Open)
@@ -10421,7 +10914,791 @@ namespace WordExChec
             if (radioButton3.Checked) { cur = radioButton3.Text; label202.Text = "y.e"; }
             textBox31.Text = Avans_sum_calc(dataGridView37, cur);
         }
-        
+
+        private void button72_Click(object sender, EventArgs e)
+        {
+            if (Obj_dogovor.Id != null) 
+            {
+                if (Obj_dogovor.Id != "")
+                {
+                    if (radioButton1.Checked == true)
+                    {
+                        if (textBox28.Text != "")
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox29.Text, textBox28.Text, textBox27.Text);
+                        }
+                        else if (textBox24.Text != "")
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox26.Text, textBox24.Text, textBox27.Text);
+                        }
+                    }
+                    else
+                    {
+                        if ((textBox29.Text != "") && (textBox28.Text != "") && (textBox27.Text != "") && (textBox29.Text != "0") && (textBox28.Text != "0"))
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox29.Text, textBox28.Text, textBox27.Text);
+                        }
+                        else if ((textBox26.Text != "") && (textBox24.Text != "") && (textBox27.Text != ""))
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox26.Text, textBox24.Text, textBox27.Text);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Сохраните или Загрузите договор");
+            }
+        }
+
+        private void button29_Click_1(object sender, EventArgs e)
+        {
+            if (Obj_dogovor.Id != null) 
+            {
+                if (Obj_dogovor.Id != "")
+                {
+                    if (radioButton4.Checked == true)
+                    {
+                        if (textBox46.Text != "")
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox47.Text, textBox46.Text, textBox45.Text);
+                        }
+                        else if (textBox14.Text != "")
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox13.Text, textBox14.Text, textBox15.Text);
+                        }
+                    }
+                    else
+                    {
+                        if ((textBox47.Text != "") && (textBox46.Text != "") && (textBox45.Text != "") && (textBox47.Text != "0") && (textBox46.Text != "0"))
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox47.Text, textBox46.Text, textBox45.Text);
+                        }
+                        else if ((textBox13.Text != "") && (textBox14.Text != "") && (textBox15.Text != ""))
+                        {
+                            payment_to_1C(Obj_dogovor.Id, DateTime.Now.ToShortDateString(), textBox13.Text, textBox14.Text, textBox15.Text);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Сохраните или Загрузите договор");
+            }
+        }
+        private ArrayList getTourist(string key)
+        {
+            ArrayList ar = new ArrayList();
+            SqlConnectionStringBuilder connectStr = GetConnectSTR();
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "select fio from TuristInfo where DInfoKey='"+key+"'";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ar.Add(reader["fio"]);
+                    }
+
+                }
+                connect.Close();
+            }
+            catch
+            {
+
+            }
+            return ar;
+
+        }
+        private void button97_Click(object sender, EventArgs e)
+        {
+            if ((dataGridView34.Rows[dataGridView34.SelectedCells[0].RowIndex].Cells[0].Value != null) && (textBox146.Text != "") && (textBox153.Text != "") && (textBox163.Text != ""))
+            {
+                object[] ExcelParam = new object[1];
+
+                Type obj_excel = Type.GetTypeFromProgID("Excel.Application");
+                object Excel = Activator.CreateInstance(obj_excel);
+
+                object obj_workbooks = Excel.GetType().InvokeMember("Workbooks", BindingFlags.GetProperty, null, Excel, null);
+                //ExcelParam[0] = Basepath + @"Template\zayavkaNaOlatyTyraNPred.xls";
+                ExcelParam[0] = GetTempTemlate("Template", "zayavkaNaDoplaty.xls");
+                object obj_workbook = obj_workbooks.GetType().InvokeMember("Open", BindingFlags.InvokeMethod, null, obj_workbooks, ExcelParam);
+                object obj_worksheets = obj_workbook.GetType().InvokeMember("Worksheets", BindingFlags.GetProperty, null, obj_workbook, null);
+                ExcelParam[0] = 1;
+                object obj_worksheet = obj_worksheets.GetType().InvokeMember("Item", BindingFlags.GetProperty, null, obj_worksheets, ExcelParam);
+                DogovorInfo dogovor = new DogovorInfo();
+                dogovor.Load(GetConnectSTR(), dataGridView34.Rows[dataGridView34.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+                if (dogovor.Tyroperator == "Росинтур")
+                {
+                    SetCellData("ООО ТК \"РОСИНТУР\"", "A2", obj_worksheet);
+                }
+                {
+                    SetCellData("ООО ТК \"РОСИНТУР-ЮГ\"", "A2", obj_worksheet);
+                }
+                SetCellData(comboBox1.Text, "H2", obj_worksheet);
+                SetCellData(dogovor.FIO, "D5", obj_worksheet);
+                SetCellData(dogovor.TourName, "D6", obj_worksheet);
+                SetCellData(dogovor.StartDate+" - "+dogovor.EndDate, "D7", obj_worksheet);
+                SetCellData(dogovor.Hotel, "D8", obj_worksheet);
+                SetCellData("Доплата по договору № " + dogovor.Dogovornum, "D9", obj_worksheet);
+                SetCellData("№ " + dogovor.Dogovornum, "B4", obj_worksheet);
+                SetCellData("от " + dateTimePicker21.Text, "D4", obj_worksheet);
+                int i = 0;
+                foreach(string el in getTourist(dogovor.Id))
+                {
+                    SetCellData(el.ToString(), "A"+(13+i), obj_worksheet);
+                    i++;
+                }
+                if (dataGridView38.Rows[0].Cells[0].Value != null)
+                {
+                    SetCellData(dataGridView38.Rows[0].Cells[0].Value.ToString(), "B13", obj_worksheet);
+                    SetCellData(dataGridView38.Rows[0].Cells[0].Value.ToString(), "J13", obj_worksheet);
+                }
+                string av_sum = "";
+                foreach (DataGridViewRow r in dataGridView35.Rows)
+                {
+                    if ((r.Cells[1].Value != null)&&(r.Index!=(dataGridView35.RowCount-2)))
+                    {
+                        av_sum += r.Cells[1].Value + "   Сумма y.e - " + r.Cells[2].Value + ",  Сумма руб - " + r.Cells[3].Value + ",  курс-" + r.Cells[4].Value + ";                     ";
+                    }
+                }
+                SetCellData(av_sum, "B21", obj_worksheet);
+                if ((dataGridView38.Rows[0].Cells[0].Value != null) && (dataGridView38.Rows[0].Cells[1].Value != null) && (dataGridView38.Rows[0].Cells[2].Value != null) && (dataGridView38.Rows[0].Cells[3].Value!=null))
+                {
+                    double yedolg = 0;
+                    double rusdolg = 0;
+                    if (dataGridView38.Rows[0].Cells[3].Value.ToString() == "Руб")
+                    {
+                         rusdolg = Convert.ToInt32(dataGridView38.Rows[0].Cells[0].Value) - Convert.ToDouble(dataGridView38.Rows[0].Cells[1].Value);
+                    }
+                    else
+                    {
+                        yedolg = Math.Round((Convert.ToDouble(dataGridView38.Rows[0].Cells[0].Value) - Convert.ToDouble(dataGridView38.Rows[0].Cells[1].Value)),2);
+                        rusdolg = Math.Round(yedolg*Convert.ToDouble(textBox163.Text),0);
+                    }
+                    SetCellData(yedolg.ToString(), "C22", obj_worksheet);
+                    SetCellData(rusdolg.ToString(), "J22", obj_worksheet);
+                    
+                }
+                SetCellData(dogovor.Manager, "B26", obj_worksheet);
+                SetCellData(dogovor.Currency, "B19", obj_worksheet);
+                SetCellData(textBox163.Text, "E19", obj_worksheet);
+                SetCellData(textBox146.Text, "C20", obj_worksheet);
+                SetCellData(textBox153.Text, "J20", obj_worksheet);
+
+                DocumentsaveA(obj_workbook, dogovor.Dogovornum, dogovor.Manager, dogovor.FIO, "(Доплата)");
+                ExcelParam[0] = "True";
+                Excel.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, Excel, ExcelParam);
+                //Predarguments.setparamE(Excel, obj_workbook);
+                //make zayvka
+
+                //clean excel
+
+                Marshal.ReleaseComObject(obj_workbooks);
+                Marshal.ReleaseComObject(obj_workbook);
+                Marshal.ReleaseComObject(obj_worksheet);
+                Marshal.ReleaseComObject(obj_worksheets);
+
+                //GC.GetTotalMemory(true);  
+                button1.Enabled = true;
+                button5.Enabled = true;
+                button6.Enabled = true;
+                button13.Visible = false;
+
+            }
+        }
+
+        private void button98_Click(object sender, EventArgs e)
+        {
+            DataGridView data = dataGridView34;
+            if (data.SelectedCells.Count != 0)
+            {
+                if (data.Rows[data.SelectedCells[0].RowIndex].Cells[0].Value != null)
+                {
+                    get_dogovorPaymentList(data.Rows[data.SelectedCells[0].RowIndex].Cells[0].Value.ToString(), dataGridView35);
+                }
+                DogovorInfo dogovor = new DogovorInfo();
+                dogovor.Load(GetConnectSTR(), data.Rows[data.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+
+                if (dogovor.Currency == "Руб")
+                {
+                    dataGridView38.Rows[0].Cells[0].Value = (object)dogovor.RUPrice;
+                    dataGridView38.Rows[0].Cells[1].Value = (object)Avans_sum_calc(dataGridView35, "Рубли");
+                    if ((dataGridView38.Rows[0].Cells[0].Value != null)&&(dataGridView38.Rows[0].Cells[0].Value != ""))
+                    {
+                        dataGridView38.Rows[0].Cells[2].Value = (object)(Convert.ToInt32(dataGridView38.Rows[0].Cells[0].Value) - Convert.ToInt32(dataGridView38.Rows[0].Cells[1].Value));
+                    }
+                    dataGridView38.Rows[0].Cells[3].Value = (object)dogovor.Currency;
+                }
+                else
+                {
+                    dataGridView38.Rows[0].Cells[0].Value = (object)dogovor.ENPrice;
+                    dataGridView38.Rows[0].Cells[1].Value = (object)Avans_sum_calc(dataGridView35, dogovor.Currency);
+                    if (dataGridView38.Rows[0].Cells[0].Value != null)
+                    {
+                        dataGridView38.Rows[0].Cells[2].Value = (object)Math.Round((Convert.ToDouble(dataGridView38.Rows[0].Cells[0].Value) - Convert.ToDouble(dataGridView38.Rows[0].Cells[1].Value)), 2);
+                    }
+                    dataGridView38.Rows[0].Cells[3].Value = (object)dogovor.Currency; 
+                }
+            }
+        }
+
+        private void button99_Click(object sender, EventArgs e)
+        {
+            panel10.Visible = false;
+        }
+        private void upload_sel_payment(DataGridView data, int i)
+        {
+            foreach (DataGridViewRow r in data.Rows)
+            {
+                if (r.Cells[i].Value != null)
+                {
+                    if (Convert.ToBoolean(r.Cells[i].Value)== true)
+                    {
+                        Payment p=new Payment();//p.Id=r.Cells[0].Value.ToString();
+                        payment_to_1C(p.getDogovorKey(GetConnectSTR(), r.Cells[0].Value.ToString()), r.Cells[1].Value.ToString(), r.Cells[2].Value.ToString(), r.Cells[3].Value.ToString(), r.Cells[4].Value.ToString());
+                    }
+                }
+            }
+        }
+        private void button100_Click(object sender, EventArgs e)
+        {
+              upload_sel_payment(dataGridView37,5);
+        }
+
+        private void button101_Click(object sender, EventArgs e)
+        {
+            upload_sel_payment(dataGridView36, 6);
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            DataGridViewCellEventArgs earg = new DataGridViewCellEventArgs(1, 0);
+            dataGridView7_CellEndEdit(dataGridView7, earg);
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            DataGridViewCellEventArgs earg = new DataGridViewCellEventArgs(1, 0);
+            dataGridView7_CellEndEdit(dataGridView7, earg);
+        }
+
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            DataGridViewCellEventArgs earg = new DataGridViewCellEventArgs(1, 0);
+            dataGridView7_CellEndEdit(dataGridView7, earg);
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            DataGridViewCellEventArgs earg = new DataGridViewCellEventArgs(1, 0);
+            dataGridView16_CellEndEdit(dataGridView16, earg);
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox16_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Obj_dogovor.Id != null)
+            {
+                if (Obj_dogovor.Dogovornum != "")
+                {
+                    if (comboBox16.Text == "Росинтур")
+                    {
+                        textBox7.Text = Obj_dogovor.ChangeDogNum("Р");
+                    }
+                    else
+                    {
+                        textBox7.Text = Obj_dogovor.ChangeDogNum("Ю");
+                    }
+                }
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Obj_dogovor.Id != null)
+            {
+                if (Obj_dogovor.Dogovornum != "")
+                {
+                    if (comboBox3.Text == "Росинтур")
+                    {
+                        textBox49.Text = Obj_dogovor.ChangeDogNum("Р");
+                    }
+                    else
+                    {
+                        textBox49.Text = Obj_dogovor.ChangeDogNum("Ю");
+                    }
+                }
+            }
+        }
+
+        private void button53_Click(object sender, EventArgs e)
+        {
+            if ((comboBox41.Text != "Все") && (comboBox52.Text != "Все") && (comboBox49.Text != "Все"))
+            {
+                string cur = "";
+                ConfirmInfoTourist citurist = null; ConfirmInfoTicket citicket = null;
+                /*string visa = 0; string medins = 0; string canselins = 0;
+                if (checkBox18.Checked)
+                {
+                    visa = 1;
+                }
+                if (checkBox19.Checked)
+                {
+                    medins = 1;
+                }
+                if (checkBox20.Checked)
+                {
+                    canselins = 1;
+                }*/
+                string v = Convert.ToInt16(checkBox18.Checked).ToString();
+                string mi = Convert.ToInt16(checkBox19.Checked).ToString();
+                string cansi = Convert.ToInt16(checkBox19.Checked).ToString();
+                //Agency ag=null;
+                DatagridInit(dataGridView25,"???");
+                DatagridInit(dataGridView40,"-");
+                DatagridInit(dataGridView27, "0");
+                if (Confirm.Id == null)
+                {
+                    // ag = new Agency(null, textBox201.Text, textBox44.Text, null, textBox177.Text, textBox175.Text, textBox172.Text);
+
+                    //ConfirmInfo ci = new ConfirmInfo("", makeSQLdate(DateTime.Now.ToShortDateString(), '.'), textBox179.Text, textBox197.Text, makeSQLdate(dateTimePicker13.Value.ToShortDateString(), '.'), makeSQLdate(dateTimePicker12.Value.ToShortDateString(), '.'), Get_Value_combobox(comboBox41), textBox178.Text, textBox171.Text, Convert.ToInt16(checkBox9.Checked).ToString(), Convert.ToInt16(checkBox8.Checked).ToString(), Convert.ToInt16(checkBox7.Checked).ToString(), Get_Value_combobox(comboBox52), dataGridView27.Rows[0].Cells[0].Value.ToString(), dataGridView27.Rows[0].Cells[3].Value.ToString(), dataGridView27.Rows[0].Cells[1].Value.ToString(), dataGridView27.Rows[0].Cells[2].Value.ToString(), makeSQLdate(dateTimePicker15.Value.ToShortDateString(), '.'), makeSQLdate(dateTimePicker14.Value.ToShortDateString(), '.'), cur, Get_Value_combobox(comboBox49), comboBox39.Text, textBox185.Text, comboBox46.Text, comboBox45.Text, comboBox40.Text, v, textBox189.Text, mi, cansi, textBox196.Text, new Agency(null, textBox201.Text, textBox44.Text, null, textBox177.Text, textBox175.Text, textBox172.Text));
+                    
+                    Confirm = new ConfirmInfo("", makeSQLdate(DateTime.Now.ToShortDateString(), '.'), textBox179.Text, textBox197.Text, makeSQLdate(dateTimePicker13.Value.ToShortDateString(), '.'), makeSQLdate(dateTimePicker12.Value.ToShortDateString(), '.'), Get_Value_combobox(comboBox41), textBox178.Text, textBox171.Text, Convert.ToInt16(checkBox9.Checked).ToString(), Convert.ToInt16(checkBox8.Checked).ToString(), Convert.ToInt16(checkBox7.Checked).ToString(), Get_Value_combobox(comboBox52), dataGridView27.Rows[0].Cells[0].Value.ToString(), dataGridView27.Rows[0].Cells[3].Value.ToString(), dataGridView27.Rows[0].Cells[1].Value.ToString(), dataGridView27.Rows[0].Cells[2].Value.ToString(), makeSQLdate(dateTimePicker15.Value.ToShortDateString(), '.'), makeSQLdate(dateTimePicker14.Value.ToShortDateString(), '.'), cur, Get_Value_combobox(comboBox49), comboBox39.Text, textBox185.Text, comboBox46.Text, comboBox45.Text, comboBox40.Text, v, textBox189.Text, mi, cansi, textBox196.Text, numericUpDown12.Value.ToString(), numericUpDown13.Value.ToString(), new Agency(null, textBox201.Text, textBox44.Text, null, textBox177.Text, textBox175.Text, textBox172.Text));
+                    Confirm.insert(GetConnectSTR());
+                    for (int i = 0; i < (dataGridView25.RowCount - 1); i++)
+                    {
+                        citurist = new ConfirmInfoTourist(null, Confirm.Id, dataGridView25.Rows[i].Cells[1].Value.ToString(), dataGridView25.Rows[i].Cells[2].Value.ToString(), dataGridView25.Rows[i].Cells[3].Value.ToString(), dataGridView25.Rows[i].Cells[4].Value.ToString());
+                        citurist.insert(GetConnectSTR());
+                    }
+                    for (int i = 0; i < (dataGridView40.RowCount - 1); i++)
+                    {
+                       /* citicket = new ConfirmInfoTicket(null, Confirm.Id, makeSQLdate(dataGridView26.Rows[i].Cells[1].Value.ToString(), '.'), dataGridView26.Rows[i].Cells[2].Value.ToString(), dataGridView26.Rows[i].Cells[3].Value.ToString(), dataGridView26.Rows[i].Cells[4].Value.ToString(), dataGridView26.Rows[i].Cells[5].Value.ToString(), dataGridView26.Rows[i].Cells[6].Value.ToString(), dataGridView26.Rows[i].Cells[7].Value.ToString(), dataGridView26.Rows[i].Cells[8].Value.ToString());
+                        citicket.insert(GetConnectSTR());*/
+                        citicket = new ConfirmInfoTicket(null, Confirm.Id, dataGridView40.Rows[i].Cells[1].Value.ToString(), dataGridView40.Rows[i].Cells[2].Value.ToString());
+                        citicket.insert_lite(GetConnectSTR());
+                    }
+                }
+                else
+                {
+                    Confirm.Fill(makeSQLdate(DateTime.Now.ToShortDateString(), '.'), textBox179.Text, textBox197.Text, makeSQLdate(dateTimePicker13.Value.ToShortDateString(), '.'), makeSQLdate(dateTimePicker12.Value.ToShortDateString(), '.'), Get_Value_combobox(comboBox41), textBox178.Text, textBox171.Text, Convert.ToInt16(checkBox9.Checked).ToString(), Convert.ToInt16(checkBox8.Checked).ToString(), Convert.ToInt16(checkBox7.Checked).ToString(), Get_Value_combobox(comboBox52), dataGridView27.Rows[0].Cells[0].Value.ToString(), dataGridView27.Rows[0].Cells[3].Value.ToString(), dataGridView27.Rows[0].Cells[1].Value.ToString(), dataGridView27.Rows[0].Cells[2].Value.ToString(), makeSQLdate(dateTimePicker15.Value.ToShortDateString(), '.'), makeSQLdate(dateTimePicker14.Value.ToShortDateString(), '.'), cur, Get_Value_combobox(comboBox49), comboBox39.Text, textBox185.Text, comboBox46.Text, comboBox45.Text, comboBox40.Text, v, textBox189.Text, mi, cansi, textBox196.Text, numericUpDown12.Value.ToString(), numericUpDown13.Value.ToString(), new Agency(null, textBox201.Text, textBox44.Text, null, textBox177.Text, textBox175.Text, textBox172.Text));
+                    Confirm.update(GetConnectSTR());
+                    for (int i = 0; i < (dataGridView25.RowCount - 1); i++)
+                    {
+                        if (dataGridView25.Rows[i].Cells[0].Value != null)
+                        {
+                            citurist = new ConfirmInfoTourist(dataGridView25.Rows[i].Cells[0].Value.ToString(), Confirm.Id, dataGridView25.Rows[i].Cells[1].Value.ToString(), dataGridView25.Rows[i].Cells[2].Value.ToString(), dataGridView25.Rows[i].Cells[3].Value.ToString(), dataGridView25.Rows[i].Cells[4].Value.ToString());
+                            citurist.update(GetConnectSTR());
+                        }
+                        else
+                        {
+                            citurist = new ConfirmInfoTourist(null, Confirm.Id, dataGridView25.Rows[i].Cells[1].Value.ToString(), dataGridView25.Rows[i].Cells[2].Value.ToString(), dataGridView25.Rows[i].Cells[3].Value.ToString(), dataGridView25.Rows[i].Cells[4].Value.ToString());
+                            citurist.insert(GetConnectSTR());
+                        }
+                    }
+                    for (int i = 0; i < (dataGridView40.RowCount - 1); i++)
+                    {
+                        /*citicket = new ConfirmInfoTicket(dataGridView26.Rows[i].Cells[0].Value.ToString(), Confirm.Id, makeSQLdate(dataGridView26.Rows[i].Cells[1].Value.ToString(), '.'), dataGridView26.Rows[i].Cells[2].Value.ToString(), dataGridView26.Rows[i].Cells[3].Value.ToString(), dataGridView26.Rows[i].Cells[4].Value.ToString(), dataGridView26.Rows[i].Cells[5].Value.ToString(), dataGridView26.Rows[i].Cells[6].Value.ToString(), dataGridView26.Rows[i].Cells[7].Value.ToString(), dataGridView26.Rows[i].Cells[8].Value.ToString());
+                        citicket.update(GetConnectSTR());*/
+                        if (dataGridView40.Rows[i].Cells[0].Value != null)
+                        {
+                            citicket = new ConfirmInfoTicket(dataGridView40.Rows[i].Cells[0].Value.ToString(), Confirm.Id, dataGridView40.Rows[i].Cells[1].Value.ToString(), dataGridView40.Rows[i].Cells[2].Value.ToString());
+                            citicket.update_lite(GetConnectSTR());
+                        }
+                        else
+                        {
+                            citicket = new ConfirmInfoTicket(null, Confirm.Id, dataGridView40.Rows[i].Cells[1].Value.ToString(), dataGridView40.Rows[i].Cells[2].Value.ToString());
+                            citicket.insert_lite(GetConnectSTR());
+                        }
+                    }
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            
+            panel11.Visible = true;
+            groupBox24.Visible = false;
+        }
+
+        private void button103_Click(object sender, EventArgs e)
+        {
+            int count=0;
+            SqlConnectionStringBuilder connectStr = GetConnectSTR();
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                dataGridView39.Rows.Clear();
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "select ci.id,ci.number,convert(varchar,ci.createdate,104) as crdate,ci.CompanyName,m.name as manager,c.runame as country,convert(varchar,ci.startdate,104) as stdate,convert(varchar,ci.enddate,104) as eddate from City as c, Managers as m, Agent_confirm as ci where ci.country=c.id and ci.manager=m.id";
+
+                        if (Get_Value_combobox(comboBox10) != "-1")
+                        {
+                            query += " and m.id='" + Get_Value_combobox(comboBox10) + "'";
+                        }
+                        if (Get_Value_combobox(comboBox11) != "-1") 
+                        {
+                            query += " and c.id='" + Get_Value_combobox(comboBox11) + "'";
+                        }
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        dataGridView39.Rows.Add();
+                        dataGridView39.Rows[count].Cells[0].Value = reader["id"];
+                        dataGridView39.Rows[count].Cells[1].Value = reader["number"];
+                        dataGridView39.Rows[count].Cells[2].Value = reader["crdate"];
+                        dataGridView39.Rows[count].Cells[3].Value = reader["CompanyName"];
+                        dataGridView39.Rows[count].Cells[4].Value = reader["manager"];
+                        dataGridView39.Rows[count].Cells[5].Value = reader["country"];
+                        dataGridView39.Rows[count].Cells[6].Value = reader["stdate"];
+                        dataGridView39.Rows[count].Cells[7].Value = reader["eddate"];
+                        count++;
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+
+        private void button104_Click(object sender, EventArgs e)
+        {
+
+            if (dataGridView39.SelectedCells.Count!= 0)
+            {
+            Confirm.load(GetConnectSTR(),dataGridView39.Rows[dataGridView39.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+            DatagridRead(dataGridView40, "Agent_confirm_ticket_lite", Confirm.Id, GetConnectSTR());
+            DatagridRead(dataGridView25, "Agent_confirm_turist", Confirm.Id, GetConnectSTR());
+            comboBox52.Text = Confirm.TourOperator;
+            comboBox41.Text = Confirm.Manager;
+            textBox179.Text=Confirm.Number;
+            //textBox197.Text=Confirm.
+            textBox201.Text=Confirm.agent.Name;
+            textBox177.Text=Confirm.agent.Operator;
+            textBox172.Text=Confirm.agent.Email;
+            textBox175.Text=Confirm.agent.Phone;
+            textBox44.Text = Confirm.agent.City;
+            dateTimePicker13.Value=DateTime.Parse(Confirm.Startdate);
+            dateTimePicker12.Value=DateTime.Parse(Confirm.EndDate);
+            textBox178.Text=Confirm.TravelPath;
+            textBox171.Text=Confirm.ManNum;
+            if (Confirm.Avia == "True")
+            {
+                checkBox9.Checked = true;
+            }
+            if (Confirm.Train == "True")
+            {
+                checkBox8.Checked = true;
+            }
+            if (Confirm.Bus == "True")
+            {
+                checkBox7.Checked = true;
+            }
+            dataGridView27.Rows[0].Cells[0].Value=Confirm.TourCost;
+            dataGridView27.Rows[0].Cells[1].Value=Confirm.CommisionPercent;
+            //dataGridView27.Rows[0].Cells[2].Value
+            dataGridView27.Rows[0].Cells[3].Value=Confirm.AdditionalPayment;
+            dateTimePicker15.Value=DateTime.Parse(Confirm.HalfPaymentDate);
+            dateTimePicker14.Value=DateTime.Parse(Confirm.FullPaymentDate);
+            if (Confirm.Rate=="Рубли")
+            {
+            radioButton4.Checked=true;
+            }
+            else if (Confirm.Rate=="Евро")
+            {
+            radioButton5.Checked=true;
+            }
+            else if (Confirm.Rate=="Доллары")
+            {
+            radioButton6.Checked=true;
+            }
+            comboBox49.Text=Confirm.Country;
+            comboBox39.SelectedItem=Confirm.Transfer;
+            textBox185.Text=Confirm.Hotel;
+            comboBox46.SelectedItem=Confirm.RoomType;
+            comboBox45.SelectedItem=Confirm.Room;
+            comboBox40.SelectedItem=Confirm.FoodType;
+            if (Confirm.Visa=="True")
+                {
+                checkBox18.Checked=true;
+                }
+            if (Confirm.MedicalIns == "True")
+                {
+                checkBox19.Checked=true;
+                }
+            if (Confirm.CanselIns == "True")
+                {
+                checkBox20.Checked=true;
+                }
+            textBox189.Text=Confirm.Excursion;
+            textBox196.Text = Confirm.AdditionalServises;
+            if ((Confirm.Adult != "") && (Confirm.Adult != null)) 
+            {
+            numericUpDown12.Value = Int32.Parse(Confirm.Adult);
+            }
+            if ((Confirm.Child != "") && (Confirm.Child != null))
+            {
+                numericUpDown13.Value = Int32.Parse(Confirm.Child);
+            }
+            panel11.Visible = false;
+            groupBox24.Visible = true;
+            }
+
+        }
+
+        private void button105_Click(object sender, EventArgs e)
+        {
+            DataGridViewCell sc = dataGridView28.SelectedCells[0];
+            DataGridViewRow row = dataGridView28.Rows[sc.RowIndex];
+            Agency ag = new Agency();
+            ag.delete(GetConnectSTR(), row.Cells[5].Value.ToString());
+            getagencyresult(textBox202.Text, textBox200.Text, comboBox50.Text, textBox198.Text, textBox199.Text);
+            tabControl7.SelectedTab = tabPage19;
+        }
+
+        private void dataGridView35_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button102_Click(object sender, EventArgs e)
+        {
+            panel11.Visible = false;
+        }
+
+        private void dataGridView25_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((e.Shift && e.KeyCode == Keys.Insert) || (e.Control && e.KeyCode == Keys.V))
+            {
+                char[] rowSplitter = { '\r', '\n' };
+                char[] columnSplitter = { '\t' };
+                IDataObject dataInClipboard = Clipboard.GetDataObject();
+                string stringInClipboard = (string)dataInClipboard.GetData(DataFormats.Text);
+                string[] rowsInClipboard = stringInClipboard.Split(rowSplitter, StringSplitOptions.RemoveEmptyEntries);
+                string[] cols = null;
+                int selrow=dataGridView25.SelectedCells[0].RowIndex;
+                for (int ri = 0; ri <= ((selrow + rowsInClipboard.Length) - dataGridView25.Rows.Count); ri++)
+                {
+                    dataGridView25.Rows.Add();
+                    /*if ((selrow+rowsInClipboard.Length) >= dataGridView25.Rows.Count)
+                    {
+                        dataGridView25.Rows.Add();
+                    }*/
+                    //
+                }
+                for(int j=0;j<rowsInClipboard.Length;j++)
+                {
+                    if ((selrow + j) == dataGridView25.Rows.Count)
+                    {
+                        dataGridView25.Rows.Add();
+                    }
+                    cols = rowsInClipboard[j].Split(columnSplitter);
+                    DataGridViewSelectedCellCollection cc = dataGridView25.SelectedCells;
+                    for (int i = 0; i < dataGridView25.Rows[selrow].Cells.Count; i++)
+                    {
+                        if (i<cols.Length)
+                        {
+                            dataGridView25.Rows[selrow+j].Cells[i + 1].Value = cols[i];
+                        }
+                    }
+                    //dataGridView25.Rows.Add();
+                    /*if ((selrow + 1) == dataGridView25.Rows.Count)
+                    {
+                        dataGridView25.Rows.Add();
+                    }*/
+                }
+            }
+        }
+
+        private void dateTimePicker13_KeyUp(object sender, KeyEventArgs e)
+        {
+            DateTimePicker dt = (DateTimePicker)sender;
+            if ((e.Shift && e.KeyCode == Keys.Insert) || (e.Control && e.KeyCode == Keys.V))
+            {
+                char[] columnSplitter = { '\t' };
+                
+                IDataObject Bufferdata = Clipboard.GetDataObject();
+                string str = (string)Bufferdata.GetData(DataFormats.Text);
+                string[] cols = str.Split(columnSplitter);
+                try
+                {
+                    dt.Value = DateTime.Parse(cols[0]);
+                }
+                catch
+                {
+                    MessageBox.Show("Неверный формат данных");
+                }
+
+            }
+
+        }
+
+        private void button107_Click(object sender, EventArgs e)
+        {
+            dataGridView41.Rows.Clear();
+            string query = "select ac.id, ac.Number,convert(varchar,ac.CreateDate,104) as crdate,ac.CompanyName,ac.CompanyCity, convert(varchar,ac.Startdate,104) as startdate, convert(varchar,ac.EndDate,104) as EndDate,ac.ManNum,t.to_shortname as touroperator,ac.TourCost,ac.AdditionalPayment,ac.CommisionPercent,ac.Commision,Rate,ac.Hotel, c.runame as Country,m.name as manager from agent_confirm as ac, country as c,managers as m, Touroperators as t where m.id=ac.manager and c.id=ac.country and t.id=ac.TourOperator and CreateDate<='" + makeSQLdate(dateTimePicker26.Value.ToShortDateString(), '.') + "' and CreateDate>='" + makeSQLdate(dateTimePicker27.Value.ToShortDateString(), '.') + "'";
+            if (comboBox12.Text!="Все")
+            {
+                query += " and manager='"+Get_Value_combobox(comboBox12)+"'";
+            }
+            SqlConnectionStringBuilder connectStr = GetConnectSTR();
+            SqlDataReader reader = null;
+            SqlCommand sqlcom = null;
+            //id = GetDogovorId(conn_str,this.Dogovornum, this.DogovorDate, this.Manager, "DogovorInfo");
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    int count=0;
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    if (reader.HasRows != false)
+                    {
+                        while (reader.Read())
+                        {
+                            dataGridView41.Rows.Add();
+                            dataGridView41.Rows[count].Cells[0].Value = reader["Number"];
+                            dataGridView41.Rows[count].Cells[1].Value = reader["crdate"];
+                            dataGridView41.Rows[count].Cells[2].Value = reader["CompanyName"];
+                            dataGridView41.Rows[count].Cells[3].Value = reader["manager"];
+                            dataGridView41.Rows[count].Cells[4].Value = reader["TourOperator"];
+                            dataGridView41.Rows[count].Cells[5].Value = reader["country"];
+                            dataGridView41.Rows[count].Cells[6].Value = reader["Hotel"];
+                            //dataGridView41.Rows[count].Cells[7].Value = reader["T"];
+                            GetturistToConfirm((DataGridViewComboBoxCell)dataGridView41.Rows[count].Cells[7], reader["id"].ToString());
+                            dataGridView41.Rows[count].Cells[8].Value = reader["startdate"]+" - " +reader["EndDate"];
+                            dataGridView41.Rows[count].Cells[9].Value = reader["TourCost"];
+                            dataGridView41.Rows[count].Cells[10].Value = reader["CommisionPercent"];
+                            dataGridView41.Rows[count].Cells[11].Value = reader["Commision"];
+                            dataGridView41.Rows[count].Cells[12].Value = reader["AdditionalPayment"];
+                            count++;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+
+            }
+        }
+
+        private void button106_Click(object sender, EventArgs e)
+        {
+            make_agent_manage_report_ex();
+        }
+
+        private void менеджеровПоПродажамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel12.Visible = true;
+            groupBox24.Visible = false;
+        }
+
+        private void button52_Click_1(object sender, EventArgs e)
+        {
+            panel12.Visible = false;
+        }
+
+        private void maskedTextBox16_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox16_TextChanged(object sender, EventArgs e)
+        {
+            MaskedTextBox m = (MaskedTextBox)sender;
+            if (m.Name == "maskedTextBox16")
+            {
+                if (m.Text.Length == 2)
+                {
+                    maskedTextBox15.Focus();
+                }
+            }
+            if (m.Name == "maskedTextBox13")
+            {
+                if (m.Text.Length == 2)
+                {
+                    maskedTextBox14.Focus();
+                }
+            }
+            if (m.Name == "maskedTextBox15")
+            {
+                if (m.Text.Length == 7)
+                {
+                    maskedTextBox17.Focus();
+                }
+            }
+            if (m.Name == "maskedTextBox14")
+            {
+                if (m.Text.Length == 7)
+                {
+                    maskedTextBox9.Focus();
+                }
+            }
+            if (m.Name == "maskedTextBox11")
+            {
+                if (m.Text.Length == 4)
+                {
+                    maskedTextBox12.Focus();
+                }
+            }
+            if (m.Name == "maskedTextBox19")
+            {
+                if (m.Text.Length == 4)
+                {
+                    maskedTextBox18.Focus();
+                }
+            }
+            if (m.Name == "maskedTextBox12")
+            {
+                if (m.Text.Length == 6)
+                {
+                    maskedTextBox16.Focus();
+                }
+            }
+            if (m.Name == "maskedTextBox18")
+            {
+                if (m.Text.Length == 6)
+                {
+                    maskedTextBox20.Focus();
+                }
+            }
+        }
+
+        private void maskedTextBox15_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
+
 
 
         //Confirmation
@@ -10530,13 +11807,13 @@ namespace WordExChec
             }
             catch
             {
-               // erorrFSave("error.txt", query);
+               erorrFSave("error.txt", query);
             }
             return result;
         }
         public void GetClientId(SqlConnectionStringBuilder conn_str)
         {
-            string query = "SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='" + this.FIO + "' and Birthdate='"+this.Birthdate+"'";
+            string query = "SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where FIO='" + this.FIO + "' and Birthdate='"+this.Birthdate+"'";
             if ((this.ENpaspSeriy != null) && (this.ENpaspSeriy != ""))
             {
                 query += " and ENpassportseriy='" + this.ENpaspSeriy + "'";
@@ -10597,12 +11874,30 @@ namespace WordExChec
             }
             catch
             {
-                // erorrFSave("error.txt", query);
+               erorrFSave("error.txt", query);
             }
+        }
+        private void erorrFSave(string path, string e)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+
         }
         public void load(SqlConnectionStringBuilder conn_str, string key)
         {
-             string query = "SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportEndDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where id='"+key+"'";
+             string query = "SELECT  [id],[FIO],[Birthdate],[ENpassportseriy],[ENpassportnum],[ENpassportStartDate],[ENpassportOwn],[RUPassportseriy],[RUPassportNum],[RUPassportStartDate],[RUPassportOwn],[phone],[email],[icq],[skype],[Adress],[state_phone]  FROM [rosintour].[dbo].[Clients] where id='"+key+"'";
             SqlConnectionStringBuilder connectStr = conn_str;
             SqlDataReader reader=null;
             SqlCommand sqlcom = null;
@@ -10668,65 +11963,993 @@ namespace WordExChec
         public string State_phone;
 
     }
-    public class ConfirInfo
+    public class Agency
     {
+        public string Id;
+        public string Name;
+        public string City;
+        public string Adress;
+        public string Operator;
+        public string Phone;
+        public string Email;
+        public Agency()
+        {
+        Id=null;
+        Name = null;
+        City = null;
+        Adress = null;
+        Operator = null;
+        Phone = null;
+        Email = null;
+        }
+        public Agency(string id,string name,string city,string adress,string agentname,string phone,string email)
+        {
+            Id = id;
+            Name = name;
+            City = city;
+            Adress = adress;
+            Operator = agentname;
+            Phone = phone;
+            Email = email;
+        }
+        public object insert(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "insert into Agency values('" + this.Name + "', '" + this.City + "','" + this.Adress + "','" + this.Operator + "','" + this.Phone + "','" + this.Email + "')";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                    query = "select id from Agency where Name='" + this.Name + "' and City='" + this.City + "' and Adress='" + this.Adress + "' and Agentname='" + this.Operator + "' and Phone='" + this.Phone + "' and Email='" + this.Email + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        result = reader["id"];
+                        this.Id = reader["id"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        public object delete(SqlConnectionStringBuilder conn_str,string key)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "delete from Agency where id='"+key+"'";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        private void erorrFSave(string path, string e)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+
+        }
+    }
+    public class ConfirmInfo
+    {
+        public string Id;
+        public string Number;
+        public string CrDate;
         public string Demand_key;
-        public string Path;
-        public string Adult;
-        public string Child;
         public string Startdate;
         public string EndDate;
-        public string Hotel;
-        public string Tour;
-        public string Manager;
-        public string FullSum;
-        public string AgentSum;
-        public string AgentProcent;
-        public string FinalSum;
-        public string Partner;
-        public string Agentkey;
+        public string TravelPath;
+        public string ManNum;
+        public string Avia;
+        public string Train;
+        public string Bus;
+        public string TourOperator;
+        public string TourCost;
+        public string AdditionalPayment;
+        public string CommisionPercent;
+        public string Commision;
+        public string HalfPaymentDate;
+        public string FullPaymentDate;
+        public string Rate;
         public string Country;
-        public string Touroperator;
-
-        public ConfirInfo()
+        public string Manager;
+        public string Transfer;
+        public string Hotel;
+        public string RoomType;
+        public string Room;
+        public string FoodType;
+        public string Visa;
+        public string Excursion;
+        public string MedicalIns;
+        public string CanselIns;
+        public string AdditionalServises;
+        public string Adult;
+        public string Child;
+        public Agency agent;
+        public ConfirmInfo()
         {
-            Demand_key = null;
-            Path = null;
-            Adult = null;
-            Child = null;
-            Startdate = null;
-            EndDate = null;
-            Hotel = null;
-            Tour = null;
-            Manager = null;
-            FullSum = null;
-            AgentSum = null;
-            AgentProcent = null;
-            FinalSum = null;
-            Partner = null;
-            Agentkey = null;
-            Country = null;
-            Touroperator = null;
+        Id = null;
+        Number=null;
+        CrDate = null;
+        Demand_key = null;
+        Startdate = null;
+        EndDate = null;
+        TravelPath = null;
+        ManNum = null;
+        Avia=null;
+        Train = null;
+        Bus = null;
+        TourOperator = null;
+        TourCost = null;
+        AdditionalPayment = null;
+        CommisionPercent = null;
+        Commision = null;
+        HalfPaymentDate = null;
+        FullPaymentDate = null;
+        Rate = null;
+        Country = null;
+        Manager = null;
+        Transfer= null;
+        Hotel= null;
+        RoomType= null;
+        Room= null;
+        FoodType= null;
+        Visa= null;
+        Excursion= null;
+        MedicalIns= null;
+        CanselIns= null;
+        AdditionalServises= null;
+        Adult = null;
+        Child = null;
+        agent = new Agency();
         }
-        public ConfirInfo(string demand_key, string path,string adult,string child,string startdate,string enddate,string hotel,string tour,string manager,string fullsum,string agentsum,string agentProcent, string finalsum,string partner,string agentkey,string country,string touroperator)
+        public ConfirmInfo(string id, string crdate, string number, string demand_key, string startdate, string enddate, string manager, string travelpath, string mannum, string avia, string train, string bus, string touroperator, string tourcost, string additionalpayment, string commisionprocent, string commision, string halfpaymentdate, string fullpaymentdate, string rate, string country, string transfer, string hotel, string roomtype, string room, string foodtype, string visa, string excursion, string medins, string canselins, string addservices,string adult,string child, Agency ag)
         {
+            Id = id;
+            Number = number;
+            CrDate = crdate;
             Demand_key = demand_key;
-            Path = path;
-            Adult = adult;
-            Child = child;
             Startdate = startdate;
             EndDate = enddate;
-            Hotel = hotel;
-            Tour = tour;
-            Manager = manager;
-            FullSum = fullsum;
-            AgentSum = agentsum;
-            AgentProcent = agentProcent;
-            FinalSum = finalsum;
-            Partner = partner;
-            Agentkey = agentkey;
+            TravelPath = travelpath;
+            ManNum = mannum;
+            Avia = avia;
+            Train = train;
+            Bus = bus;
+            TourOperator = touroperator;
+            TourCost = tourcost;
+            AdditionalPayment = additionalpayment;
+            CommisionPercent = commisionprocent;
+            Commision = commision;
+            HalfPaymentDate = halfpaymentdate;
+            FullPaymentDate = fullpaymentdate;
+            Rate = rate;
             Country = country;
-            Touroperator = touroperator;
+            Manager = manager;
+            Transfer = transfer;
+            Hotel = hotel;
+            RoomType = roomtype;
+            Room = room;
+            FoodType = foodtype;
+            Visa = visa;
+            Excursion = excursion;
+            MedicalIns = medins;
+            CanselIns = canselins;
+            AdditionalServises = addservices;
+            Adult = adult;
+            Child = child;
+            agent = ag;
+        }
+        public void Fill(string crdate, string number, string demand_key, string startdate, string enddate, string manager, string travelpath, string mannum, string avia, string train, string bus, string touroperator, string tourcost, string additionalpayment, string commisionprocent, string commision, string halfpaymentdate, string fullpaymentdate, string rate, string country, string transfer, string hotel, string roomtype, string room, string foodtype, string visa, string excursion, string medins, string canselins, string addservices, string adult,string child, Agency ag)
+        {
+            //Id = id;
+            Number = number;
+            CrDate = crdate;
+            Demand_key = demand_key;
+            Startdate = startdate;
+            EndDate = enddate;
+            TravelPath = travelpath;
+            ManNum = mannum;
+            Avia = avia;
+            Train = train;
+            Bus = bus;
+            TourOperator = touroperator;
+            TourCost = tourcost;
+            AdditionalPayment = additionalpayment;
+            CommisionPercent = commisionprocent;
+            Commision = commision;
+            HalfPaymentDate = halfpaymentdate;
+            FullPaymentDate = fullpaymentdate;
+            Rate = rate;
+            Country = country;
+            Manager = manager;
+            Transfer = transfer;
+            Hotel = hotel;
+            RoomType = roomtype;
+            Room = room;
+            FoodType = foodtype;
+            Visa = visa;
+            Excursion = excursion;
+            MedicalIns = medins;
+            CanselIns = canselins;
+            AdditionalServises = addservices;
+            Adult = adult;
+            Child = child;
+            agent = ag;
+        }
+        public object insert(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "insert into Agent_Confirm values('" + this.Number + "', '" + DateTime.Now.ToString("yyyy.MM.dd") + "', '" + this.Demand_key + "','" + this.agent.Id + "','" + this.agent.Name + "','" + this.agent.Operator + "','" + this.agent.Email + "','" + this.agent.Phone + "','" + this.agent.City + "','" + this.Startdate + "','" + this.EndDate + "','" + this.TravelPath + "','" + this.ManNum + "','" + this.Avia + "','" + this.Train + "','" + this.Bus + "','" + this.TourOperator + "','" + this.TourCost + "','" + this.AdditionalPayment + "',cast ('" + this.CommisionPercent.Replace(",", ".") + "' as float), '" + this.Commision + "','" + this.HalfPaymentDate + "','" + this.FullPaymentDate + "','" + this.Rate + "','" + this.Country + "','" + this.Manager + "','" + this.Transfer + "','" + this.Hotel + "','" + this.RoomType + "','" + this.Room + "','" + this.FoodType + "','" + this.Excursion + "','" + this.Visa + "','" + this.MedicalIns + "','" + this.CanselIns + "','" + this.AdditionalServises + "','" + this.Adult + "','" + this.Child + "')";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                    query = "select id from Agent_Confirm where Number='" + this.Number + "' and CompanyName='" + this.agent.Name + "' and CompanyOperator='" + this.agent.Operator + "' and CompanyEmail='" + this.agent.Email + "' and CompanyPhone='" + this.agent.Phone + "' and TourOperator='" + this.TourOperator + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        result = reader["id"];
+                        this.Id = reader["id"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        public object update(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "update Agent_Confirm set Number='" + this.Number + "', CreateDate='" + DateTime.Now.ToString("yyyy.MM.dd") + "', demandKey='" + this.Demand_key + "', CompanyId='" + this.agent.Id + "', CompanyName='" + this.agent.Name + "',CompanyOperator='" + this.agent.Operator + "',CompanyEmail='" + this.agent.Email + "',CompanyPhone='" + this.agent.Phone + "',CompanyCity='" + this.agent.City + "',Startdate='" + this.Startdate + "',EndDate='" + this.EndDate + "',TravelPath='" + this.TravelPath + "',ManNum='" + this.ManNum + "',Avia='" + this.Avia + "',Train='" + this.Train + "',Bus='" + this.Bus + "',TourOperator='" + this.TourOperator + "',TourCost='" + this.TourCost + "',AdditionalPayment='" + this.AdditionalPayment + "', CommisionPercent=cast ('" + this.CommisionPercent.Replace(",", ".") + "' as float), Commision='" + this.Commision + "',HalfPaymentDate='" + this.HalfPaymentDate + "',FullPaymentDate='" + this.FullPaymentDate + "',Rate='" + this.Rate + "',Country='" + this.Country + "',Manager='" + this.Manager + "',Transfer='" + this.Transfer + "',Hotel='" + this.Hotel + "',RoomType='" + this.RoomType + "',Room='" + this.Room + "',FoodType='" + this.FoodType + "',Excursion='" + this.Excursion + "',Visa='" + this.Visa + "',MedicalIns='" + this.MedicalIns + "',CanselIns='" + this.CanselIns + "',AdditionalServises='" + this.AdditionalServises + "',Adult='" + this.Adult + "',Child='" + this.Child+ "' where id='"+this.Id+"'";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        public string getNum(SqlConnectionStringBuilder conn_str)
+        {
+            string result = "";
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "select max(id)+1 as id from Agent_confirm";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        result = reader["id"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+
+            return result;
+        }
+        public object load(SqlConnectionStringBuilder conn_str,string key)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "select c.id,c.Number,c.CreateDate,c.demandKey,c.CompanyName,c.CompanyOperator,c.CompanyEmail,c.CompanyPhone,c.CompanyCity,c.Startdate,c.EndDate,c.TravelPath,c.ManNum,c.Avia,c.Train,c.Bus,TourOperator.to_name as TourOperator,c.TourCost,c.AdditionalPayment,c.CommisionPercent,c.Commision,c.HalfPaymentDate,c.FullPaymentDate,c.Rate,cn.Runame as Country,Manager.name as Manager,c.Transfer,c.Hotel,c.RoomType,c.Room,c.FoodType,c.Excursion,c.Visa,c.MedicalIns,c.CanselIns,c.AdditionalServises,c.Adult,c.Child from Agent_confirm as c, touroperators as touroperator,managers as manager,country as cn where c.id='" + key + "' and touroperator.id=c.touroperator and manager.id=c.manager and cn.id=c.country";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        this.Id = reader["id"].ToString();
+                        this.Number = reader["Number"].ToString();
+                        this.CrDate = reader["CreateDate"].ToString();
+                        this.Demand_key = reader["demandKey"].ToString();
+                        this.agent.Name = reader["CompanyName"].ToString();
+                        this.agent.Operator = reader["CompanyOperator"].ToString();
+                        this.agent.Email = reader["CompanyEmail"].ToString();
+                        this.agent.Phone = reader["CompanyPhone"].ToString();
+                        this.agent.City = reader["CompanyCity"].ToString();
+                        this.Startdate = reader["Startdate"].ToString();
+                        this.EndDate = reader["Enddate"].ToString();
+                        this.TravelPath = reader["TravelPath"].ToString();
+                        this.ManNum = reader["ManNum"].ToString();
+                        this.Avia = reader["Avia"].ToString();
+                        this.Train = reader["Train"].ToString();
+                        this.Bus = reader["Bus"].ToString();
+                        this.TourOperator = reader["TourOperator"].ToString();
+                        this.TourCost = reader["TourCost"].ToString();
+                        this.AdditionalPayment = reader["AdditionalPayment"].ToString();
+                        this.CommisionPercent = reader["CommisionPercent"].ToString();
+                        this.Commision = reader["Commision"].ToString();
+                        this.HalfPaymentDate = reader["HalfPaymentDate"].ToString();
+                        this.FullPaymentDate = reader["FullPaymentDate"].ToString();
+                        this.Rate = reader["Rate"].ToString();
+                        this.Country = reader["Country"].ToString();
+                        this.Manager = reader["Manager"].ToString();
+                        this.Transfer = reader["Transfer"].ToString();
+                        this.Hotel = reader["Hotel"].ToString();
+                        this.RoomType = reader["RoomType"].ToString();
+                        this.Room = reader["Room"].ToString();
+                        this.FoodType = reader["FoodType"].ToString();
+                        this.Excursion = reader["Excursion"].ToString();
+                        this.Visa = reader["Visa"].ToString();
+                        this.MedicalIns = reader["MedicalIns"].ToString();
+                        this.CanselIns = reader["CanselIns"].ToString();
+                        this.AdditionalServises = reader["AdditionalServises"].ToString();
+                        this.Adult = reader["Adult"].ToString();
+                        this.Child = reader["Child"].ToString();
+
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        public string getToPenalty(SqlConnectionStringBuilder conn_str,string key)
+        {
+            string result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    //query = "select to_penalty from touroperators where id=(select id from touroperators where to_name='"+this.TourOperator+"')";
+                    query = "select to_penalty from touroperators where id='"+key+"'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    result=reader["to_penalty"].ToString();
+                    if ((result == "") || (result == " "))
+                    {
+                        result += "В день начала тура и позже, а также в случае no show (неявка на тур, рейс, отель)	- 100 %\r\n";
+                        result += "1 – 7 полных дня до начала тура	                                                    -98 %\r\n";
+                        result += "8 – 14 полных дней до начала тура	                                                60 %\r\n";
+                        result += "15 – 21 полный день до начала тура	                                                30 %\r\n";
+                        result += "Более 22 полных дней до начала тура	                                                20 у.е.\r\n";
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        private void erorrFSave(string path, string e)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+
+        }
+    }
+    public class ConfirmInfoService
+    {
+        public string Id;
+        public string Confirm_key;
+        public string Transfer;
+        public string Hotel;
+        public string RoomType;
+        public string Room;
+        public string FoodType;
+        public string Visa;
+        public string Excursion;
+        public string MedicalIns;
+        public string CanselIns;
+        public string AdditionalServises;
+
+        public ConfirmInfoService()
+        {
+            Id = null;
+            Confirm_key = null;
+            Transfer = null;
+            Hotel = null;
+            RoomType = null;
+            Room = null;
+            FoodType = null;
+            Excursion = null;
+            Visa = null;
+            MedicalIns = null;
+            CanselIns = null;
+            AdditionalServises = null;
+
+        }
+        public ConfirmInfoService(string id, string confirm_key, string transfer, string hotel, string roomtype, string room, string foodtype, string excursion, string visa, string medicalIns, string canselins, string addservices)
+        {
+            Id = id;
+            Confirm_key = confirm_key;
+            Transfer = transfer;
+            Hotel = hotel;
+            RoomType = roomtype;
+            Room = room;
+            FoodType = foodtype;
+            Excursion = excursion;
+            Visa = visa;
+            MedicalIns = medicalIns;
+            CanselIns = canselins;
+            AdditionalServises = addservices;
+        }
+        public object insert(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "insert into Agent_confirm_services values('" + this.Confirm_key + "', '" + this.Transfer + "','" + this.Hotel + "','" + this.RoomType + "','" + this.Room + "','" + this.FoodType + "','" + this.Excursion + "','" + this.Visa + "','" + this.MedicalIns + "','" + this.CanselIns + "','" + this.AdditionalServises  + "')";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                    query = "select id from Agent_confirm_services where Confirm_key='" + this.Confirm_key + "' and Transfer='" + this.Transfer + "' and Hotel='" + this.Hotel + "' and RoomType='" + this.RoomType + "' and Room='" + this.Room + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        result = reader["id"];
+                        this.Id = reader["id"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        private void erorrFSave(string path, string e)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+
+        }
+    }
+    public class ConfirmInfoTicket
+    {
+        public string Id;
+        public string Confirm_key;
+        public string Date;
+        public string StartTime;
+        public string EndTime;
+        public string ReisNum;
+        public string StartPlace;
+        public string EndPlace;
+        public string TicketCount;
+        public string Tarif;
+        public string AviaInfo;
+
+        public ConfirmInfoTicket()
+        {
+            Id = null;
+            Confirm_key = null;
+            Date = null;
+            StartTime = null;
+            EndTime = null;
+            ReisNum = null;
+            StartPlace = null;
+            EndPlace = null;
+            TicketCount = null;
+            Tarif = null;
+            AviaInfo = null;
+        }
+        public ConfirmInfoTicket(string id, string confirm_key, string date, string startTime, string endTime, string riesNum, string startPlace, string endPlace, string ticketcount, string tarif)
+        {
+            Id = id;
+            Confirm_key = confirm_key;
+            Date = date;
+            StartTime = startTime;
+            EndTime = endTime;
+            ReisNum = riesNum;
+            StartPlace = startPlace;
+            EndPlace = endPlace;
+            TicketCount = ticketcount;
+            Tarif = tarif;
+            AviaInfo = null;
+        }
+        public ConfirmInfoTicket(string id, string confirm_key, string aviainfo, string ticketcount)
+        {
+            Id = id;
+            Confirm_key = confirm_key;
+            Date = null;
+            StartTime = null;
+            EndTime = null;
+            ReisNum = null;
+            StartPlace = null;
+            EndPlace = null;
+            Tarif = null;
+            AviaInfo = aviainfo;
+            TicketCount = ticketcount;
+        }
+        public object load(SqlConnectionStringBuilder conn_str, string key)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "SELECT [id],[Confirm_key],convert(varchar,[Date],104) as date,[TimeStart],[TimeEnd],[ReisNum],[StartPlace],[EndPlace],[TicketCount],[Tarif] FROM [Agent_confirm_ticket] where id='"+key+"'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        this.Id = reader["id"].ToString();
+                        this.Confirm_key = reader["Confirm_key"].ToString();
+                        this.Date = reader["date"].ToString();
+                        this.StartTime = reader["TimeStart"].ToString();
+                        this.EndTime = reader["TimeEnd"].ToString();
+                        this.ReisNum = reader["ReisNum"].ToString();
+                        this.StartPlace = reader["StartPlace"].ToString();
+                        this.EndPlace = reader["EndPlace"].ToString();
+                        this.TicketCount = reader["TicketCount"].ToString();
+                        this.Tarif = reader["Tarif"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        public object load_lite(SqlConnectionStringBuilder conn_str, string key)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "SELECT [id],[Confirm_key],[AviaInfo],[TicketCount] FROM [Agent_confirm_ticket_lite] where id='" + key + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        this.Id = reader["id"].ToString();
+                        this.Confirm_key = reader["Confirm_key"].ToString();
+                        this.TicketCount = reader["AviaInfo"].ToString();
+                        this.AviaInfo = reader["TicketCount"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        public void insert(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "insert into Agent_confirm_ticket values('" + this.Confirm_key + "', '" + this.Date + "','" + this.StartTime + "','" + this.EndTime+ "','" + this.ReisNum + "','" + this.StartPlace + "','" + this.EndPlace + "','" + this.TicketCount + "','" + this.Tarif + "')";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                    query = "select id from Agent_confirm_ticket where Confirm_key='" + this.Confirm_key + "' and Date='" + this.Date + "' and TimeStart='" + this.StartTime + "' and TimeEnd='" + this.EndTime + "' and ReisNum='" + this.ReisNum + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        result = reader["id"];
+                        this.Id = reader["id"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+        public void insert_lite(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "insert into Agent_confirm_ticket_lite values('" + this.Confirm_key + "', '" + this.AviaInfo + "','" + this.TicketCount + "')";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                    /*query = "select id from Agent_confirm_ticket_lite where Confirm_key='" + this.Confirm_key + "' and AviaInfo='" + this.AviaInfo + "' and TicketCount='" + this.TicketCount + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        result = reader["id"];
+                        this.Id = reader["id"].ToString();
+                    }
+                    reader.Close();*/
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+        public void update(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "update Agent_confirm_ticket set Confirm_key='" + this.Confirm_key + "', Date='" + this.Date + "', TimeStart='" + this.StartTime + "', TimeEnd='" + this.EndTime + "', ReisNum='" + this.ReisNum + "', StartPlace='" + this.StartPlace + "',EndPlace='" + this.EndPlace + "',TicketCount='" + this.TicketCount + "',Tarif='" + this.Tarif + "' where id='"+this.Id+"'";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+        public void update_lite(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "update Agent_confirm_ticket set Confirm_key='" + this.Confirm_key + "', AviaInfo='" + this.AviaInfo + "', TicketCount='" + this.TicketCount + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+        private void erorrFSave(string path, string e)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+
+        }
+    }
+    public class ConfirmInfoTourist
+    {
+        public string Id;
+        public string Confirm_key;
+        public string FIO;
+        public string PassportNum;
+        public string Birthday;
+        public string PassportEnd;
+
+        public ConfirmInfoTourist()
+        {
+            Id = null;
+            Confirm_key = null;
+            FIO = null;
+            PassportNum = null;
+            Birthday = null;
+            PassportEnd = null;
+        }
+        public ConfirmInfoTourist(string id, string confirm_key, string fio, string passportnum, string birthday, string passportend)
+        {
+            Id = id;
+            Confirm_key = confirm_key;
+            FIO = fio;
+            PassportNum = passportnum;
+            Birthday = birthday;
+            PassportEnd = passportend;
+        }
+        public void load(SqlConnectionStringBuilder conn_str, string key)
+        {
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "SELECT [id],[Confirm_Key],[FIO],[PassportNum],[Birthday],[PassportEnd] FROM [Agent_confirm_turist] where id='"+key+"'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        this.Id = reader["id"].ToString();
+                        this.Confirm_key = reader["Confirm_Key"].ToString();
+                        this.FIO = reader["FIO"].ToString();
+                        this.PassportNum = reader["PassportNum"].ToString();
+                        this.Birthday = reader["Birthday"].ToString();
+                        this.PassportEnd = reader["PassportEnd"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+        public object insert(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "insert into Agent_confirm_turist values('" + this.Confirm_key + "', '" + this.FIO + "','" + this.PassportNum + "','" + this.Birthday + "','" + this.PassportEnd + "')";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                    query = "select id from Agent_confirm_turist where Confirm_key='" + this.Confirm_key + "' and FIO='" + this.FIO + "' and PassportNum ='" + this.PassportNum + "'";
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    reader.Read();
+                    if (reader["id"] != null)
+                    {
+                        result = reader["id"];
+                        this.Id = reader["id"].ToString();
+                    }
+                    reader.Close();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        public object update(SqlConnectionStringBuilder conn_str)
+        {
+            object result = "";
+            //id = GetClientId(client);
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlCommand sqlcom = null;
+            string query = "";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    query = "update Agent_confirm_turist set Confirm_Key='" + this.Confirm_key + "', FIO='" + this.FIO + "',PassportNum='" + this.PassportNum + "',Birthday='" + this.Birthday + "',PassportEnd='" + this.PassportEnd + "' where id='"+this.Id+"'";
+                    sqlcom = new SqlCommand(query, connect);
+                    sqlcom.ExecuteNonQuery();
+                }
+                connect.Close();
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+            return result;
+        }
+        private void erorrFSave(string path, string e)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + e);
+                }
+            }
+
         }
     }
     public class DogovorInfo
@@ -10888,7 +13111,7 @@ namespace WordExChec
         }
         public void Load(SqlConnectionStringBuilder conn_str, string key)
         {
-            string query = "SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],convert(varchar,d.[DogovorDate],104) as DogovorDate,d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],d.[Startdate],d.[Enddate],d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[AviaTransport],d.[TrainTransport],d.[AvtoTransport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d, country as c, managers as m where d.id='" + key + "' and c.id=d.country and m.id=d.manager";
+            string query = "SELECT d.[id],d.[Pred_DogovorKey],d.[Dogovornum],convert(varchar,d.[DogovorDate],104) as DogovorDate,d.[DogovorType],d.[Client],c.[RuName] as cname,d.[FIO],d.[Travelprogram],d.[Country],convert(varchar,d.[Startdate],104) as Startdate,convert(varchar,d.[Enddate],104) as Enddate,d.[Travelroute],d.[Cardnum],d.[GidTranslate],d.[InstructorTranslate],d.[VizaHelp],d.[EarlyBooking],d.[AviaTransport],d.[TrainTransport],d.[AvtoTransport],d.[Touroperator],d.[Manager],m.[name] as mname,d.[ENpassport_Use],d.[RUSPassport_Use],d.[DateMakeMainDog],d.[Email_send],d.[SMS_send],d.[TourName],d.[Hotel],d.[PayType],d.[Currency],d.[Course],d.[RUPrice],d.[ENPrice],d.[Discount] FROM [Dogovorinfo_temp] as d, country as c, managers as m where d.id='" + key + "' and c.id=d.country and m.id=d.manager";
             SqlConnectionStringBuilder connectStr = conn_str;
             SqlDataReader reader=null;
             SqlCommand sqlcom = null;
@@ -11037,6 +13260,56 @@ namespace WordExChec
             }
 
         }
+        private void GetDogovorNum_fromPred(SqlConnectionStringBuilder conn_str)
+        {
+            string query = "select dogovornum from dogovorinfo_temp where id='"+this.Pred_DogovorKey+"'";
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader = null;
+            SqlCommand sqlcom = null; string prednum = "";string num = "";
+            Regex r = new Regex("([0-9]+)");
+            Match m;
+            //id = GetDogovorId(conn_str,this.Dogovornum, this.DogovorDate, this.Manager, "DogovorInfo");
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    if (reader.HasRows != false)
+                    {
+                        while (reader.Read())
+                        {
+                            prednum=reader["dogovornum"].ToString();
+                        }
+                    }
+                }
+                reader.Close();
+                connect.Close();
+                m=r.Match(prednum);
+                if (this.Tyroperator == "Росинтур")
+                {
+                    this.Dogovornum += "P-" + m.ToString()+"-О";
+                }
+                else
+                {
+                    this.Dogovornum += "Ю-" + m.ToString() + "-О";
+                }
+            }
+            catch
+            {
+                erorrFSave("error.txt", query);
+            }
+        }
+        public String ChangeDogNum(String part)
+        {
+            String res = "";
+            string[] strar=this.Dogovornum.Split('-');
+            res = part + "-" + strar[1] + "-" + strar[2];
+            this.Dogovornum = res;
+            return res;
+        }
         public string DogovorInfoSave(SqlConnectionStringBuilder conn_str)
         {
             string id = "";
@@ -11047,10 +13320,15 @@ namespace WordExChec
 
             if (this.Id == null)
             {
-                if (this.Dogovornum == null)
-                {
-                    this.GetDogovorNum(conn_str);
-                }
+
+                    if ((this.DogovorType == "Основной") && (this.Pred_DogovorKey != null))
+                    {
+                        this.GetDogovorNum_fromPred(conn_str);
+                    }
+                    else
+                    {
+                        this.GetDogovorNum(conn_str);
+                    }
                 string query = "insert into DogovorInfo_temp values('" + this.Pred_DogovorKey + "','" + this.Dogovornum + "','" + this.DogovorDate + "','" + this.DogovorType + "','"
                     + this.clientID.Id + "','" + this.FIO + "','" + this.Travelprogram + "','" + this.Country + "','" + this.StartDate + "','" + this.EndDate +
                     "','" + this.TravelPath + "','" + this.CardNum + "','" + this.GidTranslate + "','" + this.InstructorTranslate + "','"
@@ -11074,6 +13352,21 @@ namespace WordExChec
                 {
                     erorrFSave("error.txt", query);
                 }
+            }
+            else
+            {
+                if ((this.Dogovornum == null)||(this.Dogovornum == ""))
+                {
+                    if ((this.DogovorType == "Основной") && (this.Pred_DogovorKey != null))
+                    {
+                        this.GetDogovorNum_fromPred(conn_str);
+                    }
+                    else
+                    {
+                        this.GetDogovorNum(conn_str);
+                    }
+                }
+                this.Update(conn_str);
             }
             return id;
         }
@@ -11247,7 +13540,7 @@ namespace WordExChec
         public void insert(SqlConnectionStringBuilder conn_str)
         {
             SqlConnectionStringBuilder connectStr = conn_str;
-            //SqlDataReader reader;
+            SqlDataReader reader;
             SqlCommand sqlcom = null;
             //id = GetDogovorId(conn_str,this.Dogovornum, this.DogovorDate, this.Manager, "DogovorInfo");
 
@@ -11263,6 +13556,11 @@ namespace WordExChec
                     {
                         sqlcom = new SqlCommand(query, connect);
                         sqlcom.ExecuteNonQuery();
+                        query = "select id from payment where date='" + this.Date + "' and dogovor_key='" + this.Dogovor_key + "'";
+                        sqlcom = new SqlCommand(query, connect);
+                        reader=sqlcom.ExecuteReader();
+                        reader.Read();
+                        this.Id = reader["id"].ToString();
                     }
                     connect.Close();
                 }
@@ -11307,6 +13605,38 @@ namespace WordExChec
                     //erorrFSave("error.txt", query);
                 }
             
+        }
+        public string getDogovorKey(SqlConnectionStringBuilder conn_str,string id)
+        {
+            string res = "";
+            SqlConnectionStringBuilder connectStr = conn_str;
+            SqlDataReader reader;
+            SqlCommand sqlcom = null;
+            //id = GetDogovorId(conn_str,this.Dogovornum, this.DogovorDate, this.Manager, "DogovorInfo");
+            string query = "select dogovor_key from payment where id='" + id+ "'";
+            try
+            {
+                SqlConnection connect = new SqlConnection(connectStr.ConnectionString);
+                connect.Open();
+                if (connect.State == ConnectionState.Open)
+                {
+                    sqlcom = new SqlCommand(query, connect);
+                    reader = sqlcom.ExecuteReader();
+                    if (reader.HasRows != false)
+                    {
+                        while (reader.Read())
+                        {
+                            res = reader["dogovor_key"].ToString();
+                        }
+                    }
+                }
+                connect.Close();
+            }
+            catch
+            {
+                //erorrFSave("error.txt", query);
+            }
+            return res;
         }
         public void update(SqlConnectionStringBuilder conn_str)
         {

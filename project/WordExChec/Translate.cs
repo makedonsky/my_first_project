@@ -264,7 +264,7 @@ namespace Translate
                     {
                         if (str.Length == 2)
                         {
-                            if (str[1] == '1')
+                            if (str[0] == '0')
                             {
                                 result = "тыс€ч";
                             }
@@ -281,13 +281,13 @@ namespace Translate
                             }
                             else
                             {
-                                if (str[1] == '1')
+                                if (str[0] == '0')
                                 {
                                     result = "тыс€ч";
                                 }
                                 else
                                 {
-                                    result = get3tname(str[1]);
+                                    result = get3tname(str[0]);
                                 }
                             }
                         }
